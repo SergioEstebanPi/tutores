@@ -9,7 +9,7 @@ use Illuminate\Database\Migrations\Migration;
   *  @DATE_CREATED 28/05/2017
   *
   */
-class Estudiantes extends Migration
+class Tipos extends Migration
 {
     /**
      * Run the migrations.
@@ -19,11 +19,10 @@ class Estudiantes extends Migration
     public function up()
     {
         //
-        Schema::create('estudiantes', function(Blueprint $table){
+        Schema::create('tipos', function(Blueprint $table){
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('nombre_tipo');
+            $table->string('descripcion_tipo');
             $table->timestamps();
         });
     }
@@ -36,6 +35,6 @@ class Estudiantes extends Migration
     public function down()
     {
         //
-        Schema::drop('estudiantes');
+        Schema::drop('tipos');
     }
 }

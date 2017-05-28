@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
   *
   */
 
-class UsuarioController extends Controller
+class PublicacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +20,8 @@ class UsuarioController extends Controller
     public function index()
     {
         //
-        $users = \App\User::all();
-        return view('usuarios.index', compact('users', $users));
+        $publicaciones = \App\Publicacion::all();
+        return view('publicaciones.index', compact('publicaciones', $publicaciones));
     }
 
     /**
@@ -32,7 +32,7 @@ class UsuarioController extends Controller
     public function create()
     {
         //
-        return view('usuarios.create');
+        return view('publicaciones.create');
     }
 
     /**
@@ -44,13 +44,13 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
-        \App\User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password'])
+        \App\Publicacion::create([
+            'fecha_inicio' => $request['fecha_inicio'],
+            'fecha_fin' => $request['fecha_fin'],
+            'formato_solicitado' => $request['formato_solicitado']
         ]);
 
-        return redirect('usuario')->with('mensaje', 'Usuario creado correctamente');
+        return redirect('publicacion')->with('mensaje', 'Publicación creada correctamente');
     }
 
     /**
@@ -62,8 +62,8 @@ class UsuarioController extends Controller
     public function show($id)
     {
         //
-        $user = \App\User::find($id);
-        return view('usuarios.show', compact('user', $user));
+        $publicacion = \App\Publicacion::find($id);
+        return view('publicaciones.show', compact('publicacion', $publicacion));
     }
 
     /**
@@ -75,8 +75,8 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
-        $user = \App\User::find($id);
-        return view('usuarios.edit', compact('user', $user));
+        $publicacion = \App\Publicacion::find($id);
+        return view('publicaciones.edit', compact('publicacion', $publicacion));
     }
 
     /**
@@ -89,11 +89,10 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = \App\User::find($id);
+        $user = \App\Publicacion::find($id);
         $user->fill($request->all());
         $user->save();
-        //Session::flash('mensaje', 'Usuario editado correctamente');
-        return redirect('usuario')->with('mensaje', 'Usuario editado correctamente');
+        return redirect('publicacion')->with('mensaje', 'Publicación editada correctamente');
     }
 
     /**
@@ -105,7 +104,7 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
-        \App\User::destroy($id);
-        return redirect('usuario')->with('mensaje', 'Usuario eliminado correctamente');
+        \App\Publicacion::destroy($id);
+        return redirect('publicacion')->with('mensaje', 'Publicación eliminada correctamente');
     }
 }

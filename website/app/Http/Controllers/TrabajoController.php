@@ -4,13 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-/**
-  *  @CREATED_BY spina
-  *  @DATE_CREATED 28/05/2017
-  *
-  */
-
-class UsuarioController extends Controller
+class TrabajoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +14,8 @@ class UsuarioController extends Controller
     public function index()
     {
         //
-        $users = \App\User::all();
-        return view('usuarios.index', compact('users', $users));
+        $trabajos = \App\Trabajo::all();
+        return view('trabajos.index', compact('trabajos', $trabajos));
     }
 
     /**
@@ -32,7 +26,7 @@ class UsuarioController extends Controller
     public function create()
     {
         //
-        return view('usuarios.create');
+        return view('trabajos.create');
     }
 
     /**
@@ -44,13 +38,13 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
-        \App\User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password'])
+        \App\Trabajo::create([
+            'fecha_inicio' => $request['fecha_inicio'],
+            'fecha_fin' => $request['fecha_fin'],
+            'formato_solicitado' => $request['formato_solicitado']
         ]);
 
-        return redirect('usuario')->with('mensaje', 'Usuario creado correctamente');
+        return redirect('trabajo')->with('mensaje', 'Trabajo creado correctamente');
     }
 
     /**
@@ -62,8 +56,8 @@ class UsuarioController extends Controller
     public function show($id)
     {
         //
-        $user = \App\User::find($id);
-        return view('usuarios.show', compact('user', $user));
+        $trabajo = \App\Trabajo::find($id);
+        return view('trabajos.show', compact('trabajo', $trabajo));
     }
 
     /**
@@ -75,8 +69,8 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
-        $user = \App\User::find($id);
-        return view('usuarios.edit', compact('user', $user));
+        $trabajo = \App\Trabajo::find($id);
+        return view('trabajos.edit', compact('trabajo', $trabajo));
     }
 
     /**
@@ -89,11 +83,10 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = \App\User::find($id);
+        $user = \App\Trabajo::find($id);
         $user->fill($request->all());
         $user->save();
-        //Session::flash('mensaje', 'Usuario editado correctamente');
-        return redirect('usuario')->with('mensaje', 'Usuario editado correctamente');
+        return redirect('trabajo')->with('mensaje', 'Trabajo editado correctamente');
     }
 
     /**
@@ -105,7 +98,7 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
-        \App\User::destroy($id);
-        return redirect('usuario')->with('mensaje', 'Usuario eliminado correctamente');
+        \App\Trabajo::destroy($id);
+        return redirect('trabajo')->with('mensaje', 'Trabajo eliminado correctamente');
     }
 }

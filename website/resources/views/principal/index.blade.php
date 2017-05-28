@@ -12,11 +12,17 @@
 	<title>Inicio</title>
 </head>
 <body>
-	<div>
-		<h1 class="cabeza">Asesores y tutores</h1>
+
+<div>
+	<div class="cabeza">
+		<h1>Bienvenido</h1>
+		<h2>Asesorías y tutores</h2>
 	</div>
 	<div class="cuerpo">
-		@yield('contenido')
+		<p><a href="{{route('usuario.index')}}">Editar usuarios</a></p>
+		<p><a href="{{route('publicacion.index')}}">Editar publicaciones</a></p>
 	</div>
+</div>
+
 </body>
 </html>

@@ -32,4 +32,7 @@
 	<div>
 		<a href="{{route('usuario.create')}}">Nuevo</a>
 	</div>
+	<div>
+		<a href="/">Atrás</a>
+	</div>
 @stop

@@ -4,13 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-/**
-  *  @CREATED_BY spina
-  *  @DATE_CREATED 28/05/2017
-  *
-  */
-
-class UsuarioController extends Controller
+class TipoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +14,6 @@ class UsuarioController extends Controller
     public function index()
     {
         //
-        $users = \App\User::all();
-        return view('usuarios.index', compact('users', $users));
     }
 
     /**
@@ -32,7 +24,6 @@ class UsuarioController extends Controller
     public function create()
     {
         //
-        return view('usuarios.create');
     }
 
     /**
@@ -44,13 +35,6 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
-        \App\User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password'])
-        ]);
-
-        return redirect('usuario')->with('mensaje', 'Usuario creado correctamente');
     }
 
     /**
@@ -62,8 +46,6 @@ class UsuarioController extends Controller
     public function show($id)
     {
         //
-        $user = \App\User::find($id);
-        return view('usuarios.show', compact('user', $user));
     }
 
     /**
@@ -75,8 +57,6 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
-        $user = \App\User::find($id);
-        return view('usuarios.edit', compact('user', $user));
     }
 
     /**
@@ -89,11 +69,6 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = \App\User::find($id);
-        $user->fill($request->all());
-        $user->save();
-        //Session::flash('mensaje', 'Usuario editado correctamente');
-        return redirect('usuario')->with('mensaje', 'Usuario editado correctamente');
     }
 
     /**
@@ -105,7 +80,5 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
-        \App\User::destroy($id);
-        return redirect('usuario')->with('mensaje', 'Usuario eliminado correctamente');
     }
 }
