@@ -14,7 +14,8 @@ class EstudianteController extends Controller
     public function index()
     {
         //
-        return view('estudiantes.index');
+        $users = \App\User::all();
+        return view('estudiantes.index', compact('users', $users));
     }
 
     /**
@@ -43,7 +44,7 @@ class EstudianteController extends Controller
             'password' => bcrypt($request['password'])
         ]);
 
-        return "Usuario registrado";
+        return redirect('/estudiante')->with('mensaje', 'store');
     }
 
     /**
