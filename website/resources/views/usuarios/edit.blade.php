@@ -16,4 +16,7 @@
 			<button>Borrar</button>
 		</div>
 	</form>
+	<div>
+		<a href="{{route('usuario.index')}}">Atrás</a>
+	</div>
 @stop

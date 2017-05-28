@@ -7,4 +7,7 @@
 	<p><label>Nombre: </label>{{$user->name}}</p>
 	<label>Correo: </label>{{$user->email}}</p>
 </div>
+<div>
+	<a href="{{route('usuario.index')}}">Atrás</a>
+</div>
 @stop
