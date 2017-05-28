@@ -19,14 +19,17 @@
 			<td>{{$user->name}}</td>
 			<td>{{$user->email}}</td>
 			<td>
-				<a href="{{route('estudiante.show', $user->id)}}">
+				<a href="{{route('usuario.show', $user->id)}}">
 					Ver
 				</a>
-				<a href="{{route('estudiante.edit', $user->id)}}">
+				<a href="{{route('usuario.edit', $user->id)}}">
 					Editar
 				</a>
 			</td>
 		</tbody>
 		@endforeach
 	</table>
+	<div>
+		<a href="{{route('usuario.create')}}">Nuevo</a>
+	</div>
 @stop

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EstudianteController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class EstudianteController extends Controller
     {
         //
         $users = \App\User::all();
-        return view('estudiantes.index', compact('users', $users));
+        return view('usuarios.index', compact('users', $users));
     }
 
     /**
@@ -26,7 +26,7 @@ class EstudianteController extends Controller
     public function create()
     {
         //
-        return view('estudiantes.create');
+        return view('usuarios.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class EstudianteController extends Controller
             'password' => bcrypt($request['password'])
         ]);
 
-        return redirect('estudiante')->with('mensaje', 'Usuario creado correctamente');
+        return redirect('usuario')->with('mensaje', 'Usuario creado correctamente');
     }
 
     /**
@@ -57,7 +57,7 @@ class EstudianteController extends Controller
     {
         //
         $user = \App\User::find($id);
-        return view('estudiantes.show', compact('user', $user));
+        return view('usuarios.show', compact('user', $user));
     }
 
     /**
@@ -70,7 +70,7 @@ class EstudianteController extends Controller
     {
         //
         $user = \App\User::find($id);
-        return view('estudiantes.edit', compact('user', $user));
+        return view('usuarios.edit', compact('user', $user));
     }
 
     /**
@@ -87,7 +87,7 @@ class EstudianteController extends Controller
         $user->fill($request->all());
         $user->save();
         //Session::flash('mensaje', 'Usuario editado correctamente');
-        return redirect('estudiante')->with('mensaje', 'Usuario editado correctamente');
+        return redirect('usuario')->with('mensaje', 'Usuario editado correctamente');
     }
 
     /**
@@ -100,6 +100,6 @@ class EstudianteController extends Controller
     {
         //
         \App\User::destroy($id);
-        return redirect('estudiante')->with('mensaje', 'Usuario eliminado correctamente');
+        return redirect('usuario')->with('mensaje', 'Usuario eliminado correctamente');
     }
 }
