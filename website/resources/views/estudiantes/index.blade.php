@@ -1,11 +1,9 @@
 @extends('layouts.index')
 
-<?php $mensaje = Session::get('mensaje')?>
-
-@if($mensaje == 'store')
+@if(Session::has('mensaje'))
 	<div>
-		<button></button>
-		Usuario creado correctamente
+		<button>X</button>
+		{{Session::get('mensaje')}}
 	</div>
 @endif
 
@@ -20,7 +18,14 @@
 		<tbody>
 			<td>{{$user->name}}</td>
 			<td>{{$user->email}}</td>
-			<td></td>
+			<td>
+				<a href="{{route('estudiante.show', $user->id)}}">
+					Ver
+				</a>
+				<a href="{{route('estudiante.edit', $user->id)}}">
+					Editar
+				</a>
+			</td>
 		</tbody>
 		@endforeach
 	</table>

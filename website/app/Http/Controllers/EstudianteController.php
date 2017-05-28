@@ -44,7 +44,7 @@ class EstudianteController extends Controller
             'password' => bcrypt($request['password'])
         ]);
 
-        return redirect('/estudiante')->with('mensaje', 'store');
+        return redirect('estudiante')->with('mensaje', 'Usuario creado correctamente');
     }
 
     /**
@@ -56,7 +56,8 @@ class EstudianteController extends Controller
     public function show($id)
     {
         //
-        return view('estudiantes.index');
+        $user = \App\User::find($id);
+        return view('estudiantes.show', compact('user', $user));
     }
 
     /**
@@ -68,6 +69,8 @@ class EstudianteController extends Controller
     public function edit($id)
     {
         //
+        $user = \App\User::find($id);
+        return view('estudiantes.edit', compact('user', $user));
     }
 
     /**
@@ -80,6 +83,11 @@ class EstudianteController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = \App\User::find($id);
+        $user->fill($request->all());
+        $user->save();
+        //Session::flash('mensaje', 'Usuario editado correctamente');
+        return redirect('estudiante')->with('mensaje', 'Usuario editado correctamente');
     }
 
     /**
