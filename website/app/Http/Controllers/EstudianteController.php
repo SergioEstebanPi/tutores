@@ -99,5 +99,7 @@ class EstudianteController extends Controller
     public function destroy($id)
     {
         //
+        \App\User::destroy($id);
+        return redirect('estudiante')->with('mensaje', 'Usuario eliminado correctamente');
     }
 }
