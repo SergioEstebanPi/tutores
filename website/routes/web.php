@@ -21,3 +21,5 @@ Route::get('/', function () {
 
 Route::resource('usuario', 'UsuarioController');
 Route::resource('publicacion', 'PublicacionController');
+Route::resource('tipo', 'TipoController');
+Route::resource('trabajo', 'TrabajoController');

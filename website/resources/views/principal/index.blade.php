@@ -21,6 +21,8 @@
 	<div class="cuerpo">
 		<p><a href="{{route('usuario.index')}}">Editar usuarios</a></p>
 		<p><a href="{{route('publicacion.index')}}">Editar publicaciones</a></p>
+		<p><a href="{{route('tipo.index')}}">Editar tipos</a></p>
+		<p><a href="{{route('trabajo.index')}}">Editar trabajos</a></p>
 	</div>
 </div>
 

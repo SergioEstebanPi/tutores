@@ -14,6 +14,8 @@ class TipoController extends Controller
     public function index()
     {
         //
+        $tipos = \App\Tipo::all();
+        return view('tipos.index', compact('tipos', $tipos));
     }
 
     /**
@@ -24,6 +26,7 @@ class TipoController extends Controller
     public function create()
     {
         //
+        return view('tipos.create');
     }
 
     /**
@@ -35,6 +38,12 @@ class TipoController extends Controller
     public function store(Request $request)
     {
         //
+        \App\Tipo::create([
+            'nombre_tipo' => $request['nombre_tipo'],
+            'descripcion_tipo' => $request['descripcion_tipo']
+        ]);
+
+        return redirect('tipo')->with('mensaje', 'Tipo creado correctamente');
     }
 
     /**
@@ -46,6 +55,8 @@ class TipoController extends Controller
     public function show($id)
     {
         //
+        $tipo = \App\Tipo::find($id);
+        return view('tipos.show', compact('tipo', $tipo));
     }
 
     /**
@@ -57,6 +68,8 @@ class TipoController extends Controller
     public function edit($id)
     {
         //
+        $tipo = \App\Tipo::find($id);
+        return view('tipos.edit', compact('tipo', $tipo));
     }
 
     /**
@@ -69,6 +82,10 @@ class TipoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = \App\Tipo::find($id);
+        $user->fill($request->all());
+        $user->save();
+        return redirect('tipo')->with('mensaje', 'Tipo editado correctamente');
     }
 
     /**
@@ -80,5 +97,7 @@ class TipoController extends Controller
     public function destroy($id)
     {
         //
+        \App\Tipo::destroy($id);
+        return redirect('tipo')->with('mensaje', 'Tipo eliminado correctamente');
     }
 }

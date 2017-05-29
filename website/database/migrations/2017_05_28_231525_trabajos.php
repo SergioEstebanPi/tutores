@@ -21,7 +21,10 @@ class Trabajos extends Migration
         //
         Schema::create('trabajos', function(Blueprint $table){
             $table->increments('id');
-            $table->index('id_tipo');
+            $table->integer('id_tipo')->unsigned();
+            $table->foreign('id_tipo')
+                  ->references('id')
+                  ->on('tipos');
             $table->string('titulo_trabajo');
             $table->string('ruta_trabajo');
             $table->string('descripcion_trabajo');

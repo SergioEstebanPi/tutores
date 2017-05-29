@@ -1,11 +1,11 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div>
 	<label for="" >id_tipo</label>
-	<input type="date" name="id_tipo" value="{{$user->id_tipo or old('id_tipo')}}">
+	<input type="text" name="id_tipo" value="{{$user->id_tipo or old('id_tipo')}}">
 </div>
 <div>
 	<label for="">titulo_trabajo</label>
-	<input type="date" name="titulo_trabajo" value="{{$user->titulo_trabajo or old('titulo_trabajo')}}">
+	<input type="text" name="titulo_trabajo" value="{{$user->titulo_trabajo or old('titulo_trabajo')}}">
 </div>
 <div>
 	<label for="">ruta_trabajo</label>

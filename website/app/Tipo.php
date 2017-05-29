@@ -15,4 +15,10 @@ class Tipo extends Model
     protected $table = 'tipos';
 
     protected $fillable = ['nombre_tipo', 'descripcion_tipo'];
+
+
+    public function trabajo()
+    {
+        return $this->hasOne('App\Tipo');
+    }
 }

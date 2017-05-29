@@ -16,4 +16,9 @@ class Trabajo extends Model
 
     protected $fillable = ['id_tipo', 'titulo_trabajo', 'ruta_trabajo', 'descripcion_trabajo', 'estado_trabajo'];
 
+	public function tipo()
+    {
+        return $this->belongsTo('App\Tipo', 'id');
+    }
+
 }

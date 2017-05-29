@@ -39,9 +39,11 @@ class TrabajoController extends Controller
     {
         //
         \App\Trabajo::create([
-            'fecha_inicio' => $request['fecha_inicio'],
-            'fecha_fin' => $request['fecha_fin'],
-            'formato_solicitado' => $request['formato_solicitado']
+            'id_tipo' => $request['id_tipo'],
+            'titulo_trabajo' => $request['titulo_trabajo'],
+            'ruta_trabajo' => $request['ruta_trabajo'],
+            'descripcion_trabajo' => $request['descripcion_trabajo'],
+            'estado_trabajo' => $request['estado_trabajo']
         ]);
 
         return redirect('trabajo')->with('mensaje', 'Trabajo creado correctamente');
