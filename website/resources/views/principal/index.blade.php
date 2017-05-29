@@ -19,8 +19,9 @@
 		<h2>Asesorías y tutores</h2>
 	</div>
 	@include('alertas.mensaje')
-	<h3>Iniciar sesión</h3>
-	@include('principal.login.login')
+	@include('principal.login.index')
+	<p><a href="/registro/estudiante">Registrate como Estudiante</a></p>
+	<p><a href="/registro/tutor">Registrate como Tutor</a></p>
 	<div class="cuerpo">
 		<p><a href="{{route('usuario.index')}}">Editar usuarios</a></p>
 		<p><a href="{{route('publicacion.index')}}">Editar publicaciones</a></p>

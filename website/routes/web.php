@@ -16,9 +16,11 @@
 // });
 
 /* rutas principales */
-Route::get('/', function () {
-    return view('principal.index');
-});
+//Route::get('/', function () {
+//    return view('principal.index');
+//});
+Route::resource('/', 'PrincipalController');
+Route::get('registro/{tipo_estudiante}', 'PrincipalController@registrar');
 
 /* CRUDS del administrador */
 Route::resource('usuario', 'UsuarioController');

@@ -1,3 +1,4 @@
+<h3>Iniciar sesión</h3>
 <form action="{{route('login.store')}}" method="post">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div>
