@@ -29,7 +29,6 @@ Route::resource('trabajo', 'TrabajoController');
 /* cargar archivos */
 Route::get('formulario', 'StorageController@index');
 Route::post('storage/create', 'StorageController@save');
-
 Route::get('storage/app/{archivo}', function ($archivo) {
      $public_path = storage_path();
      $url = $public_path .'/app/storage/'. $archivo;
@@ -42,3 +41,6 @@ Route::get('storage/app/{archivo}', function ($archivo) {
      abort(404);
  
 });
+
+Route::resource('login', 'LogController');
+Route::get('logout', 'LogController@logout');

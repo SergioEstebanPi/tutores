@@ -18,6 +18,9 @@
 		<h1>Bienvenido</h1>
 		<h2>Asesorías y tutores</h2>
 	</div>
+	@include('alertas.mensaje')
+	<h3>Iniciar sesión</h3>
+	@include('principal.login.login')
 	<div class="cuerpo">
 		<p><a href="{{route('usuario.index')}}">Editar usuarios</a></p>
 		<p><a href="{{route('publicacion.index')}}">Editar publicaciones</a></p>
