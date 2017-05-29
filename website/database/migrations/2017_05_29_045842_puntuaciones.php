@@ -15,15 +15,14 @@ class Puntuaciones extends Migration
     {
         //
         Schema::create('puntuaciones', function(Blueprint $table){
-            $table->integer('id_tutor')->unsigned();
-            $table->foreign('id_tutor')
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')
                 ->references('id')
-                ->on('tutores');
+                ->on('users');
             $table->integer('id_valoracion')->unsigned();
             $table->foreign('id_valoracion')
                 ->references('id')
                 ->on('valoraciones');
-            $table->date('fecha_puntuacion');
             $table->timestamps();
         });
     }

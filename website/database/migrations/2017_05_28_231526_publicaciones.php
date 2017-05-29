@@ -21,18 +21,15 @@ class Publicaciones extends Migration
         //
         Schema::create('publicaciones', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_estudiante')->unsigned();
-            $table->foreign('id_estudiante')
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')
                     ->references('id')
-                    ->on('estudiantes');
-            $table->integer('id_trabajo')->unsigned();
-            $table->foreign('id_trabajo')
-                    ->references('id')
-                    ->on('trabajos');
-            $table->integer('estado_publicacion');
-            $table->datetime('fecha_inicio');
-            $table->datetime('fecha_fin');
-            $table->string('formato_solicitado');
+                    ->on('users');
+            $table->string('titulo');
+            $table->integer('estado');
+            $table->datetime('entrega');
+            $table->string('formato');
+            $table->string('ruta');
             $table->timestamps();
         });
     }

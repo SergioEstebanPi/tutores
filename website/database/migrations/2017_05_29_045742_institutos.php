@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Formaciones extends Migration
+class Institutos extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class Formaciones extends Migration
     public function up()
     {
         //
-        Schema::create('formaciones', function(Blueprint $table){
+        Schema::create('institutos', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nombre_formacion');
+            $table->string('nombre');
             $table->boolean('certificado');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class Formaciones extends Migration
     public function down()
     {
         //
-        Schema::drop('formaciones');
+        Schema::drop('institutos');
     }
 }

@@ -19,13 +19,13 @@ class Entregas extends Migration
             $table->foreign('id_publicacion')
                 ->references('id')
                 ->on('publicaciones');
-            $table->integer('id_tutor')->unsigned();
-            $table->foreign('id_tutor')
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')
                 ->references('id')
-                ->on('tutores');
-            $table->string('ruta_entrega');
-            $table->date('fecha_entrega');
-            $table->text('descripcion_entrega');
+                ->on('users');
+            $table->string('ruta');
+            $table->integer('calificacion');
+            $table->text('descripcion');
             $table->timestamps();
         });
     }
