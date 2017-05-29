@@ -24,7 +24,7 @@ class LogController extends Controller
     public function index()
     {
         //
-        return view('principal.login.login');
+        return view('principal.login.index');
     }
 
     /**
@@ -49,7 +49,7 @@ class LogController extends Controller
         if(Auth::attempt(['email' => $request['email'], 
                           'password' => $request['password'] ])){
             
-            return redirect()->to('usuario')->with('mensaje', 'Bienvenido ' . $request['email']);
+            return redirect()->to('/publicacion')->with('mensaje', 'Bienvenido ' . $request['email']);
         }
         return redirect()->to('/')->with('mensaje', 'Error datos incorrectos');
     }

@@ -9,5 +9,26 @@
 </div>
 <div>
 	<label for="">Formato solicitado</label>
-	<input type="text" name="formato_solicitado" value="{{$publicacion->formato_solicitado or old('formato_solicitado')}}">
+	<select value="{{$publicacion->formato_solicitado or old('formato_solicitado')}">
+		<optgroup name="formato_solicitado" label="formato">
+			<option>
+				PDF
+			</option>
+			<option>
+				DOC
+			</option>
+			<option>
+				XLS
+			</option>
+			<option>
+				PPTX
+			</option>
+			<option>
+				JPG
+			</option>
+			<option>
+				PNG
+			</option>
+		</optgroup>
+	</select>
 </div>

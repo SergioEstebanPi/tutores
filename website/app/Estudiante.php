@@ -12,10 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 class Estudiante extends Model
 {
 
-	use Authenticatable, CanResetPassword;
     //
     protected $table = 'estudiantes';
 
-    protected $fillable = ['nombre1_estudiante', 'nombre2_estudiante', 'apellido1_estudiante', 'telefono1_estudiante', 'telefono2_estudiante'];
+    protected $fillable = ['id', 'nombre1_estudiante', 'nombre2_estudiante', 'apellido1_estudiante', 'apellido2_estudiante','telefono1_estudiante', 'telefono2_estudiante'];
 
 }

@@ -44,13 +44,25 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
-        \App\User::create([
+        $nuevo = \App\User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password'])
         ]);
 
-        return redirect('usuario')->with('mensaje', 'Usuario creado correctamente');
+        if ($request['tipo_usuario'] == 'estudiante') {
+            \App\Estudiante::create([
+                'id' => $nuevo->id,
+                'nombre1_estudiante' => $request['name'],
+                'nombre2_estudiante' => $request['name'],
+                'apellido1_estudiante' => $request['name'],
+                'apellido2_estudiante' => $request['name'],
+                'telefono1_estudiante' => $request['name'],
+                'telefono2_estudiante' => $request['name'],
+            ]);
+        }
+
+        return redirect('publicacion')->with('mensaje', 'Usuario creado correctamente');
     }
 
     /**

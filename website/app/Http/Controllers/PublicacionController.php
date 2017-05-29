@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 /**
   *  @CREATED_BY spina
@@ -45,11 +46,12 @@ class PublicacionController extends Controller
     {
         //
         \App\Publicacion::create([
+            'id_estudiante' => Auth::user()->id,
+            'id_trabajo' => Auth::user()->id,
             'fecha_inicio' => $request['fecha_inicio'],
             'fecha_fin' => $request['fecha_fin'],
             'formato_solicitado' => $request['formato_solicitado']
         ]);
-
         return redirect('publicacion')->with('mensaje', 'Publicación creada correctamente');
     }
 
