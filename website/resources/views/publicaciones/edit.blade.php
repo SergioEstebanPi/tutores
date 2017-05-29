@@ -2,7 +2,7 @@
 
 @section('contenido')
 <h1>Edición de publicaciones</h1>
-	<form action="{{route('publicacion.update', $publicacion->id)}}" method="post">
+	<form action="{{route('publicacion.update', $publicacion->id)}}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		<input type="hidden" name="_method" value="put">
 		@include('publicaciones.forms.formulario')
 		<div>

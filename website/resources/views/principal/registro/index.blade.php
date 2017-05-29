@@ -1,4 +1,4 @@
-<h3>Registrate como {{$tipo_usuario}}</h3>
+<h3>Registrate</h3>
 <form action="{{route('usuario.store')}}" method="post">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div>
@@ -17,12 +17,7 @@
 		<label for="">Confirma Contraseña</label>
 		<input type="password" name="password2">
 	</div>
-	<div>
-		<input type="hidden" name="tipo_usuario" value="{{$tipo_usuario}}">
-	</div>
-	@if($tipo_usuario == 'tutor')
-		@include('principal.registro.forms.tutor')
-	@endif
+	@include('principal.registro.forms.perfil')
 	<div>
 		<button>Registrarme</button>
 	</div>

@@ -33,5 +33,6 @@
 	<input type="text" name="nombre_formacion">
 </div>
 <div>
-	<input type="checkbox" name="certificado">
+	<p><label>Certificado</label></p>
+	<p><input type="checkbox" name="cert<ificado"></p>
 </div>

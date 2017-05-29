@@ -3,9 +3,10 @@
 @section('contenido')
 <h2>Detalle</h2>
 <div>
-	<p><label>fecha inicio: </label>{{$publicacion->fecha_inicio}}</p>
-	<p><label>fecha fin: </label>{{$publicacion->fecha_fin}}</p>
-	<p><label>formato solicitado: </label>{{$publicacion->formato_solicitado}}</p>
+	<p><label>titulo</label>{{$publicacion->titulo}}</p>
+	<p><label>estado</label>{{$publicacion->estado}}</p>
+	<p><label>entrega</label>{{$publicacion->entrega}}</p>
+	<p><label>ruta</label>{{$publicacion->ruta}}</p>
 </div>
 <div>
 	<a href="{{route('publicacion.index')}}">Atrás</a>

@@ -45,12 +45,20 @@ class PublicacionController extends Controller
     public function store(Request $request)
     {
         //
+        //obtenemos el campo file definido en el formulario
+       $file = $request->file('ruta');
+       //obtenemos el nombre del archivo
+       $nombre = $file->getClientOriginalName();
+       //indicamos que queremos guardar un nuevo archivo en el disco local
+       \Storage::disk('local')->put($nombre,  \File::get($file));
+ 
         \App\Publicacion::create([
-            'id_estudiante' => Auth::user()->id,
-            'id_trabajo' => Auth::user()->id,
-            'fecha_inicio' => $request['fecha_inicio'],
-            'fecha_fin' => $request['fecha_fin'],
-            'formato_solicitado' => $request['formato_solicitado']
+            'id_user' => Auth::user()->id,
+            'titulo' => $request['titulo'],
+            'entrega' => $request['entrega'],
+            'estado' => 0,
+            'ruta' => $nombre,
+            'descripcion' => $request['descripcion']
         ]);
         return redirect('publicacion')->with('mensaje', 'Publicación creada correctamente');
     }

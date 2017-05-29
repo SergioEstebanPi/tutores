@@ -20,7 +20,7 @@
 //    return view('principal.index');
 //});
 Route::resource('/', 'PrincipalController');
-Route::get('registro/{tipo_estudiante}', 'PrincipalController@registrar');
+Route::get('registro', 'PrincipalController@registrar');
 
 /* CRUDS del administrador */
 Route::resource('usuario', 'UsuarioController');

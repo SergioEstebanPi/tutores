@@ -45,22 +45,12 @@ class UsuarioController extends Controller
     {
         //
         $nuevo = \App\User::create([
+            'foto' => '',
+            'alias' => '',
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password'])
         ]);
-
-        if ($request['tipo_usuario'] == 'estudiante') {
-            \App\Estudiante::create([
-                'id' => $nuevo->id,
-                'nombre1_estudiante' => $request['name'],
-                'nombre2_estudiante' => $request['name'],
-                'apellido1_estudiante' => $request['name'],
-                'apellido2_estudiante' => $request['name'],
-                'telefono1_estudiante' => $request['name'],
-                'telefono2_estudiante' => $request['name'],
-            ]);
-        }
 
         return redirect('publicacion')->with('mensaje', 'Usuario creado correctamente');
     }

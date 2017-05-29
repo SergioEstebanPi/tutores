@@ -5,16 +5,18 @@
 @section('contenido')
 	<table>
 		<thead>
-			<th>Fecha inicio</th>
-			<th>Fecha fin</th>
-			<th>Formato solicitado</th>
+			<th>titulo</th>
+			<th>estado</th>
+			<th>entrega</th>
+			<th>ruta</th>
 			<th>Acción</th>
 		</thead>
 		@foreach($publicaciones as $publicacion)
 		<tbody>
-			<td>{{$publicacion->fecha_inicio}}</td>
-			<td>{{$publicacion->fecha_fin}}</td>
-			<td>{{$publicacion->formato_solicitado}}</td>
+			<td>{{$publicacion->titulo}}</td>
+			<td>{{$publicacion->estado}}</td>
+			<td>{{$publicacion->entrega}}</td>
+			<td>{{$publicacion->ruta}}</td>
 			<td>
 				<a href="{{route('publicacion.show', $publicacion->id)}}">
 					Ver

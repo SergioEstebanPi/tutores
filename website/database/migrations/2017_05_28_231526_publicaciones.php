@@ -28,8 +28,8 @@ class Publicaciones extends Migration
             $table->string('titulo');
             $table->integer('estado');
             $table->datetime('entrega');
-            $table->string('formato');
             $table->string('ruta');
+            $table->text('descripcion');
             $table->timestamps();
         });
     }

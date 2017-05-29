@@ -17,11 +17,8 @@ class PrincipalController extends Controller
         return view('principal.index');
     }
 
-    public function registrar($tipo_usuario){
-        if($tipo_usuario == 'estudiante' || $tipo_usuario == 'tutor'){
-            return view('principal.registro.index')->with('tipo_usuario', $tipo_usuario);        
-        }
-        return redirect()->to('/');    
+    public function registrar(){
+        return view('principal.registro.index');        
     }
 
     /**
