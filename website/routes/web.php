@@ -15,11 +15,30 @@
 //     return view('welcome');
 // });
 
+/* rutas principales */
 Route::get('/', function () {
     return view('principal.index');
 });
 
+/* CRUDS del administrador */
 Route::resource('usuario', 'UsuarioController');
 Route::resource('publicacion', 'PublicacionController');
 Route::resource('tipo', 'TipoController');
 Route::resource('trabajo', 'TrabajoController');
+
+/* cargar archivos */
+Route::get('formulario', 'StorageController@index');
+Route::post('storage/create', 'StorageController@save');
+
+Route::get('storage/app/{archivo}', function ($archivo) {
+     $public_path = storage_path();
+     $url = $public_path .'/app/storage/'. $archivo;
+     //verificamos si el archivo existe y lo retornamos
+     if (Storage::exists($archivo))
+     {
+       return response()->download($url);
+     }
+     //si no se encuentra lanzamos un error 404.
+     abort(404);
+ 
+});
