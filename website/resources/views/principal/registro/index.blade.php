@@ -20,6 +20,9 @@
 	<div>
 		<input type="hidden" name="tipo_usuario" value="{{$tipo_usuario}}">
 	</div>
+	@if($tipo_usuario == 'tutor')
+		@include('principal.registro.forms.tutor')
+	@endif
 	<div>
 		<button>Registrarme</button>
 	</div>
