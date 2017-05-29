@@ -2,7 +2,7 @@
 
 @section('contenido')
 <h1>Edición de trabajos</h1>
-	<form action="{{route('trabajo.update', $trabajo->id)}}" method="post">
+	<form action="{{route('trabajo.update', $trabajo->id)}}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		<input type="hidden" name="_method" value="put">
 		@include('trabajos.forms.formulario')
 		<div>

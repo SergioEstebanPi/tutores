@@ -8,14 +8,15 @@
 	<input type="text" name="titulo_trabajo" value="{{$trabajo->titulo_trabajo or old('titulo_trabajo')}}">
 </div>
 <div>
-	<label for="">ruta_trabajo</label>
-	<input type="text" name="ruta_trabajo" value="{{$trabajo->ruta_trabajo or old('ruta_trabajo')}}">
-</div>
-<div>
 	<label for="">descripcion_trabajo</label>
 	<input type="text" name="descripcion_trabajo" value="{{$trabajo->descripcion_trabajo or old('descripcion_trabajo')}}">
 </div>
 <div>
 	<label for="">estado_trabajo</label>
 	<input type="text" name="estado_trabajo" value="{{$trabajo->estado_trabajo or old('estado_trabajo')}}">
+</div>
+<div>
+    <label>Sube el trabajo</label>
+	<input type="file" name="ruta_trabajo">	
+	<input type="text" value="{{$trabajo->ruta_trabajo or old('ruta_trabajo')}}">
 </div>

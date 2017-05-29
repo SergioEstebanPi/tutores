@@ -38,10 +38,17 @@ class TrabajoController extends Controller
     public function store(Request $request)
     {
         //
+        //obtenemos el campo ruta_trabajo definido en el formulario
+       $file = $request->file('ruta_trabajo');
+       //obtenemos el nombre del archivo
+       $nombre = $file->getClientOriginalName();
+       //indicamos que queremos guardar un nuevo archivo en el disco local
+       \Storage::disk('local')->put($nombre,  \File::get($file));
+
         \App\Trabajo::create([
             'id_tipo' => $request['id_tipo'],
             'titulo_trabajo' => $request['titulo_trabajo'],
-            'ruta_trabajo' => $request['ruta_trabajo'],
+            'ruta_trabajo' => $nombre,
             'descripcion_trabajo' => $request['descripcion_trabajo'],
             'estado_trabajo' => $request['estado_trabajo']
         ]);
