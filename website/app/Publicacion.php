@@ -14,6 +14,6 @@ class Publicacion extends Model
     //    
     protected $table = 'publicaciones';
 
-    protected $fillable = ['fecha_inicio', 'fecha_fin', 'formato_solicitado'];
+    protected $fillable = ['estado_publicacion', 'fecha_inicio', 'fecha_fin', 'formato_solicitado'];
 
 }

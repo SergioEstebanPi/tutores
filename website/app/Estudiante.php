@@ -16,13 +16,6 @@ class Estudiante extends Model
     //
     protected $table = 'estudiantes';
 
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['nombre1_estudiante', 'nombre2_estudiante', 'apellido1_estudiante', 'telefono1_estudiante', 'telefono2_estudiante'];
 
-    protected $hidden = ['password', 'remember_token'];
-
-    public function setPasswordAttribut($valor){
-    	if(!empty($valor)){
-    		$this->attributes['password'] = \Hash::make($valor);
-    	}
-    }
 }

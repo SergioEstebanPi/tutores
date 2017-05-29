@@ -4,12 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-/**
-  *  @CREATED_BY spina
-  *  @DATE_CREATED 28/05/2017
-  *
-  */
-class Estudiantes extends Migration
+class Tutores extends Migration
 {
     /**
      * Run the migrations.
@@ -19,17 +14,27 @@ class Estudiantes extends Migration
     public function up()
     {
         //
-        Schema::create('estudiantes', function(Blueprint $table){
+        Schema::create('tutores', function(Blueprint $table){
             $table->integer('id')->unsigned();
             $table->foreign('id')
                     ->references('id')
                     ->on('users');
+            $table->integer('id_perfil')->unsigned();
+            $table->foreign('id_perfil')
+                ->references('id')
+                ->on('perfiles');
+            $table->integer('id_formacion')->unsigned();
+            $table->foreign('id_formacion')
+                ->references('id')
+                ->on('formaciones');
             $table->string('nombre1_estudiante');
             $table->string('nombre2_estudiante');
             $table->string('apellido1_estudiante');
             $table->string('apellido2_estudiante');
             $table->string('telefono1_estudiante');
             $table->string('telefono2_estudiante');
+            $table->string('foto_perfil');
+            $table->string('descripcion_perfil');
             $table->timestamps();
         });
     }
@@ -42,6 +47,6 @@ class Estudiantes extends Migration
     public function down()
     {
         //
-        Schema::drop('estudiantes');
+        Schema::drop('tutores');
     }
 }

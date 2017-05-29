@@ -9,6 +9,11 @@ use Session;
 use App\Http\Requests;
 use App\Http\Requests\LoginRequest;
 
+/**
+  *  @CREATED_BY spina
+  *  @DATE_CREATED 28/05/2017
+  *
+  */
 class LogController extends Controller
 {
     /**

@@ -4,12 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-/**
-  *  @CREATED_BY spina
-  *  @DATE_CREATED 28/05/2017
-  *
-  */
-class Publicaciones extends Migration
+class Valoraciones extends Migration
 {
     /**
      * Run the migrations.
@@ -19,11 +14,11 @@ class Publicaciones extends Migration
     public function up()
     {
         //
-        Schema::create('publicaciones', function(Blueprint $table){
+        Schema::create('valoraciones', function(Blueprint $table){
             $table->increments('id');
-            $table->datetime('fecha_inicio');
-            $table->datetime('fecha_fin');
-            $table->string('formato_solicitado');
+            $table->string('nombre_valoracion');
+            $table->integer('cantidad_valoracion');
+            $table->string('descripcion_valoracion');
             $table->timestamps();
         });
     }
@@ -36,6 +31,6 @@ class Publicaciones extends Migration
     public function down()
     {
         //
-        Schema::drop('publicaciones');
+        Schema::drop('valoraciones');
     }
 }

@@ -3,7 +3,11 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+/**
+  *  @CREATED_BY spina
+  *  @DATE_CREATED 28/05/2017
+  *
+  */
 class LoginRequest extends FormRequest
 {
     /**
