@@ -16,16 +16,19 @@ class Areas extends Migration
         //
         Schema::create('areas', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_area')->unsigned();
+            $table->integer('id_area')
+                    ->unsigned()
+                    ->nullable();
             $table->string('nombre');
+            $table->string('tipo');
             $table->timestamps();
         });
 
-        Schema::table('areas', function(Blueprint $table){
-            $table->foreign('id_area')
-                    ->references('id')
-                    ->on('areas');
-        });
+        // Schema::table('areas', function(Blueprint $table){
+        //     $table->foreign('id_area')
+        //             ->references('id')
+        //             ->on('areas');
+        // });
     }
 
     /**

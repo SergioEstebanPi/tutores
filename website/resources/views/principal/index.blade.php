@@ -19,8 +19,10 @@
 		<h2>Asesorías y tutores</h2>
 	</div>
 	@include('alertas.mensaje')
-	@include('principal.login.index')
-	<p><a href="/registro">Registrate</a></p>
+	@if(!Auth::check())
+		@include('principal.login.index')
+		<p><a href="/registro">Registrate</a></p>
+	@endif
 	<div class="cuerpo">
 		<p><a href="{{route('usuario.index')}}">Editar usuarios</a></p>
 		<p><a href="{{route('publicacion.index')}}">Editar publicaciones</a></p>

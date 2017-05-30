@@ -33,7 +33,15 @@ class PublicacionController extends Controller
     public function create()
     {
         //
-        return view('publicaciones.create');
+        $tipos = \App\Tipo::all();
+        $areas = \App\Area::all();
+        $categorias = \App\Categoria::all();
+        return view('publicaciones.create')
+            ->with([
+                'tipos' => $tipos,
+                'areas' => $areas,
+                'categorias' => $categorias
+            ]);
     }
 
     /**
@@ -89,7 +97,15 @@ class PublicacionController extends Controller
     {
         //
         $publicacion = \App\Publicacion::find($id);
-        return view('publicaciones.edit', compact('publicacion', $publicacion));
+        $tipos = \App\Tipo::all();
+        $areas = \App\Area::all();
+        $categorias = \App\Categoria::all();
+        return view('publicaciones.edit', compact(
+                ['publicacion', $publicacion],
+                ['tipos', $tipos],
+                ['areas', $areas],
+                ['categorias', $categorias]
+            ));
     }
 
     /**

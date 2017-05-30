@@ -15,6 +15,9 @@ class Publicacion extends Model
     protected $table = 'publicaciones';
 
     protected $fillable = ['id_user'
+               , 'id_categoria'
+               , 'id_tipo'
+               , 'id_area'
     					 , 'titulo'
     					 , 'estado'
     					 , 'entrega'

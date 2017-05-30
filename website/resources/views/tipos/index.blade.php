@@ -5,14 +5,14 @@
 @section('contenido')
 	<table>
 		<thead>
-			<th>nombre_tipo</th>
-			<th>descripcion_tipo</th>
+			<th>nombre</th>
+			<th>descripcion</th>
 			<th>Acción</th>
 		</thead>
 		@foreach($tipos as $tipo)
 		<tbody>
-			<td>{{$tipo->nombre_tipo}}</td>
-			<td>{{$tipo->descripcion_tipo}}</td>
+			<td>{{$tipo->nombre}}</td>
+			<td>{{$tipo->descripcion}}</td>
 			<td>
 				<a href="{{route('tipo.show', $tipo->id)}}">
 					Ver

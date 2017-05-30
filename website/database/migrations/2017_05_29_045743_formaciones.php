@@ -16,7 +16,9 @@ class Formaciones extends Migration
         //
         Schema::create('formaciones', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_instituto')->unsigned();
+            $table->integer('id_instituto')
+                    ->unsigned()
+                    ->nullable();
             $table->string('nombre');
             $table->boolean('certificado');
             $table->timestamps();

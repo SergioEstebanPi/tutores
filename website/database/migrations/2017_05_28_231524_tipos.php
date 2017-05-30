@@ -21,8 +21,8 @@ class Tipos extends Migration
         //
         Schema::create('tipos', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nombre_tipo');
-            $table->string('descripcion_tipo');
+            $table->string('nombre');
+            $table->string('descripcion');
             $table->timestamps();
         });
     }

@@ -39,8 +39,8 @@ class TipoController extends Controller
     {
         //
         \App\Tipo::create([
-            'nombre_tipo' => $request['nombre_tipo'],
-            'descripcion_tipo' => $request['descripcion_tipo']
+            'nombre' => $request['nombre'],
+            'descripcion' => $request['descripcion']
         ]);
 
         return redirect('tipo')->with('mensaje', 'Tipo creado correctamente');

@@ -3,8 +3,8 @@
 @section('contenido')
 <h2>Detalle</h2>
 <div>
-	<p><label>nombre_tipo</label>{{$tipo->nombre_tipo}}</p>
-	<p><label>descripcion_tipo</label>{{$tipo->descripcion_tipo}}</p>
+	<p><label>nombre</label>{{$tipo->nombre}}</p>
+	<p><label>descripcion</label>{{$tipo->descripcion}}</p>
 </div>
 <div>
 	<a href="{{route('tipo.index')}}">Atrás</a>

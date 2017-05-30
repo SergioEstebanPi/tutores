@@ -14,7 +14,7 @@ class Tipo extends Model
     //
     protected $table = 'tipos';
 
-    protected $fillable = ['nombre_tipo', 'descripcion_tipo'];
+    protected $fillable = ['nombre', 'descripcion'];
 
 
     public function trabajo()

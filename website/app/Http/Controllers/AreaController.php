@@ -26,7 +26,8 @@ class AreaController extends Controller
     public function create()
     {
         //
-        return view('areas.create');
+        $areas_padre = \App\Area::where('tipo', '1');
+        return view('areas.create', compact('areas_padre', $areas_padre));
     }
 
     /**
@@ -39,7 +40,9 @@ class AreaController extends Controller
     {
         //
         $nuevo = \App\Area::create([
-            'nombre' => $request['nombre']
+            'nombre' => $request['nombre'],
+            'id_area' => $request['id_area'],
+            'tipo' => $request['tipo']
         ]);
 
         return redirect('area')->with('mensaje', 'Area creada correctamente');
@@ -68,7 +71,14 @@ class AreaController extends Controller
     {
         //
         $area = \App\Area::find($id);
-        return view('areas.edit', compact('area', $area));
+        $areas_padre = \App\Area::where('tipo', 1)
+                    ->where('id', '!=', $id)
+                    ->get();
+        return view('areas.edit', compact(
+                    ['area', $area],
+                    ['areas_padre', $areas_padre]
+                )
+            );
     }
 
     /**
