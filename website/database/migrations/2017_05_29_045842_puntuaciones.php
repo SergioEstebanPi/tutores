@@ -15,6 +15,7 @@ class Puntuaciones extends Migration
     {
         //
         Schema::create('puntuaciones', function(Blueprint $table){
+            $table->increments('id');
             $table->integer('id_user')->unsigned();
             $table->foreign('id_user')
                 ->references('id')

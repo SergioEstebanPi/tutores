@@ -49,7 +49,8 @@ class UsuarioController extends Controller
             'alias' => '',
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => bcrypt($request['password'])
+            'password' => bcrypt($request['password']),
+            'id_formacion' => $request['formacion']
         ]);
 
         return redirect('publicacion')->with('mensaje', 'Usuario creado correctamente');

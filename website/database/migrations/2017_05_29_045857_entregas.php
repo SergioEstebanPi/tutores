@@ -15,6 +15,7 @@ class Entregas extends Migration
     {
         //
         Schema::create('entregas', function(Blueprint $table){
+            $table->increments('id');
             $table->integer('id_publicacion')->unsigned();
             $table->foreign('id_publicacion')
                 ->references('id')

@@ -17,7 +17,6 @@ class Institutos extends Migration
         Schema::create('institutos', function(Blueprint $table){
             $table->increments('id');
             $table->string('nombre');
-            $table->boolean('certificado');
             $table->timestamps();
         });
     }

@@ -26,7 +26,15 @@ Route::get('registro', 'PrincipalController@registrar');
 Route::resource('usuario', 'UsuarioController');
 Route::resource('publicacion', 'PublicacionController');
 Route::resource('tipo', 'TipoController');
-Route::resource('trabajo', 'TrabajoController');
+Route::resource('cotizacion', 'CotizacionController');
+Route::resource('entrega', 'EntregaController');
+Route::resource('area', 'AreaController');
+Route::resource('interes', 'InteresController');
+Route::resource('instituto', 'InstitutoController');
+Route::resource('categoria', 'CategoriaController');
+Route::resource('formacion', 'FormacionController');
+Route::resource('puntuacion', 'PuntuacionController');
+Route::resource('valoracion', 'ValoracionController');
 
 /* cargar archivos */
 Route::get('formulario', 'StorageController@index');

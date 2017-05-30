@@ -7,7 +7,7 @@
 	<p><label for="">descripción de perfil</label></p>
 	<p><textarea name="descripcion_perfil"></textarea></p>
 </div>
-<h2>Área de conocimiento</h2>
+<h2>Intereses</h2>
 <div>
 	<select>
 		<optgroup label="Ingeniería">

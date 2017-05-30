@@ -25,7 +25,15 @@
 		<p><a href="{{route('usuario.index')}}">Editar usuarios</a></p>
 		<p><a href="{{route('publicacion.index')}}">Editar publicaciones</a></p>
 		<p><a href="{{route('tipo.index')}}">Editar tipos</a></p>
-		<p><a href="{{route('trabajo.index')}}">Editar trabajos</a></p>
+		<p><a href="{{route('cotizacion.index')}}">Editar cotizaciones</a></p>
+		<p><a href="{{route('entrega.index')}}">Editar entregas</a></p>
+		<p><a href="{{route('puntuacion.index')}}">Editar puntuaciones</a></p>
+		<p><a href="{{route('interes.index')}}">Editar intereses</a></p>
+		<p><a href="{{route('categoria.index')}}">Editar categorias</a></p>
+		<p><a href="{{route('area.index')}}">Editar areas</a></p>
+		<p><a href="{{route('formacion.index')}}">Editar formaciones</a></p>
+		<p><a href="{{route('instituto.index')}}">Editar institutos</a></p>
+		<p><a href="{{route('valoracion.index')}}">Editar valoraciones</a></p>
 	</div>
 </div>
 

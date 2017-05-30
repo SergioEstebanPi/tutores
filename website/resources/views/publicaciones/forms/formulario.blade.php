@@ -3,6 +3,15 @@
 	<label for="" >titulo</label>
 	<input type="text" name="titulo" value="{{$publicacion->titulo or old('titulo')}}">
 </div>
+<select name="id_categoria">
+	<option><option>
+</select>
+<select name="id_tipo">
+	<option><option>
+</select>
+<select name="id_area">
+	<option><option>
+</select>
 <div>
 	<label for="" >entrega</label>
 	<input type="date" name="entrega" value="{{$publicacion->entrega or old('entrega')}}">

@@ -25,6 +25,18 @@ class Publicaciones extends Migration
             $table->foreign('id_user')
                     ->references('id')
                     ->on('users');
+            $table->integer('id_categoria')->unsigned();
+            $table->foreign('id_categoria')
+                    ->references('id')
+                    ->on('categorias');
+            $table->integer('id_tipo')->unsigned();
+            $table->foreign('id_tipo')
+                    ->references('id')
+                    ->on('tipos');
+            $table->integer('id_area')->unsigned();
+            $table->foreign('id_area')
+                    ->references('id')
+                    ->on('areas');
             $table->string('titulo');
             $table->integer('estado');
             $table->datetime('entrega');

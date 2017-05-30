@@ -15,6 +15,7 @@ class Cotizaciones extends Migration
     {
         //
         Schema::create('cotizaciones', function(Blueprint $table){
+            $table->increments('id');
             $table->integer('id_user')->unsigned();
             $table->foreign('id_user')
                 ->references('id')
@@ -25,8 +26,8 @@ class Cotizaciones extends Migration
                 ->on('publicaciones');
             $table->integer('precio');
             $table->integer('estado');
-            $table->date('inicio_cotizacion');
-            $table->date('fin_cotizacion');
+            $table->date('inicio');
+            $table->date('fin');
             $table->text('descripcion');
             $table->timestamps();
         });

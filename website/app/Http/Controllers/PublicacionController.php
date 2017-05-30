@@ -54,6 +54,9 @@ class PublicacionController extends Controller
  
         \App\Publicacion::create([
             'id_user' => Auth::user()->id,
+            'id_categoria' => $request['id_categoria'],
+            'id_tipo' => $request['id_tipo'],
+            'id_area' => $request['id_area'],
             'titulo' => $request['titulo'],
             'entrega' => $request['entrega'],
             'estado' => 0,
