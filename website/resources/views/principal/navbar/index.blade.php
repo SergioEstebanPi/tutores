@@ -9,8 +9,11 @@
         <li><a href="#" class="btn-default">Acerca de</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Perfil</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span>Iniciar</a></li>
+        @if(Auth::check())
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span>Perfil</a></li>
+        @else
+          <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span>Iniciar</a></li>
+        @endif
       </ul>
   </div>
 </nav>

@@ -32,9 +32,9 @@
 	</div>
 
 	<div>
-		<a href="{{route('publicacion.create')}}">Nuevo</a>
+		<a href="{{route('publicacion.create')}}" class="btn btn-primary">Nuevo</a>
 	</div>
 	<div>
-		<a href="/">Atrás</a>
+		<a href="/" class="btn btn-default">Atrás</a>
 	</div>
 @stop

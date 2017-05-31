@@ -9,6 +9,6 @@
 	<p><label>ruta</label>{{$publicacion->ruta}}</p>
 </div>
 <div>
-	<a href="{{route('publicacion.index')}}">Atrás</a>
+	<a href="{{route('publicacion.index')}}" class="btn btn-default">Atrás</a>
 </div>
 @stop

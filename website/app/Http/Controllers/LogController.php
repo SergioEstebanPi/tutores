@@ -47,7 +47,8 @@ class LogController extends Controller
     {
         //
         if(Auth::attempt(['email' => $request['email'], 
-                          'password' => $request['password'] ])){
+                          'password' => $request['password'] 
+                        ])){
             
             return redirect()->to('/publicacion')->with('mensaje', 'Bienvenido ' . $request['email']);
         }

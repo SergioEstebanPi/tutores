@@ -5,10 +5,10 @@
 	<form action="{{route('publicacion.store')}}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 		@include('publicaciones.forms.formulario')
 		<div>
-			<button>Publicar</button>
+			<button class="btn btn-primary">Publicar</button>
 		</div>
 	</form>
 	<div>
-		<a href="{{route('publicacion.index')}}">Atrás</a>
+		<a href="{{route('publicacion.index')}}" class="btn btn-default">Atrás</a>
 	</div>
 @stop
