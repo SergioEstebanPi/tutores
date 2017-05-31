@@ -2,57 +2,37 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="{{asset('plugins/bootstrap/css/bootstrap.css')}}">
+  <script src="{{asset('plugins/jquery/jquery-3.2.1.min.js')}}"></script>
+  <script src="{{asset('plugins/bootstrap/js/bootstrap.js')}}"></script>
 	<title>Inicio</title>
 </head>
 <body>
 
-<nav class="navbar navbar">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Soy Tutor</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Inicio</a></li>
-      <li><a href="/publicacion">Publicaciones</a></li>
-      <li><a href="#">Noticias</a></li>
-      <li><a href="#">Acerca de</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span>Perfil</a></li>
-      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>Iniciar</a></li>
-    </ul>
-  </div>
-</nav>
+@include('principal.navbar.index')
 
 <div class="jumbotron text-center">
-	<h1>Bienvenido</h1>
-	<p>Asesorías y tutores</p> 
+  <h1>Tutores</h1>
+  <p>Red de tele-trabajo por conocimientos</p> 
+  <p>Tu conocimiento vale</p>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
       <h3>Trabaja como freelance</h3>
-      <p>Lorem ipsum dolor..</p>
-      <p>Ut enim ad..</p>
+      <p>Gana dinero por lo que conoces</p>
+      <p>Puedes disponer de tu tiempo</p>
     </div>
     <div class="col-sm-4">
       <h3>Has trabajos desde casa</h3>
-      <p>Lorem ipsum dolor..</p>
-      <p>Ut enim ad..</p>
+      <p>Sin horarios</p>
+      <p>Trabaja on-line</p>
     </div>
     <div class="col-sm-4">
       <h3>Comparte el conocimiento</h3> 
-      <p>Lorem ipsum dolor..</p>
-      <p>Ut enim ad..</p>
+      <p>Red de trabajos académicos</p>
+      <p>Desarrollo de proyectos</p>
     </div>
   </div>
-</div>
-
-<div>
-	@include('alertas.mensaje')
-	@if(!Auth::check())
-		@include('principal.login.index')
-	@endif
 </div>
 
 @if(Auth::check())

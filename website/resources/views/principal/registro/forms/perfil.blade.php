@@ -1,15 +1,15 @@
 <h2>Datos de perfil</h2>
 <div>
-	<label for="">foto de perfil</label>
-	<input type="file" name="foto">
+	<label for="" class="control-label">foto de perfil</label>
+	<input type="file" name="foto" class="form-control">
 </div>
 <div>
-	<p><label for="">descripción de perfil</label></p>
-	<p><textarea name="descripcion_perfil"></textarea></p>
+	<p><label for="" class="control-label">descripción de perfil</label></p>
+	<p><textarea name="descripcion_perfil" class="form-control"></textarea></p>
 </div>
 <h2>Intereses</h2>
 <div>
-	<select>
+	<select class="form-control">
 		<optgroup label="Ingeniería">
 			<option>
 				Matemática
@@ -30,7 +30,7 @@
 </div>
 <h2>Formación</h2>
 <div>
-	<input type="text" name="nombre_formacion">
+	<input type="text" name="nombre_formacion" class="form-control">
 </div>
 <div>
 	<p><label>Certificado</label></p>

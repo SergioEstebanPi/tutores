@@ -19,10 +19,10 @@
 				<td>{{$publicacion->entrega}}</td>
 				<td>{{$publicacion->ruta}}</td>
 				<td>
-					<a href="{{route('publicacion.show', $publicacion->id)}}">
+					<a href="{{route('publicacion.show', $publicacion->id)}}" class="btn btn-default">
 						Ver
 					</a>
-					<a href="{{route('publicacion.edit', $publicacion->id)}}">
+					<a href="{{route('publicacion.edit', $publicacion->id)}}" class="btn btn-primary">
 						Editar
 					</a>
 				</td>

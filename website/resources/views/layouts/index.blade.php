@@ -7,11 +7,15 @@
 	<title>Inicio</title>
 </head>
 <body>
-	<div class="center">
-		<h1 class="cabeza">Asesores y tutores</h1>
-	</div>
-	<div class="cuerpo">
-		@yield('contenido')
+	@include('principal.navbar.index')
+	<div class="container">
+		<div class="center">
+			<h1 class="cabeza">x</h1>
+			<h1 class="cabeza">x</h1>
+		</div>
+		<div class="cuerpo">
+			@yield('contenido')
+		</div>
 	</div>
 </body>
 </html>

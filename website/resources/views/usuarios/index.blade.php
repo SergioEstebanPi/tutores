@@ -18,7 +18,7 @@
 					<a href="{{route('usuario.show', $user->id)}}" class="">
 						Ver
 					</a>
-					<a href="{{route('usuario.edit', $user->id)}}" class="btn btn-info">
+					<a href="{{route('usuario.edit', $user->id)}}" class="">
 						Editar
 					</a>
 				</td>

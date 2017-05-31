@@ -26,10 +26,10 @@
 				</div>
 				@include('principal.registro.forms.perfil')
 				<div>
-					<button>Registrarme</button>
+					<button class="btn btn-primary">Registrarme</button>
 				</div>
 			</form>
-			<a href="/">Atrás</a>
+			<a href="/" class="btn btn-default">Atrás</a>
 		</div>
 	</div>
 @stop

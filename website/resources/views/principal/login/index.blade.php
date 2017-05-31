@@ -1,24 +1,23 @@
-<div>
-	<h3>Iniciar sesión</h3>
-</div>
 <form action="{{route('login.store')}}" method="post" class="form-horizontal">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	<div class="modal-body">
 	  <div class="form-group">
-	    <label class="control-label col-sm-2" for="email">Correo</label>
-	    <div class="col-sm-10">
-	      <input name="name" type="email" class="form-control" id="email" placeholder="Enter email">
+	    <label class="" for="email">Correo</label>
+	    <div class="">
+	      <input name="name" type="email" class="form-control" id="email" placeholder="Ingresa tu correo">
 	    </div>
 	  </div>
 	  <div class="form-group">
-	    <label class="control-label col-sm-2" for="pwd">Contraseña</label>
-	    <div class="col-sm-10"> 
-	      <input name"password" type="password" class="form-control" id="pwd" placeholder="Enter password">
+	    <label class="" for="pwd">Contraseña</label>
+	    <div class=""> 
+	      <input name"password" type="password" class="form-control" id="pwd" placeholder="Ingresa tu contraseña">
 	    </div>
 	  </div>
-	  <div class="form-group"> 
-	    <div class="col-sm-offset-2 col-sm-10">
-	      <button type="submit" class="btn btn-default">Ingresar</button>
-	      <a href="/registro" class="">Registrate</a>
+	</div>
+	  <div class="modal-footer"> 
+	    <div class="">
+	    	<a href="/registro" class="">Registrate</a>
+	      	<button type="submit" class="btn btn-primary btn-md">Ingresar</button>
 	    </div>
 	  </div>
-</form>
+</form>      

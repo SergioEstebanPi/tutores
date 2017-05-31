@@ -6,17 +6,17 @@
 		<input type="hidden" name="_method" value="put">
 		@include('publicaciones.forms.formulario')
 		<div>
-			<button>Editar</button>
+			<button class="btn btn-primary">Editar</button>
 		</div>
 	</form>
 	<form action="{{route('publicacion.destroy', $publicacion->id)}}" method="post">
 		<input type="hidden" name="_method" value="delete">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div>
-			<button>Borrar</button>
+			<button class="btn btn-danger">Borrar</button>
 		</div>
 	</form>
 	<div>
-		<a href="{{route('publicacion.index')}}">Atrás</a>
+		<a href="{{route('publicacion.index')}}" class="btn btn-default">Atrás</a>
 	</div>
 @stop
