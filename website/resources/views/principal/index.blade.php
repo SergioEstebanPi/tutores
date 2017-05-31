@@ -12,8 +12,7 @@
 
 <div class="jumbotron text-center">
   <h1>Tutores</h1>
-  <p>Red de tele-trabajo por conocimientos</p> 
-  <p>Tu conocimiento vale</p>
+  <p>Red de tele-trabajo que te paga por tus conocimientos</p> 
 </div>
 <div class="container">
   <div class="row">

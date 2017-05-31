@@ -6,6 +6,7 @@
       <ul class="nav navbar-nav">
         <li><a href="/publicacion" class="btn-default">Publicaciones</a></li>
         <li><a href="#" class="btn-default">Noticias</a></li>
+        <li><a href="/registro" class="btn-default">Registro</a></li>
         <li><a href="#" class="btn-default">Acerca de</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -31,7 +32,7 @@
           <div>
             @include('alertas.mensaje')
             @if(!Auth::check())
-              @include('principal.login.index')
+              @include('principal.login.forms.index')
             @endif
           </div>
         </div>

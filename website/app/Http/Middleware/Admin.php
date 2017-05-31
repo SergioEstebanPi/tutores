@@ -25,8 +25,7 @@ class Admin
     public function handle($request, Closure $next)
     {
         // si es admin
-        //dd($this->auth);
-        if (Auth::user() == 1) {
+        if ($this->auth->user()->id == 1) {
             // enviar mensaje
             Session::flash('mensaje', 'Sin privilegios');
             return redirect()->to('/');
