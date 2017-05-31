@@ -11,7 +11,19 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @if(Auth::check())
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span>Perfil</a></li>
+          <div class="dropdown">
+            <a class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">              
+              <span class="glyphicon glyphicon-user"></span>{{Auth::user()->email}}
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="/usuario">Mi perfil</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="/publicacion">Mis publicaciones</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="/cotizacion">Mis cotizaciones</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="/puntuacion">Mi puntuación</a></li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Salir</a></li>
+            </ul>
+          </div>
         @else
           <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span>Iniciar</a></li>
         @endif
