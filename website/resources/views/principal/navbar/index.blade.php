@@ -12,10 +12,20 @@
       <ul class="nav navbar-nav navbar-right">
         @if(Auth::check())
           <li class="dropdown">
-              <a class="btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">              
+            <a class="btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">              
+                Notificaciones
+            </a>
+            <ul  class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/publicacion">Recientes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/cotizacion">Mis cotizaciones</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/puntuacion">Mi puntuación</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+              <a class="btn-default dropdown-toggle" type="button" id="menu2" data-toggle="dropdown">              
                 <span class="glyphicon glyphicon-user"></span>{{Auth::user()->email}}
               </a>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/usuario">Mi perfil</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/publicacion">Mis publicaciones</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/cotizacion">Mis cotizaciones</a></li>

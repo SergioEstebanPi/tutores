@@ -27,7 +27,7 @@
       <p>Trabaja on-line</p>
     </div>
     <div class="col-sm-4">
-      <h3>Comparte el conocimiento</h3> 
+      <h3>Contrata el trabajo de un estudiante o profesional</h3> 
       <p>Red de trabajos académicos</p>
       <p>Desarrollo de proyectos</p>
     </div>

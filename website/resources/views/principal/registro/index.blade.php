@@ -24,12 +24,11 @@
 					<label for="">Confirma Contraseña</label>
 					<input type="password" name="password2" class="form-control">
 				</div>
-				@include('principal.registro.forms.perfil')
-				<div>
-					<button class="btn btn-primary">Registrarme</button>
+				<div class="control-label">
+					<button class="btn btn-primary"  class="form-control">Registrarme</button>
+					<a href="/" class="btn btn-default"  class="form-control">Atrás</a>
 				</div>
 			</form>
-			<a href="/" class="btn btn-default">Atrás</a>
 		</div>
 	</div>
 @stop
