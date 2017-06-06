@@ -13,6 +13,10 @@ use Auth;
 
 class PublicacionController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth', ['show']);
+        $this->middleware('admin', ['show']);
+    }
     /**
      * Display a listing of the resource.
      *

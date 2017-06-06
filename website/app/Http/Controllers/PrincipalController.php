@@ -22,6 +22,11 @@ class PrincipalController extends Controller
         return view('principal.registro.index');        
     }
 
+    public function mostrar_publicaciones(){
+        $publicaciones = \App\Publicacion::all();
+        return view('publicaciones.index', compact('publicaciones', $publicaciones));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

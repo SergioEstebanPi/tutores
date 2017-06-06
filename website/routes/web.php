@@ -19,8 +19,13 @@
 //Route::get('/', function () {
 //    return view('principal.index');
 //});
+use Illuminate\Support\Facades\Input;
+
+Route::post('registro', 'RegistroController@store');
+
 Route::resource('/', 'PrincipalController');
-Route::get('registro', 'PrincipalController@registrar');
+//Route::get('registro', 'PrincipalController@registrar');
+Route::get('publicaciones', 'PrincipalController@mostrar_publicaciones');
 
 /* CRUDS del administrador */
 Route::resource('usuario', 'UsuarioController');
@@ -35,6 +40,20 @@ Route::resource('categoria', 'CategoriaController');
 Route::resource('formacion', 'FormacionController');
 Route::resource('puntuacion', 'PuntuacionController');
 Route::resource('valoracion', 'ValoracionController');
+
+/* formularios publicos */
+//Route::get('registro', 'RegistroController@index');
+Route::resource('registro', 'RegistroController');
+
+Route::match(['get', 'post'], 'registro', function(){
+	$name = Input::get('name');
+	$email = Input::get('email');
+	return view('principal.registro.index', [
+		'name' => $name,
+		'email' => $email
+	]);
+});
+
 
 /* cargar archivos */
 Route::get('formulario', 'StorageController@index');

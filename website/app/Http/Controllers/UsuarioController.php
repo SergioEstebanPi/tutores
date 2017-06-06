@@ -49,15 +49,17 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
-        $nuevo = \App\User::create([
-            'foto' => '',
-            'alias' => '',
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-            'id_formacion' => $request['formacion']
-        ]);
-
+        if($request['password'] == $request['password2']){
+            $nuevo = \App\User::create([
+                'foto' => '',
+                'alias' => '',
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['password']),
+                'id_formacion' => $request['formacion']
+            ]);
+        }
+        
         return redirect('publicacion')->with('mensaje', 'Usuario creado correctamente');
     }
 

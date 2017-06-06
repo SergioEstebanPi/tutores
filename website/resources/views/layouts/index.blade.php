@@ -10,8 +10,7 @@
 	@include('principal.navbar.index')
 	<div class="container">
 		<div class="center">
-			<h1 class="cabeza">x</h1>
-			<h1 class="cabeza">x</h1>
+			<h1 class="Publicaciones">x</h1>
 		</div>
 		<div class="cuerpo">
 			@yield('contenido')

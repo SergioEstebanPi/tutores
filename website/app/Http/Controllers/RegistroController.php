@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 
-class TipoController extends Controller
+class RegistroController extends Controller
 {
-
-    public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('admin');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +16,11 @@ class TipoController extends Controller
     public function index()
     {
         //
-        $tipos = \App\Tipo::all();
-        return view('tipos.index', compact('tipos', $tipos));
+        return view('principal.registro.index')
+            ->with([
+                'name' => Input::get('name'),
+                'email' => Input::get('email')
+            ]);
     }
 
     /**
@@ -31,7 +31,6 @@ class TipoController extends Controller
     public function create()
     {
         //
-        return view('tipos.create');
     }
 
     /**
@@ -43,12 +42,26 @@ class TipoController extends Controller
     public function store(Request $request)
     {
         //
-        \App\Tipo::create([
-            'nombre' => $request['nombre'],
-            'descripcion' => $request['descripcion']
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
         ]);
 
-        return redirect('tipo')->with('mensaje', 'Tipo creado correctamente');
+        if ($validator->fails()) {
+            return redirect('registro')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $nuevo = \App\User::create([
+                'foto' => '',
+                'alias' => '',
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => bcrypt($request['password']),
+                'id_formacion' => $request['formacion']
+            ]);
+        return redirect('publicacion')->with('mensaje', 'Usuario creado correctamente');
     }
 
     /**
@@ -60,8 +73,6 @@ class TipoController extends Controller
     public function show($id)
     {
         //
-        $tipo = \App\Tipo::find($id);
-        return view('tipos.show', compact('tipo', $tipo));
     }
 
     /**
@@ -73,8 +84,6 @@ class TipoController extends Controller
     public function edit($id)
     {
         //
-        $tipo = \App\Tipo::find($id);
-        return view('tipos.edit', compact('tipo', $tipo));
     }
 
     /**
@@ -87,10 +96,6 @@ class TipoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $user = \App\Tipo::find($id);
-        $user->fill($request->all());
-        $user->save();
-        return redirect('tipo')->with('mensaje', 'Tipo editado correctamente');
     }
 
     /**
@@ -102,7 +107,5 @@ class TipoController extends Controller
     public function destroy($id)
     {
         //
-        \App\Tipo::destroy($id);
-        return redirect('tipo')->with('mensaje', 'Tipo eliminado correctamente');
     }
 }

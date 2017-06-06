@@ -4,7 +4,7 @@
         <a class="navbar-brand btn-primary" href="/">TUTORES</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a href="/publicacion" class="btn-default">Publicaciones</a></li>
+        <li><a href="/publicaciones" class="btn-default">Publicaciones</a></li>
         <li><a href="#" class="btn-default">Noticias</a></li>
         <li><a href="/registro" class="btn-default">Registro</a></li>
         <li><a href="#" class="btn-default">Acerca de</a></li>
@@ -52,7 +52,6 @@
         </div>
         <div class="modal-body">
           <div>
-            @include('alertas.mensaje')
             @if(!Auth::check())
               @include('principal.login.forms.index')
             @endif
