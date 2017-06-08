@@ -19,7 +19,7 @@ class PrincipalController extends Controller
     }
 
     public function registrar(){
-        return view('principal.registro.index');        
+        //return view('principal.registro.index');        
     }
 
     public function mostrar_publicaciones(){

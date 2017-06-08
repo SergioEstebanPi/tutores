@@ -11,14 +11,14 @@
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="control-label">
 					<label for="">Nombre</label>
-					<input type="text" name="name" class="form-control" value="{{$name}}">
+					<input type="text" name="name" class="form-control" value="">
 					@if($errors->first('name'))
 						<small class="alert-danger">{{$errors->first('name')}}</small>
 					@endif
 				</div>
 				<div class="control-label">
 					<label for="">Correo</label>
-					<input type="text" name="email" class="form-control" value="{{$email}}">
+					<input type="text" name="email" class="form-control" value="">
 					@if($errors->first('email'))
 						<small class="alert-danger">{{$errors->first('email')}}</small>
 					@endif
@@ -38,7 +38,7 @@
 					@endif
 				</div>
 				<div class="control-label">
-					<button class="btn btn-primary"  class="form-control">Registrarme</button>
+					<button type="submit" class="btn btn-primary"  class="form-control">Registrarme</button>
 					<a href="/" class="btn btn-default"  class="form-control">Atrás</a>
 				</div>
 			</form>

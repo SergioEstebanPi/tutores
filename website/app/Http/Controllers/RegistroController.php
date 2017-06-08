@@ -16,11 +16,7 @@ class RegistroController extends Controller
     public function index()
     {
         //
-        return view('principal.registro.index')
-            ->with([
-                'name' => Input::get('name'),
-                'email' => Input::get('email')
-            ]);
+        return view('principal.registro.index');
     }
 
     /**
@@ -73,6 +69,7 @@ class RegistroController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**

@@ -19,9 +19,9 @@
 //Route::get('/', function () {
 //    return view('principal.index');
 //});
-use Illuminate\Support\Facades\Input;
+//use Illuminate\Support\Facades\Input;
 
-Route::post('registro', 'RegistroController@store');
+//Route::post('registro', 'RegistroController@store');
 
 Route::resource('/', 'PrincipalController');
 //Route::get('registro', 'PrincipalController@registrar');
@@ -45,6 +45,7 @@ Route::resource('valoracion', 'ValoracionController');
 //Route::get('registro', 'RegistroController@index');
 Route::resource('registro', 'RegistroController');
 
+/*
 Route::match(['get', 'post'], 'registro', function(){
 	$name = Input::get('name');
 	$email = Input::get('email');
@@ -53,6 +54,7 @@ Route::match(['get', 'post'], 'registro', function(){
 		'email' => $email
 	]);
 });
+*/
 
 
 /* cargar archivos */
