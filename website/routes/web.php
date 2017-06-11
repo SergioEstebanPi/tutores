@@ -25,7 +25,10 @@
 
 Route::resource('/', 'PrincipalController');
 //Route::get('registro', 'PrincipalController@registrar');
-Route::get('publicaciones', 'PrincipalController@mostrar_publicaciones');
+/* opciones del usuario loggeado */
+Route::get('/noticias', 'PrincipalController@mostrar_publicaciones');
+Route::get('/mis_publicaciones', 'PrincipalUsuarioController@mis_publicaciones');
+Route::get('/mis_cotizaciones', 'PrincipalUsuarioController@mis_cotizaciones');
 
 /* CRUDS del administrador */
 Route::resource('usuario', 'UsuarioController');
@@ -75,3 +78,7 @@ Route::get('storage/app/{archivo}', function ($archivo) {
 
 Route::resource('login', 'LogController');
 Route::get('logout', 'LogController@logout');
+
+Route::group(['middleware' => 'auth'], function(){
+
+});

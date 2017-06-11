@@ -14,8 +14,8 @@ use Auth;
 class PublicacionController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth', ['show']);
-        $this->middleware('admin', ['show']);
+        $this->middleware('auth');
+        $this->middleware('admin');
     }
     /**
      * Display a listing of the resource.

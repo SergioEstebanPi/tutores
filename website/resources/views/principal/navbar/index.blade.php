@@ -4,9 +4,12 @@
         <a class="navbar-brand btn-primary" href="/">TUTORES</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a href="/publicaciones" class="btn-default">Publicaciones</a></li>
-        <li><a href="#" class="btn-default">Noticias</a></li>
-        <li><a href="/registro" class="btn-default">Registro</a></li>
+        <li><a href="/noticias" class="btn-default">Noticias</a></li>
+        <li><a href="/mis_publicaciones" class="btn-default">Mis Publicaciones</a></li>
+        <li><a href="/mis_cotizaciones" class="btn-default">Mis Cotizaciones</a></li>
+        @if(!Auth::check())
+          <li><a href="/registro" class="btn-default">Registro</a></li>
+        @endif
         <li><a href="#" class="btn-default">Acerca de</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
