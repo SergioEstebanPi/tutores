@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App;
-use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Requests\PublicacionRequest;
+use App\Http\Requests\LoginRequest;
 
+use Illuminate\Http\Request;
+use App\Http\Requests\PublicacionRequest;
 /**
   *  @CREATED_BY spina
   *  @DATE_CREATED 28/05/2017

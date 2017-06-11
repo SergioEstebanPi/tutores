@@ -23,7 +23,7 @@ class PublicacionRequest extends FormRequest
      */
     public function rules()
     {
-        return = [
+        return [
             'titulo' => 'required|string|max:255',
             'id_categoria' => 'required|string|max:255',
             'id_tipo' => 'required|string|max:255',
