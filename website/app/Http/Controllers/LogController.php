@@ -50,9 +50,15 @@ class LogController extends Controller
                           'password' => $request['password'] 
                         ])){
             
-            return redirect()->to('/publicacion')->with('mensaje', 'Bienvenido ' . $request['email']);
+            return redirect()->to('/publicacion')->with([
+                'mensaje' => 'Bienvenido ' . $request['email'],
+                'tipo' => 'success'
+            ]);
         }
-        return redirect()->to('/')->with('mensaje', 'Error datos incorrectos');
+        return redirect()->to('/')->with([
+            'mensaje' => 'Error datos incorrectos',
+            'tipo' => 'danger'
+        ]);
     }
 
     public function logout(){

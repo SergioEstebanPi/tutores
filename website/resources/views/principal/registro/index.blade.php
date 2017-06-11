@@ -10,28 +10,28 @@
 			<form action="{{route('registro.store')}}" method="post">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="control-label">
-					<label for="">Nombre</label>
+					<label for="">Nombre*</label>
 					<input type="text" name="name" class="form-control" value="{{ old('name') }}">
 					@if($errors->first('name'))
 						<small class="alert-danger">{{$errors->first('name')}}</small>
 					@endif
 				</div>
 				<div class="control-label">
-					<label for="">Correo</label>
+					<label for="">Correo*</label>
 					<input type="text" name="email" class="form-control" value="{{ old('email') }}">
 					@if($errors->first('email'))
 						<small class="alert-danger">{{$errors->first('email')}}</small>
 					@endif
 				</div>
 				<div class="control-label">
-					<label for="">Contraseña</label>
+					<label for="">Contraseña*</label>
 					<input type="password" name="password" class="form-control">
 					@if($errors->first('password'))
 						<small class="alert-danger">{{$errors->first('password')}}</small>
 					@endif
 				</div>
 				<div class="control-label">
-					<label for="">Confirma Contraseña</label>
+					<label for="">Confirma Contraseña*</label>
 					<input type="password" name="password_confirmation" class="form-control">
 					@if($errors->first('password_confirmation'))
 						<small class="alert-danger">{{$errors->first('password_confirmation')}}</small>

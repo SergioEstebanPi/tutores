@@ -1,12 +1,14 @@
-<nav class="navbar navbar navbar-fixed-top">
+<nav class="navbar navbar navbar-fixed-top bordeinferior">
   <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand btn-primary" href="/">TUTORES</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="/noticias" class="btn-default">Noticias</a></li>
-        <li><a href="/mis_publicaciones" class="btn-default">Mis Publicaciones</a></li>
-        <li><a href="/mis_cotizaciones" class="btn-default">Mis Cotizaciones</a></li>
+        @if(Auth::check())
+          <li><a href="/mis_publicaciones" class="btn-default">Mis Publicaciones</a></li>
+          <li><a href="/mis_cotizaciones" class="btn-default">Mis Cotizaciones</a></li>
+        @endif
         @if(!Auth::check())
           <li><a href="/registro" class="btn-default">Registro</a></li>
         @endif
@@ -56,6 +58,7 @@
         <div class="modal-body">
           <div>
             @if(!Auth::check())
+              @include('alertas.mensaje')
               @include('principal.login.forms.index')
             @endif
           </div>

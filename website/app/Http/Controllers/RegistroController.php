@@ -57,7 +57,10 @@ class RegistroController extends Controller
                 'password' => bcrypt($request['password']),
                 'id_formacion' => $request['formacion']
             ]);
-        return redirect('publicacion')->with('mensaje', 'Usuario creado correctamente');
+        return redirect('publicacion')->with([
+            'mensaje', 'Usuario creado correctamente',
+            'tipo', 'success'
+        ]);
     }
 
     /**

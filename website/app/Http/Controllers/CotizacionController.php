@@ -13,8 +13,8 @@ use Auth;
 class CotizacionController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('admin');
+        //$this->middleware('auth');
+        //$this->middleware('admin');
     }
     /**
      * Display a listing of the resource.

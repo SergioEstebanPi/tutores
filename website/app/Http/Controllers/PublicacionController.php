@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Requests\PublicacionRequest;
 
 /**
   *  @CREATED_BY spina
@@ -14,8 +17,8 @@ use Auth;
 class PublicacionController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('admin');
+        //$this->middleware('auth');
+        //$this->middleware('admin');
     }
     /**
      * Display a listing of the resource.
@@ -25,7 +28,8 @@ class PublicacionController extends Controller
     public function index()
     {
         //
-        $publicaciones = \App\Publicacion::all();
+        $publicaciones = \App\Publicacion::where(
+            'id_user', '=', Auth::user()->id)->get();
         return view('publicaciones.index', compact('publicaciones', $publicaciones));
     }
 
@@ -54,9 +58,14 @@ class PublicacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PublicacionRequest $request)
     {
         //
+        if ($validator->fails()) {
+            return redirect('publicacion/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
         //obtenemos el campo file definido en el formulario
        $file = $request->file('ruta');
        //obtenemos el nombre del archivo
@@ -75,7 +84,10 @@ class PublicacionController extends Controller
             'ruta' => $nombre,
             'descripcion' => $request['descripcion']
         ]);
-        return redirect('publicacion')->with('mensaje', 'Publicación creada correctamente');
+        return redirect('publicacion')->with([
+            'mensaje' => 'Publicación creada correctamente',
+            'tipo' => 'success'
+        ]);
     }
 
     /**
@@ -125,7 +137,10 @@ class PublicacionController extends Controller
         $user = \App\Publicacion::find($id);
         $user->fill($request->all());
         $user->save();
-        return redirect('publicacion')->with('mensaje', 'Publicación editada correctamente');
+        return redirect('publicacion')->with([
+            'mensaje' => 'Publicación editada correctamente',
+            'tipo' => 'success'
+        ]);
     }
 
     /**
@@ -138,6 +153,9 @@ class PublicacionController extends Controller
     {
         //
         \App\Publicacion::destroy($id);
-        return redirect('publicacion')->with('mensaje', 'Publicación eliminada correctamente');
+        return redirect('publicacion')->with([
+            'mensaje' => 'Publicación eliminada correctamente',
+            'tipo' => 'success'
+        ]);
     }
 }

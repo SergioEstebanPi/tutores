@@ -1,13 +1,12 @@
 @extends('layouts.index')
 
-@include('alertas.mensaje')
-
 @section('contenido')
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3>Publicaciones</h3>
 	</div>
 	<div class="panel-body">
+		@include('alertas.mensaje')
 		<div class="col-sm-3">
 		    <div class="input-group">
 		      <input type="text" class="form-control">
