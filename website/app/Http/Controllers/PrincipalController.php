@@ -24,7 +24,10 @@ class PrincipalController extends Controller
 
     public function mostrar_publicaciones(){
         $publicaciones = \App\Publicacion::all();
-        return view('publicaciones.index', compact('publicaciones', $publicaciones));
+        return view('publicaciones.index', [
+            'publicaciones' => $publicaciones,
+            'noticias' => 'noticias'
+        ]);
     }
 
     /**

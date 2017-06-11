@@ -62,6 +62,7 @@ class PublicacionController extends Controller
     public function store(PublicacionRequest $request)
     {
         //
+        $validator = Validator::make($request->all(), $request->rules());
         if ($validator->fails()) {
             return redirect('publicacion/create')
                 ->withErrors($validator)
@@ -132,9 +133,14 @@ class PublicacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PublicacionRequest $request, $id)
     {
         //
+        if ($validator->fails()) {
+            return redirect('publicacion/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
         $user = \App\Publicacion::find($id);
         $user->fill($request->all());
         $user->save();

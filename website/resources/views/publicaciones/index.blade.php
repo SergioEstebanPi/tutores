@@ -33,7 +33,7 @@
 								<a href="{{route('publicacion.show', $publicacion->id)}}" class="btn btn-default">
 									Ver
 								</a>
-								@if(Auth::check())
+								@if(Auth::check() && !isset($noticias))
 								<a href="{{route('publicacion.edit', $publicacion->id)}}" class="btn btn-primary">
 									Editar
 								</a>

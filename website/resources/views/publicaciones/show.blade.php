@@ -23,7 +23,7 @@
 			<label name="titulo" class="form-control">{{$publicacion->titulo}}</label>
 		</div>
 		<div>
-			<a href="{{route('publicacion.index')}}" class="btn btn-default">Atrás</a>
+			<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>
 		</div>
 	</div>
 </div>

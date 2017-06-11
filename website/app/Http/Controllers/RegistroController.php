@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use App\Http\Requests\LoginRequest;
 
 class RegistroController extends Controller
 {
@@ -35,20 +36,16 @@ class RegistroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
         //
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-
+        $validator = Validator::make($request->all(), $request->rules());
         if ($validator->fails()) {
             return redirect('registro')
                 ->withErrors($validator)
                 ->withInput();
         }
+        // crear el usuario
         $nuevo = \App\User::create([
                 'foto' => '',
                 'alias' => '',
@@ -56,7 +53,11 @@ class RegistroController extends Controller
                 'email' => $request['email'],
                 'password' => bcrypt($request['password']),
                 'id_formacion' => $request['formacion']
-            ]);
+        ]);
+
+        // iniciar la sesión del usuario
+        LogController::store($request);
+
         return redirect('publicacion')->with([
             'mensaje', 'Usuario creado correctamente',
             'tipo', 'success'

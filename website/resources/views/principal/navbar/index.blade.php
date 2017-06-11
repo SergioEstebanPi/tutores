@@ -6,8 +6,8 @@
       <ul class="nav navbar-nav">
         <li><a href="/noticias" class="btn-default">Noticias</a></li>
         @if(Auth::check())
-          <li><a href="/mis_publicaciones" class="btn-default">Mis Publicaciones</a></li>
-          <li><a href="/mis_cotizaciones" class="btn-default">Mis Cotizaciones</a></li>
+          <li><a href="/publicacion" class="btn-default">Mis Publicaciones</a></li>
+          <li><a href="/cotizacion" class="btn-default">Mis Cotizaciones</a></li>
         @endif
         @if(!Auth::check())
           <li><a href="/registro" class="btn-default">Registro</a></li>
