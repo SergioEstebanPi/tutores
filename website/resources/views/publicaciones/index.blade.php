@@ -3,7 +3,7 @@
 @section('contenido')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3>Publicaciones</h3>
+		<h3>Mis Publicaciones</h3>
 	</div>
 	<div class="panel-body">
 		@include('alertas.mensaje')
@@ -54,9 +54,11 @@
 				<a href="{{route('publicacion.create')}}" class="btn btn-primary">Nuevo</a>
 			</div>
 			<div>
-				<a href="/" class="btn btn-default">Atrás</a>
+				<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>
 			</div>
 		@endif
+
+		{{$publicaciones->render()}}
 	</div>
 </div>
 @stop

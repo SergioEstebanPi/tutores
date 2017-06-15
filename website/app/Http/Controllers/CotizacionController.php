@@ -24,7 +24,7 @@ class CotizacionController extends Controller
     public function index()
     {
         //
-        $cotizaciones = \App\Cotizacion::all();
+        $cotizaciones = \App\Cotizacion::paginate(10);
         return view('cotizaciones.index', compact('cotizaciones', $cotizaciones));
     }
 

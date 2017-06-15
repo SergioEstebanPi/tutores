@@ -30,7 +30,8 @@ class PublicacionController extends Controller
     {
         //
         $publicaciones = \App\Publicacion::where(
-            'id_user', '=', Auth::user()->id)->get();
+            'id_user', '=', Auth::user()->id)
+            ->paginate(10);
         return view('publicaciones.index', compact('publicaciones', $publicaciones));
     }
 
