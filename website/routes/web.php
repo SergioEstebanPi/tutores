@@ -63,6 +63,7 @@ Route::match(['get', 'post'], 'registro', function(){
 /* cargar archivos */
 Route::get('formulario', 'StorageController@index');
 Route::post('storage/create', 'StorageController@save');
+Route::get('storage/{archivo}', 'StorageController@download');
 /*
 Route::get('storage/app/{archivo}', function ($archivo) {
      $public_path = storage_path();

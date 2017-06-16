@@ -20,7 +20,14 @@
 		</div>
 		<div>
 			<label for="" class="control-label">ruta</label>
-			<label name="titulo" class="form-control">{{$publicacion->titulo}}</label>
+			@if(!Auth::check())
+				<label name="titulo" class="form-control">{{$publicacion->titulo}}</label>
+			@else
+				<img src="#" name="titulo" class="form-control"></img>
+			@endif
+		</div>
+		<div>
+			<a href="/storage/{{$publicacion->ruta}}" class="btn btn-default">Descargar</a>
 		</div>
 		<div>
 			<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>

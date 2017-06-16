@@ -24,7 +24,6 @@ class LogController extends Controller
     public function index()
     {
         //
-        return "hola";
         return view('principal.login.index');
     }
 

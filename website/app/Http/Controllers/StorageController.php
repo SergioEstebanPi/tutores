@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class StorageController extends Controller
 {
@@ -43,4 +44,16 @@ class StorageController extends Controller
 	 
 	       return "archivo guardado";
 	}
+
+    public function download($archivo){
+        //C:\Users\Usuario\Documents\TUTORES\tutores\website\storage\app\storage
+        $url = storage_path() .'/app/storage/'. $archivo;
+        //verificamos si el archivo existe y lo retornamos
+        if (\Storage::exists($archivo))
+        {
+          return response()->download($url);
+        }
+        //si no se encuentra lanzamos un error 404.
+        abort(404);
+    }
 }
