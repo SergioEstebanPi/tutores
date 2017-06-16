@@ -24,6 +24,7 @@ class LogController extends Controller
     public function index()
     {
         //
+        return "hola";
         return view('principal.login.index');
     }
 
@@ -43,7 +44,7 @@ class LogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LoginRequest $request)
+    public function store(Request $request)
     {
         //
         if(Auth::attempt(['email' => $request['email'], 

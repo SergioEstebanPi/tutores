@@ -1,4 +1,4 @@
-<form action="{{route('login.store')}}" method="post" class="form-horizontal">
+<form action="{{route('login.index')}}" method="post" class="form-horizontal">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div class="modal-body">
 	  <div class="form-group">
