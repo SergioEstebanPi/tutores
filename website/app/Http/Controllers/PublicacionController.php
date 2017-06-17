@@ -32,7 +32,12 @@ class PublicacionController extends Controller
         $publicaciones = \App\Publicacion::where(
             'id_user', '=', Auth::user()->id)
             ->paginate(10);
-        return view('publicaciones.index', compact('publicaciones', $publicaciones));
+        //$cotizaciones = \App\Cotizacion::where('id_publicacion', '=', $publicaciones)
+        //    ->get();
+        return view('publicaciones.index', [
+            'publicaciones' => $publicaciones
+            //'cotizaciones', $cotizaciones
+        ]);
     }
 
     /**
@@ -103,7 +108,21 @@ class PublicacionController extends Controller
     {
         //
         $publicacion = \App\Publicacion::find($id);
-        return view('publicaciones.show', compact('publicacion', $publicacion));
+        $cotizaciones = \App\Cotizacion::where('id_publicacion', '=', $id)
+            ->get();
+        $extensions = [
+            'jpg' => 'jpeg.png',
+            'png' => 'png.png',
+            'pdf' => 'pdfdocument.png',
+            'doc' => 'wordicon.jpg',
+        ];
+        
+        return view('publicaciones.show', [
+            'publicacion' => $publicacion,
+            'cotizaciones' => $cotizaciones,
+            'file' => array_get($extensions,'sdf.pdf','unknown.png')
+
+        ]);
     }
 
     /**
@@ -137,6 +156,7 @@ class PublicacionController extends Controller
     public function update(PublicacionRequest $request, $id)
     {
         //
+        $validator = Validator::make($request->all(), $request->rules());
         if ($validator->fails()) {
             return redirect('publicacion/create')
                 ->withErrors($validator)

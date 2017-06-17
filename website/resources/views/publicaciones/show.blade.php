@@ -15,7 +15,7 @@
 			<label name="titulo" class="form-control">{{$publicacion->entrega}}</label>
 		</div>
 		<div>
-			<label for="" class="control-label">titulo</label>
+			<label for="" class="control-label">titulo archivo</label>
 			<label name="titulo" class="form-control">{{$publicacion->ruta}}</label>
 		</div>
 		<div>
@@ -23,11 +23,14 @@
 			@if(!Auth::check())
 				<label name="titulo" class="form-control">{{$publicacion->titulo}}</label>
 			@else
-				<img src="#" name="titulo" class="form-control"></img>
+				<img src="/storage/{{$file}}" name="titulo" class="form-control"></img>
 			@endif
 		</div>
 		<div>
 			<a href="/storage/{{$publicacion->ruta}}" class="btn btn-default">Descargar</a>
+		</div>
+		<div>
+			<a href="#" class="btn btn-primary">Cotizar</a>
 		</div>
 		<div>
 			<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>

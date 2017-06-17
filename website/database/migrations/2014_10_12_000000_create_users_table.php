@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('id_formacion')
                     ->nullable();
             $table->integer('tipo');
+            $table->string('carpeta');
             $table->rememberToken();
             $table->timestamps();
         });
