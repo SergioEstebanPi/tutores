@@ -36,7 +36,7 @@ class CotizacionController extends Controller
     public function create()
     {
         //
-        return view('cotizaciones.create');
+        //return view('cotizaciones.create');
     }
 
     public function cotizar_publicacion($id) {
@@ -93,7 +93,10 @@ class CotizacionController extends Controller
     {
         //
         $cotizacion = \App\Cotizacion::find($id);
-        return view('cotizaciones.edit', compact('cotizacion', $cotizacion));
+        return view('cotizaciones.edit', [
+            'cotizacion' => $cotizacion,
+            'publicacion' => $cotizacion->publicacion
+        ]);
     }
 
     /**
@@ -109,7 +112,10 @@ class CotizacionController extends Controller
         $user = \App\Cotizacion::find($id);
         $user->fill($request->all());
         $user->save();
-        return redirect('cotizacion')->with('mensaje', 'Cotización editada correctamente');
+        return redirect('cotizacion')->with([
+            'mensaje' => 'Cotización editada correctamente',
+            'tipo'  => 'success'
+        ]);
     }
 
     /**
