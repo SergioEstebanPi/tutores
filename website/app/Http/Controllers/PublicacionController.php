@@ -162,6 +162,13 @@ class PublicacionController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('ruta');
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+        //indicamos que queremos guardar un nuevo archivo en el disco local
+        \Storage::disk('local')->put($nombre,  \File::get($file));
+
         $user = \App\Publicacion::find($id);
         $user->fill($request->all());
         $user->save();

@@ -25,10 +25,12 @@
 
 Route::resource('/', 'PrincipalController');
 //Route::get('registro', 'PrincipalController@registrar');
+
 /* opciones del usuario loggeado */
 Route::get('/noticias', 'PrincipalController@mostrar_publicaciones');
 Route::get('/mis_publicaciones', 'PrincipalUsuarioController@mis_publicaciones');
 Route::get('/mis_cotizaciones', 'PrincipalUsuarioController@mis_cotizaciones');
+Route::get('/cotizar_publicacion/{id}', 'CotizacionController@cotizar_publicacion');
 
 /* CRUDS del administrador */
 Route::resource('usuario', 'UsuarioController');

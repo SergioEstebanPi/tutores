@@ -39,6 +39,13 @@ class CotizacionController extends Controller
         return view('cotizaciones.create');
     }
 
+    public function cotizar_publicacion($id) {
+        $publicacion = \App\Publicacion::find($id);
+        return view('cotizaciones.create', [
+            'publicacion' => $publicacion
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -57,7 +64,10 @@ class CotizacionController extends Controller
             'fin' => $request['fin'],
             'descripcion' => $request['descripcion']
         ]);
-        return redirect('cotizacion')->with('mensaje', 'Cotización creada correctamente');
+        return redirect('cotizacion')->with([
+            'mensaje' => 'Cotización creada correctamente',
+            'tipo' => 'success'
+        ]);
     }
 
     /**
