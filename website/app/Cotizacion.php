@@ -22,4 +22,8 @@ class Cotizacion extends Model
               					 , 'fin'
           			         , 'descripcion'
 			              ];
+
+    public function publicacion(){
+       return $this->belongsTo('App\Publicacion', 'id_publicacion');
+    }
 }

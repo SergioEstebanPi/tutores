@@ -24,4 +24,8 @@ class Publicacion extends Model
     					 , 'ruta'
                , 'descripcion'
                ];
+
+    public function cotizacion(){
+      return $this->hasMany('App\Cotizacion');
+    }
 }

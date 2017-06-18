@@ -7,6 +7,10 @@
 	</div>
 	<div class="panel-body">
 		<div>
+			<label for="" class="control-label">titulo trabajo</label>
+			<label name="precio" class="form-control">{{$cotizacion->publicacion->titulo}}</label>
+		</div>
+		<div>
 			<label for="" class="control-label">precio</label>
 			<label name="precio" class="form-control">{{$cotizacion->precio}}</label>
 		</div>
