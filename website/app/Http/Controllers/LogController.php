@@ -43,7 +43,7 @@ class LogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request)
     {
         //
         if(Auth::attempt(['email' => $request['email'], 

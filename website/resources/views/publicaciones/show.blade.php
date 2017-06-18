@@ -7,6 +7,10 @@
 	</div>
 	<div class="panel-body">
 		<div>
+			<label for="" class="control-label">publicador por</label>
+			<label name="titulo" class="form-control">{{$publicacion->user->name}}</label>
+		</div>
+		<div>
 			<label for="" class="control-label">titulo</label>
 			<label name="titulo" class="form-control">{{$publicacion->titulo}}</label>
 		</div>
@@ -29,9 +33,17 @@
 		<div>
 			<a href="/storage/{{$publicacion->ruta}}" class="btn btn-default">Descargar</a>
 		</div>
-		<div>
-			<a href="/cotizar_publicacion/{{$publicacion->id}}" class="btn btn-primary">Cotizar</a>
-		</div>
+		@if(Auth::check())
+			@if(Auth::user()->id != $publicacion->id_user)
+				<div>
+					<a href="/cotizar_publicacion/{{$publicacion->id}}" class="btn btn-primary">Cotizar</a>
+				</div>
+			@endif
+		@else
+			<div>
+				<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Cotizar</a>
+			</div>
+		@endif
 		<div>
 			<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>
 		</div>

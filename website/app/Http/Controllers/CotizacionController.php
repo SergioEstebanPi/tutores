@@ -24,7 +24,9 @@ class CotizacionController extends Controller
     public function index()
     {
         //
-        $cotizaciones = \App\Cotizacion::paginate(10);
+        $cotizaciones = \App\Cotizacion::where(
+            'id_user', '=', Auth::user()->id)
+            ->paginate(10);
         return view('cotizaciones.index', compact('cotizaciones', $cotizaciones));
     }
 

@@ -11,7 +11,7 @@
 	<label for="">Nivel Educativo</label>
 	<select name="id_categoria" class="form-control">
 		@foreach($categorias as $categoria)
-			<option value="{{$categoria->id}}">{{$categoria->nombre}}<option>
+			<option value="{{$categoria->id}}">{{$categoria->nombre or old('id_categoria')}}<option>
 		@endforeach
 	</select>	
 	@if($errors->first('id_categoria'))

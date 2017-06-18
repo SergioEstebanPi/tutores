@@ -38,9 +38,6 @@
 		</table>
 		@if(Auth::check())
 			<div>
-				<a href="{{route('cotizacion.create')}}" class="btn btn-primary">Nuevo</a>
-			</div>
-			<div>
 				<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>
 			</div>
 		@endif

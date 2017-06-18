@@ -28,4 +28,8 @@ class Publicacion extends Model
     public function cotizacion(){
       return $this->hasMany('App\Cotizacion');
     }
+
+    public function user(){
+       return $this->belongsTo('App\User', 'id_user');
+    }
 }
