@@ -30,9 +30,9 @@ class PublicacionController extends Controller
     {
         //
         $publicaciones = \App\Publicacion::where(
-            'id_user', '=', Auth::user()->id)
+            'user_id', '=', Auth::user()->id)
             ->paginate(10);
-        //$cotizaciones = \App\Cotizacion::where('id_publicacion', '=', $publicaciones)
+        //$cotizaciones = \App\Cotizacion::where('publicacion_id', '=', $publicaciones)
         //    ->get();
         return view('publicaciones.index', [
             'publicaciones' => $publicaciones
@@ -82,10 +82,10 @@ class PublicacionController extends Controller
        \Storage::disk('local')->put($nombre,  \File::get($file));
  
         \App\Publicacion::create([
-            'id_user' => Auth::user()->id,
-            'id_categoria' => $request['id_categoria'],
-            'id_tipo' => $request['id_tipo'],
-            'id_area' => $request['id_area'],
+            'user_id' => Auth::user()->id,
+            'categoria_id' => $request['categoria_id'],
+            'tipo_id' => $request['tipo_id'],
+            'area_id' => $request['area_id'],
             'titulo' => $request['titulo'],
             'entrega' => $request['entrega'],
             'estado' => 0,
@@ -108,7 +108,7 @@ class PublicacionController extends Controller
     {
         //
         $publicacion = \App\Publicacion::find($id);
-        $cotizaciones = \App\Cotizacion::where('id_publicacion', '=', $id)
+        $cotizaciones = \App\Cotizacion::where('publicacion_id', '=', $id)
             ->get();
         $extensions = [
             'jpg' => 'jpeg.png',

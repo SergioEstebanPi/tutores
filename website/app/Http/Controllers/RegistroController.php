@@ -52,7 +52,7 @@ class RegistroController extends Controller
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'password' => bcrypt($request['password']),
-                'id_formacion' => $request['formacion']
+                'formacion_id' => $request['formacion']
         ]);
 
         // iniciar la sesión del usuario

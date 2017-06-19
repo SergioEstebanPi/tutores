@@ -25,7 +25,7 @@ class CotizacionController extends Controller
     {
         //
         $cotizaciones = \App\Cotizacion::where(
-            'id_user', '=', Auth::user()->id)
+            'user_id', '=', Auth::user()->id)
             ->paginate(10);
         return view('cotizaciones.index', compact('cotizaciones', $cotizaciones));
     }
@@ -58,8 +58,8 @@ class CotizacionController extends Controller
     {
         // 
         \App\Cotizacion::create([
-            'id_publicacion' => $request['id_publicacion'],
-            'id_user' => Auth::user()->id,
+            'publicacion_id' => $request['publicacion_id'],
+            'user_id' => Auth::user()->id,
             'estado' => 0,
             'precio' => $request['precio'],
             'inicio' => $request['inicio'],
@@ -130,6 +130,9 @@ class CotizacionController extends Controller
     {
         //
         \App\Cotizacion::destroy($id);
-        return redirect('cotizacion')->with('mensaje', 'Cotización eliminada correctamente');
+        return redirect('cotizacion')->with([
+            'mensaje' => 'Cotización eliminada correctamente',
+            'tipo' => 'danger'
+        ]);
     }
 }

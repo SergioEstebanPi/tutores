@@ -9,5 +9,5 @@ class Formacion extends Model
     //
 	protected $table = 'formaciones';
 
-    protected $fillable = ['id_instituto', 'nombre', 'certificado'];
+    protected $fillable = ['instituto_id', 'nombre', 'certificado'];
 }

@@ -34,10 +34,17 @@
 			<a href="/storage/{{$publicacion->ruta}}" class="btn btn-default">Descargar</a>
 		</div>
 		@if(Auth::check())
-			@if(Auth::user()->id != $publicacion->id_user)
+			@if(Auth::user()->id != $publicacion->user_id)
 				<div>
 					<a href="/cotizar_publicacion/{{$publicacion->id}}" class="btn btn-primary">Cotizar</a>
 				</div>
+			@else
+				<h2>Cotizaciones {{count($cotizaciones)}}</h2>
+				@if(count($cotizaciones)>0)
+					<div>
+						<a href="/cotizar_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
+					</div>
+				@endif
 			@endif
 		@else
 			<div>

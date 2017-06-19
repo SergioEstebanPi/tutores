@@ -22,6 +22,7 @@
 						<th>Título</th>
 						<th>Fecha de entrega</th>
 						<th>Archivo</th>
+						<th>Cotizaciones</th>
 						<th>Acción</th>
 					</thead>
 						@foreach($publicaciones as $publicacion)
@@ -29,6 +30,7 @@
 							<td>{{$publicacion->titulo}}</td>
 							<td>{{$publicacion->entrega}}</td>
 							<td>{{$publicacion->ruta}}</td>
+							<td>{{count($publicacion->cotizacion)}}</td>
 							<td>
 								<a href="{{route('publicacion.show', $publicacion->id)}}" class="btn btn-default">
 									Ver

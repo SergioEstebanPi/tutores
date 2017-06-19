@@ -21,20 +21,20 @@ class Publicaciones extends Migration
         //
         Schema::create('publicaciones', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
                     ->references('id')
                     ->on('users');
-            $table->integer('id_categoria')->unsigned();
-            $table->foreign('id_categoria')
+            $table->integer('categoria_id')->unsigned();
+            $table->foreign('categoria_id')
                     ->references('id')
                     ->on('categorias');
-            $table->integer('id_tipo')->unsigned();
-            $table->foreign('id_tipo')
+            $table->integer('tipo_id')->unsigned();
+            $table->foreign('tipo_id')
                     ->references('id')
                     ->on('tipos');
-            $table->integer('id_area')->unsigned();
-            $table->foreign('id_area')
+            $table->integer('area_id')->unsigned();
+            $table->foreign('area_id')
                     ->references('id')
                     ->on('areas');
             $table->string('titulo');

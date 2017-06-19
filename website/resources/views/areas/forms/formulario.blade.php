@@ -9,7 +9,7 @@
 </div>
 <div>
 	<label for="" >area</label>
-	<select name="id_area">
+	<select name="area_id">
 		@foreach($areas_padre as $area_padre)
 			<option value="{{$area_padre->id}}">{{$area_padre->nombre}}</option>
 		@endforeach

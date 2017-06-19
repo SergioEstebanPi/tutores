@@ -43,8 +43,8 @@ class EntregaController extends Controller
     {
         //
         $nuevo = \App\Entrega::create([
-            'id_publicacion' => $request['id_publicacion'],
-            'id_user' => $request['id_user'],
+            'publicacion_id' => $request['publicacion_id'],
+            'user_id' => $request['user_id'],
             'ruta' => '',
             'calificacion' => $request['calificacion'],
             'descripcion' => $request['descripcion']

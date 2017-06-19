@@ -9,5 +9,5 @@ class Puntuacion extends Model
     //
 	protected $table = 'puntuaciones';
 
-    protected $fillable = ['id_user', 'id_valoracion'];
+    protected $fillable = ['user_id', 'valoracion_id'];
 }

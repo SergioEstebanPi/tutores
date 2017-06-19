@@ -16,12 +16,12 @@ class Intereses extends Migration
         //
         Schema::create('intereses', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_area')->unsigned();
-            $table->foreign('id_area')
+            $table->integer('area_id')->unsigned();
+            $table->foreign('area_id')
                     ->references('id')
                     ->on('areas');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
                     ->references('id')
                     ->on('users');
             $table->boolean('notificar');

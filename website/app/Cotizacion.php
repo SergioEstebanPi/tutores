@@ -14,8 +14,8 @@ class Cotizacion extends Model
     //    
     protected $table = 'cotizaciones';
 
-    protected $fillable = ['id_publicacion'
-              					 , 'id_user'
+    protected $fillable = ['publicacion_id'
+              					 , 'user_id'
                          , 'precio'
               					 , 'estado'
               					 , 'inicio'
@@ -24,6 +24,6 @@ class Cotizacion extends Model
 			              ];
 
     public function publicacion(){
-       return $this->belongsTo('App\Publicacion', 'id_publicacion');
+       return $this->belongsTo('App\Publicacion', 'publicacion_id');
     }
 }

@@ -25,9 +25,9 @@ class PublicacionRequest extends FormRequest
     {
         return [
             'titulo' => 'required|string|max:255',
-            'id_categoria' => 'required|string|max:255',
-            'id_tipo' => 'required|string|max:255',
-            'id_area' => 'required|string|max:255',
+            'categoria_id' => 'required|string|max:255',
+            'tipo_id' => 'required|string|max:255',
+            'area_id' => 'required|string|max:255',
             'entrega' => 'required|string|max:255',
             'descripcion' => 'required|max:500',
             'ruta' => 'required|max:5120' // archivos de máximo 5MB

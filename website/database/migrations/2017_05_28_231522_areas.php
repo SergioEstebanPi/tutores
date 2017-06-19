@@ -16,7 +16,7 @@ class Areas extends Migration
         //
         Schema::create('areas', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_area')
+            $table->integer('area_id')
                     ->unsigned()
                     ->nullable();
             $table->string('nombre');

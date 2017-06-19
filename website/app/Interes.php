@@ -9,5 +9,5 @@ class Interes extends Model
     //
 	protected $table = 'intereses';
 
-    protected $fillable = ['id_area', 'id_user', 'notificar'];
+    protected $fillable = ['area_id', 'user_id', 'notificar'];
 }

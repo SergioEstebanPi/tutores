@@ -16,7 +16,7 @@ class Formaciones extends Migration
         //
         Schema::create('formaciones', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_instituto')
+            $table->integer('instituto_id')
                     ->unsigned()
                     ->nullable();
             $table->string('nombre');

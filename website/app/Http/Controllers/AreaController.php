@@ -45,7 +45,7 @@ class AreaController extends Controller
         //
         $nuevo = \App\Area::create([
             'nombre' => $request['nombre'],
-            'id_area' => $request['id_area'],
+            'area_id' => $request['area_id'],
             'tipo' => $request['tipo']
         ]);
 

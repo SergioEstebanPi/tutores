@@ -14,10 +14,10 @@ class Publicacion extends Model
     //    
     protected $table = 'publicaciones';
 
-    protected $fillable = ['id_user'
-               , 'id_categoria'
-               , 'id_tipo'
-               , 'id_area'
+    protected $fillable = ['user_id'
+               , 'categoria_id'
+               , 'tipo_id'
+               , 'area_id'
     					 , 'titulo'
     					 , 'estado'
     					 , 'entrega'
@@ -30,6 +30,6 @@ class Publicacion extends Model
     }
 
     public function user(){
-       return $this->belongsTo('App\User', 'id_user');
+       return $this->belongsTo('App\User', 'user_id');
     }
 }

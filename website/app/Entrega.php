@@ -9,5 +9,5 @@ class Entrega extends Model
     //
 	protected $table = 'entregas';
 
-    protected $fillable = ['id_user', 'id_publicacion', 'ruta', 'entrega', 'calificacion', 'descripcion'];
+    protected $fillable = ['user_id', 'publicacion_id', 'ruta', 'entrega', 'calificacion', 'descripcion'];
 }

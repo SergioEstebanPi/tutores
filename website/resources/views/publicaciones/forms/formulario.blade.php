@@ -9,18 +9,18 @@
 </div>
 <div>
 	<label for="">Nivel Educativo</label>
-	<select name="id_categoria" class="form-control">
+	<select name="categoria_id" class="form-control">
 		@foreach($categorias as $categoria)
-			<option value="{{$categoria->id}}">{{$categoria->nombre or old('id_categoria')}}<option>
+			<option value="{{$categoria->id}}">{{$categoria->nombre or old('categoria_id')}}<option>
 		@endforeach
 	</select>	
-	@if($errors->first('id_categoria'))
+	@if($errors->first('categoria_id'))
 		<small class="alert-danger">{{$errors->first('titulo')}}</small>
 	@endif
 </div>
 <div>
 	<label for="" class="control-label">Tipo de trabajo</label>
-	<select name="id_tipo" class="form-control">
+	<select name="tipo_id" class="form-control">
 		@foreach($tipos as $tipo)
 			<option value="{{$tipo->id}}">{{$tipo->nombre}}<option>
 		@endforeach
@@ -31,7 +31,7 @@
 </div>
 <div>
 	<label for="" class="control-label">Área de conocimiento</label>
-	<select name="id_area" class="form-control">
+	<select name="area_id" class="form-control">
 		@foreach($areas as $area)
 			<option value="{{$area->id}}">{{$area->nombre}}<option>
 		@endforeach
@@ -56,14 +56,18 @@
 </div>--}}
 <div>
     <p><label class="control-label">Descripción</label></p>
-	<p><textarea name="descripcion" value="{{$trabajo->descripcion or old('descripcion')}}" class="form-control"></textarea></p>
+	<p><textarea name="descripcion" class="form-control">{{$publicacion->descripcion or old('descripcion')}}</textarea></p>
 	@if($errors->first('descripcion'))
 		<small class="alert-danger">{{$errors->first('descripcion')}}</small>
 	@endif	
 </div>
 <div>
     <label class="control-label">Sube el trabajo <small class="help-block">(Máx 10MB)</small></label>
-	<input type="file" name="ruta" value="{{$trabajo->ruta or old('ruta')}}" class="form-control">
+</div>
+<div>
+    <label class="control-label">Archivo subido</label>
+    <input type="text" name="" value="{{$publicacion->ruta or old('ruta')}}" class="form-control">
+	<input type="file" name="ruta" value="{{$publicacion->ruta or old('ruta')}}" class="form-control">
 	@if($errors->first('ruta'))
 		<small class="alert-danger">{{$errors->first('ruta')}}</small>
 	@endif	

@@ -16,12 +16,12 @@ class Entregas extends Migration
         //
         Schema::create('entregas', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('id_publicacion')->unsigned();
-            $table->foreign('id_publicacion')
+            $table->integer('publicacion_id')->unsigned();
+            $table->foreign('publicacion_id')
                 ->references('id')
                 ->on('publicaciones');
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
             $table->string('ruta');
