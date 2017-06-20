@@ -12,6 +12,7 @@
 		@if(count($cotizaciones)>0)
 			<table class="table table-striped well">
 				<thead>
+					<th>tutor</th>
 					<th>precio</th>
 					<th>estado</th>
 					<th>inicio</th>
@@ -21,6 +22,7 @@
 				</thead>
 					@foreach($cotizaciones as $cotizacion)
 					<tbody>
+						<td>{{$cotizacion->user->name}}</td>
 						<td>{{$cotizacion->precio}}</td>
 						<td>{{$cotizacion->estado}}</td>
 						<td>{{$cotizacion->inicio}}</td>
@@ -30,9 +32,11 @@
 							<a href="{{route('cotizacion.show', $cotizacion->id)}}" class="btn btn-default">
 								Ver
 							</a>
+							@if($cotizacion->user_id == Auth::user()->id)
 							<a href="{{route('cotizacion.edit', $cotizacion->id)}}" class="btn btn-primary">
 								Editar
 							</a>
+							@endif
 						</td>
 					</tbody>
 					@endforeach

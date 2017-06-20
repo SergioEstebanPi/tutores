@@ -6,6 +6,12 @@
 		<h3>Detalle de la cotización</h3>
 	</div>
 	<div class="panel-body">
+		@if($cotizacion->user_id != Auth::user()->id)
+			<div>
+				<label for="" class="control-label">tutor</label>
+				<label name="precio" class="form-control">{{$cotizacion->user->name}}</label>
+			</div>
+		@endif
 		<div>
 			<label for="" class="control-label">titulo trabajo</label>
 			<label name="precio" class="form-control">{{$cotizacion->publicacion->titulo}}</label>
@@ -30,6 +36,11 @@
 			<label for="" class="control-label">descripcion</label>
 			<label name="descripcion" class="form-control">{{$cotizacion->descripcion}}</label>
 		</div>
+		@if($cotizacion->publicacion->user_id == Auth::user()->id)
+		<div>
+			<a href="#" class="btn btn-primary">Pagar al tutor</a>
+		</div>
+		@endif
 		<div>
 			<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>
 		</div>

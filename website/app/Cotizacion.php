@@ -26,4 +26,8 @@ class Cotizacion extends Model
     public function publicacion(){
        return $this->belongsTo('App\Publicacion', 'publicacion_id');
     }
+
+    public function user(){
+       return $this->belongsTo('App\User', 'user_id');
+    }
 }

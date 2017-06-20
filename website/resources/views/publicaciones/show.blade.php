@@ -30,9 +30,15 @@
 				<img src="/storage/{{$file}}" name="titulo" class="form-control"></img>
 			@endif
 		</div>
-		<div>
-			<a href="/storage/{{$publicacion->ruta}}" class="btn btn-default">Descargar</a>
-		</div>
+		@if(Auth::check())
+			<div>
+				<a href="/storage/{{$publicacion->ruta}}" class="btn btn-default">Descargar</a>
+			</div>
+		@else
+			<div>
+				<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-default">Descargar</a>
+			</div>
+		@endif
 		@if(Auth::check())
 			@if(Auth::user()->id != $publicacion->user_id)
 				<div>
