@@ -17,11 +17,25 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Formación</div>
 			<div class="panel-body">
-				Formacion del usuario
+				<div>
+					<label for="" class="control-label">nombre</label>
+					<label name="email" class="form-control">{{$user->formacion}}</label>
+				</div>
 			</div>
+		</div>
+		<div class="panel panel-default">
 			<div class="panel-heading">Puntuación</div>
 			<div class="panel-body">
-				Trabajos realizados
+				@foreach($user->puntuacion as $puntuacion)
+					<div>
+						<label for="" class="control-label">nombre</label>
+						<label name="nombre" class="form-control">{{$puntuacion->valoracion->nombre}}</label>
+					</div>
+					<div>
+						<label for="" class="control-label">valor</label>
+						<label name="valor" class="form-control">{{$puntuacion->valor}}</label>
+					</div>
+				@endforeach
 			</div>
 		</div>
 		<div>

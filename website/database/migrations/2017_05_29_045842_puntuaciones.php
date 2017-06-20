@@ -24,6 +24,7 @@ class Puntuaciones extends Migration
             $table->foreign('valoracion_id')
                 ->references('id')
                 ->on('valoraciones');
+            $table->integer('valor');
             $table->timestamps();
         });
     }

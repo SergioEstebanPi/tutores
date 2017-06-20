@@ -43,11 +43,15 @@ class PuntuacionController extends Controller
     {
         //
         $nuevo = \App\Puntuacion::create([
-            'id_user' => '',
-            'id_valoracion' => ''
+            'user_id' => $request['user_id'],
+            'valoracion_id' => $request['valoracion_id'],
+            'valor' => $request['valor']
         ]);
 
-        return redirect('publicacion')->with('mensaje', 'Puntuación creada correctamente');
+        return redirect('puntuacion')->with([
+            'mensaje' => 'Puntuación creada correctamente',
+            'tipo' => 'success'
+        ]);
     }
 
     /**

@@ -17,7 +17,8 @@ class Valoraciones extends Migration
         Schema::create('valoraciones', function(Blueprint $table){
             $table->increments('id');
             $table->string('nombre');
-            $table->integer('cantidad');
+            $table->integer('cantidad_min');
+            $table->integer('cantidad_max');
             $table->string('descripcion');
             $table->timestamps();
         });

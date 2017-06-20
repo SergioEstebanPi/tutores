@@ -4,8 +4,12 @@
 	<input type="text" name="nombre" value="{{$valoracion->nombre or old('nombre')}}">
 </div>
 <div>
-	<label for="" >cantidad</label>
-	<input type="text" name="cantidad" value="{{$valoracion->cantidad or old('cantidad')}}">
+	<label for="" >cantidad min</label>
+	<input type="text" name="cantidad_min" value="{{$valoracion->cantidad_min or old('cantidad_min')}}">
+</div>
+<div>
+	<label for="" >cantidad max</label>
+	<input type="text" name="cantidad_max" value="{{$valoracion->cantidad_max or old('cantidad_max')}}">
 </div>
 <div>
 	<label for="" >descripcion</label>

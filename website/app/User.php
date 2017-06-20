@@ -34,4 +34,12 @@ class User extends Authenticatable
     public function cotizacion(){
       return $this->hasMany('App\Cotizacion');
     }
+
+    public function formacion(){
+       return $this->belongsTo('App\Formacion', 'formacion_id');
+    }
+
+    public function puntuacion(){
+        return $this->hasMany('App\Puntuacion');
+    }
 }

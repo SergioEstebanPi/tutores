@@ -45,11 +45,15 @@ class ValoracionController extends Controller
         //
         $nuevo = \App\Valoracion::create([
             'nombre' => $request['nombre'],
-            'cantidad' => $request['cantidad'],
+            'cantidad_min' => $request['cantidad_min'],
+            'cantidad_max' => $request['cantidad_max'],
             'descripcion' => $request['descripcion']
         ]);
 
-        return redirect('valoracion')->with('mensaje', 'Valoracion creada correctamente');
+        return redirect('valoracion')->with([
+            'mensaje' => 'Valoracion creada correctamente',
+            'tipo' => 'success'
+        ]);
     }
 
     /**

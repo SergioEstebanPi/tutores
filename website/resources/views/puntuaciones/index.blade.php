@@ -5,14 +5,14 @@
 @section('contenido')
 	<table>
 		<thead>
-			<th>id_user</th>
-			<th>id_valoracion</th>
+			<th>user_id</th>
+			<th>valoracion_id</th>
 			<th>Acción</th>
 		</thead>
 		@foreach($puntuaciones as $puntuacion)
 		<tbody>
-			<td>{{$puntuacion->id_user}}</td>
-			<td>{{$puntuacion->id_valoracion}}</td>
+			<td>{{$puntuacion->user_id}}</td>
+			<td>{{$puntuacion->valoracion_id}}</td>
 			<td>
 				<a href="{{route('puntuacion.show', $puntuacion->id)}}">
 					Ver
