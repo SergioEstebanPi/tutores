@@ -12,7 +12,7 @@
 				<label name="precio" class="form-control">{{$cotizacion->user->name}}</label>
 			</div>
 			<div>
-				<a href="#" class="btn btn-primary">Ver perfil</a>
+				<a href="/ver_perfil/{{$cotizacion->user->id}}" class="btn btn-primary">Ver perfil</a>
 			</div>
 		@endif
 		<div>

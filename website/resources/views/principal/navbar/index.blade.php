@@ -32,7 +32,7 @@
                 <span class="glyphicon glyphicon-user"></span>{{Auth::user()->email}}
               </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="/usuario">Mi perfil</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/mi_perfil">Mi perfil</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/publicacion">Mis publicaciones</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/cotizacion">Mis cotizaciones</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/puntuacion">Mi puntuación</a></li>

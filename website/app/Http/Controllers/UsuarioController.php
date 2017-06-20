@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 /**
   *  @CREATED_BY spina
@@ -25,8 +26,22 @@ class UsuarioController extends Controller
     public function index()
     {
         //
-        $users = \App\User::all();
-        return view('usuarios.index', compact('users', $users));
+        //$users = \App\User::all();
+        //return view('usuarios.index', compact('users', $users));
+    }
+
+    public function mi_perfil(){
+        $user = \App\User::find(Auth::user()->id);
+        return view('usuarios.show', [
+            'user' => $user
+        ]);
+    }
+
+    public function ver_perfil($id){
+        $user = \App\User::find($id);
+        return view('usuarios.show', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -37,7 +52,7 @@ class UsuarioController extends Controller
     public function create()
     {
         //
-        return view('usuarios.create');
+        //return view('usuarios.create');
     }
 
     /**
@@ -49,6 +64,7 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+        /*
         if($request['password'] == $request['password2']){
             $nuevo = \App\User::create([
                 'foto' => '',
@@ -60,7 +76,11 @@ class UsuarioController extends Controller
             ]);
         }
         
-        return redirect('publicacion')->with('mensaje', 'Usuario creado correctamente');
+        return redirect('publicacion')->with([
+            'mensaje' => 'Usuario creado correctamente',
+            'tipo' => 'success'
+        ]);
+        */
     }
 
     /**
@@ -72,8 +92,8 @@ class UsuarioController extends Controller
     public function show($id)
     {
         //
-        $user = \App\User::find($id);
-        return view('usuarios.show', compact('user', $user));
+        //$user = \App\User::find($id);
+        //return view('usuarios.show', compact('user', $user));
     }
 
     /**
@@ -85,8 +105,8 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         //
-        $user = \App\User::find($id);
-        return view('usuarios.edit', compact('user', $user));
+        //$user = \App\User::find($id);
+        //return view('usuarios.edit', compact('user', $user));
     }
 
     /**
@@ -99,11 +119,16 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         //
+        /*
         $user = \App\User::find($id);
         $user->fill($request->all());
         $user->save();
         //Session::flash('mensaje', 'Usuario editado correctamente');
-        return redirect('usuario')->with('mensaje', 'Usuario editado correctamente');
+        return redirect('usuario')->with([
+            'mensaje' => 'Usuario editado correctamente',
+            'tipo' => 'success'
+        ]);
+        */
     }
 
     /**
@@ -115,7 +140,7 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
-        \App\User::destroy($id);
-        return redirect('usuario')->with('mensaje', 'Usuario eliminado correctamente');
+        //\App\User::destroy($id);
+        //return redirect('usuario')->with('mensaje', 'Usuario eliminado correctamente');
     }
 }

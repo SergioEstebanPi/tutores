@@ -72,6 +72,7 @@ class CotizacionController extends Controller
         return view('cotizaciones.create', [
             'publicacion' => $publicacion
         ]);
+        // notificar al publicador de la nueva cotización
     }
 
     /**
