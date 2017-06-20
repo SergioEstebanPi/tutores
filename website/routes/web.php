@@ -31,6 +31,7 @@ Route::get('/noticias', 'PrincipalController@mostrar_publicaciones');
 Route::get('/mis_publicaciones', 'PrincipalUsuarioController@mis_publicaciones');
 Route::get('/mis_cotizaciones', 'PrincipalUsuarioController@mis_cotizaciones');
 Route::get('/cotizar_publicacion/{id}', 'CotizacionController@cotizar_publicacion');
+Route::get('/cotizaciones_por_publicacion/{id}', 'CotizacionController@cotizaciones_por_publicacion');
 
 /* CRUDS del administrador */
 Route::resource('usuario', 'UsuarioController');

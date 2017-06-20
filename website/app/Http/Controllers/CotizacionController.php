@@ -30,6 +30,19 @@ class CotizacionController extends Controller
         return view('cotizaciones.index', compact('cotizaciones', $cotizaciones));
     }
 
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cotizaciones_por_publicacion($publicacion_id)
+    {
+        //
+        $cotizaciones = \App\Cotizacion::where('publicacion_id', '=', $publicacion_id)
+                ->paginate(10);
+        return view('cotizaciones.index', compact('cotizaciones', $cotizaciones));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -40,10 +40,12 @@
 				</div>
 			@else
 				<h2>Cotizaciones {{count($cotizaciones)}}</h2>
-				@if(count($cotizaciones)>0)
-					<div>
-						<a href="/cotizar_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
-					</div>
+				@if(Auth::check())
+					@if(count($cotizaciones)>0 && $publicacion->user_id == Auth::user()->id)
+						<div>
+							<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
+						</div>
+					@endif
 				@endif
 			@endif
 		@else
