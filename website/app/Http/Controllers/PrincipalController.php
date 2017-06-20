@@ -26,7 +26,7 @@ class PrincipalController extends Controller
         $publicaciones = \App\Publicacion::paginate(50);
         return view('publicaciones.index', [
             'publicaciones' => $publicaciones,
-            'noticias' => 'noticias'
+            'ruta' => 'noticias'
         ]);
     }
 

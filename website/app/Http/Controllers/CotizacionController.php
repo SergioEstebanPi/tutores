@@ -27,7 +27,10 @@ class CotizacionController extends Controller
         $cotizaciones = \App\Cotizacion::where(
             'user_id', '=', Auth::user()->id)
             ->paginate(10);
-        return view('cotizaciones.index', compact('cotizaciones', $cotizaciones));
+        return view('cotizaciones.index', [
+            'cotizaciones' => $cotizaciones,
+            'ruta' => 'mis_cotizaciones'
+        ]);
     }
 
         /**
@@ -40,7 +43,17 @@ class CotizacionController extends Controller
         //
         $cotizaciones = \App\Cotizacion::where('publicacion_id', '=', $publicacion_id)
                 ->paginate(10);
-        return view('cotizaciones.index', compact('cotizaciones', $cotizaciones));
+        return view('cotizaciones.index', [
+            'cotizaciones' => $cotizaciones,
+            'ruta' => 'por_publicacion'
+        ]);
+    }
+
+    public function pagar_cotizacion($id){
+        $cotizacion = \App\Cotizacion::find($id);
+        $cotizacion->estado = 1;
+        $cotizacion->save();
+        // notificar al tutor del pago
     }
 
     /**

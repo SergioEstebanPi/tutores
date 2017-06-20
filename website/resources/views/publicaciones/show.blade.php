@@ -6,13 +6,19 @@
 		<h3>Detalle de la publicación</h3>
 	</div>
 	<div class="panel-body">
-		<div>
-			<label for="" class="control-label">publicador por</label>
-			<label name="titulo" class="form-control">{{$publicacion->user->name}}</label>
-		</div>
+		@if($publicacion->user_id != Auth::user()->id)
+			<div>
+				<label for="" class="control-label">publicador por</label>
+				<label name="titulo" class="form-control">{{$publicacion->user->name}}</label>
+			</div>
+		@endif
 		<div>
 			<label for="" class="control-label">titulo</label>
 			<label name="titulo" class="form-control">{{$publicacion->titulo}}</label>
+		</div>
+		<div>
+			<label for="" class="control-label">estado</label>
+			<label name="titulo" class="form-control">{{$publicacion->estado}}</label>
 		</div>
 		<div>
 			<label for="" class="control-label">entrega</label>

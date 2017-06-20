@@ -19,7 +19,11 @@
 			@if(count($publicaciones)>0)
 				<table class="table table-striped well">
 					<thead>
+						@if($ruta != 'mis_publicaciones')
+							<th>Publicado por</th>
+						@endif
 						<th>Título</th>
+						<th>Estado</th>
 						<th>Fecha de entrega</th>
 						<th>Archivo</th>
 						<th>Cotizaciones</th>
@@ -27,7 +31,11 @@
 					</thead>
 						@foreach($publicaciones as $publicacion)
 						<tbody>
+							@if(Auth::check() && $ruta != 'mis_publicaciones')
+								<td>{{$publicacion->user->name}}</td>
+							@endif
 							<td>{{$publicacion->titulo}}</td>
+							<td>{{$publicacion->estado}}</td>
 							<td>{{$publicacion->entrega}}</td>
 							<td>{{$publicacion->ruta}}</td>
 							<td>{{count($publicacion->cotizacion)}}</td>
@@ -35,7 +43,7 @@
 								<a href="{{route('publicacion.show', $publicacion->id)}}" class="btn btn-default">
 									Ver
 								</a>
-								@if(Auth::check() && !isset($noticias))
+								@if(Auth::check() && $ruta != 'noticias')
 								<a href="{{route('publicacion.edit', $publicacion->id)}}" class="btn btn-primary">
 									Editar
 								</a>

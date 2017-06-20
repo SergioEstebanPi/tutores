@@ -12,7 +12,9 @@
 		@if(count($cotizaciones)>0)
 			<table class="table table-striped well">
 				<thead>
-					<th>tutor</th>
+					@if($ruta != 'mis_cotizaciones')
+						<th>tutor</th>
+					@endif
 					<th>precio</th>
 					<th>estado</th>
 					<th>inicio</th>
@@ -22,7 +24,9 @@
 				</thead>
 					@foreach($cotizaciones as $cotizacion)
 					<tbody>
-						<td>{{$cotizacion->user->name}}</td>
+						@if($ruta != 'mis_cotizaciones')
+							<td>{{$cotizacion->user->name}}</td>
+						@endif
 						<td>{{$cotizacion->precio}}</td>
 						<td>{{$cotizacion->estado}}</td>
 						<td>{{$cotizacion->inicio}}</td>

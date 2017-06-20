@@ -11,6 +11,9 @@
 				<label for="" class="control-label">tutor</label>
 				<label name="precio" class="form-control">{{$cotizacion->user->name}}</label>
 			</div>
+			<div>
+				<a href="#" class="btn btn-primary">Ver perfil</a>
+			</div>
 		@endif
 		<div>
 			<label for="" class="control-label">titulo trabajo</label>
@@ -37,9 +40,13 @@
 			<label name="descripcion" class="form-control">{{$cotizacion->descripcion}}</label>
 		</div>
 		@if($cotizacion->publicacion->user_id == Auth::user()->id)
-		<div>
-			<a href="#" class="btn btn-primary">Pagar al tutor</a>
-		</div>
+			<div>
+				<a href="/pagar_cotizacion/{{$cotizacion->id}}" class="btn btn-primary">Pagar al tutor</a>
+			</div>
+		@elseif($cotizacion->user_id == Auth::user()->id && $cotizacion->estado == 1)
+			<div>
+				<a href="/pagar_cotizacion/{{$cotizacion->id}}" class="btn btn-primary">Entregar trabajo</a>
+			</div>
 		@endif
 		<div>
 			<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>

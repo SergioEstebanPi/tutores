@@ -35,7 +35,8 @@ class PublicacionController extends Controller
         //$cotizaciones = \App\Cotizacion::where('publicacion_id', '=', $publicaciones)
         //    ->get();
         return view('publicaciones.index', [
-            'publicaciones' => $publicaciones
+            'publicaciones' => $publicaciones,
+            'ruta' => 'mis_publicaciones'
             //'cotizaciones', $cotizaciones
         ]);
     }
