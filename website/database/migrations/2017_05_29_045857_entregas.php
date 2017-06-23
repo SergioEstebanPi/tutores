@@ -16,10 +16,10 @@ class Entregas extends Migration
         //
         Schema::create('entregas', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('publicacion_id')->unsigned();
-            $table->foreign('publicacion_id')
+            $table->integer('cotizacion_id')->unsigned();
+            $table->foreign('cotizacion_id')
                 ->references('id')
-                ->on('publicaciones');
+                ->on('cotizaciones');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')

@@ -26,8 +26,6 @@ class Cotizaciones extends Migration
                 ->on('publicaciones');
             $table->integer('precio');
             $table->integer('estado');
-            $table->date('inicio');
-            $table->date('fin');
             $table->text('descripcion');
             $table->timestamps();
         });

@@ -19,7 +19,7 @@
 			@if(count($publicaciones)>0)
 				<table class="table table-striped well">
 					<thead>
-						@if(Auth::check() && ruta != 'mis_publicaciones')
+						@if(Auth::check() && $ruta != 'mis_publicaciones')
 							<th>Publicado por</th>
 						@endif
 						<th>Título</th>
