@@ -109,8 +109,6 @@ class PublicacionController extends Controller
     {
         //
         $publicacion = \App\Publicacion::find($id);
-        $cotizaciones = \App\Cotizacion::where('publicacion_id', '=', $id)
-            ->get();
         $extensions = [
             'jpg' => 'jpeg.png',
             'png' => 'png.png',
@@ -120,7 +118,6 @@ class PublicacionController extends Controller
         
         return view('publicaciones.show', [
             'publicacion' => $publicacion,
-            'cotizaciones' => $cotizaciones,
             'file' => array_get($extensions,'sdf.pdf','unknown.png')
 
         ]);

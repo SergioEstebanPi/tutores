@@ -6,11 +6,13 @@
 		<h3>Detalle de la publicación</h3>
 	</div>
 	<div class="panel-body">
-		@if($publicacion->user_id != Auth::user()->id)
-			<div>
-				<label for="" class="control-label">publicador por</label>
-				<label name="titulo" class="form-control">{{$publicacion->user->name}}</label>
-			</div>
+		@if(Auth::check())
+			@if($publicacion->user_id != Auth::user()->id)
+				<div>
+					<label for="" class="control-label">publicador por</label>
+					<label name="titulo" class="form-control">{{$publicacion->user->name}}</label>
+				</div>
+			@endif
 		@endif
 		<div>
 			<label for="" class="control-label">titulo</label>
@@ -51,9 +53,9 @@
 					<a href="/cotizar_publicacion/{{$publicacion->id}}" class="btn btn-primary">Cotizar</a>
 				</div>
 			@else
-				<h2>Cotizaciones {{count($cotizaciones)}}</h2>
+				<h2>Cotizaciones {{count($publicacion->cotizacion)}}</h2>
 				@if(Auth::check())
-					@if(count($cotizaciones)>0 && $publicacion->user_id == Auth::user()->id)
+					@if(count($publicacion->cotizacion)>0 && $publicacion->user_id == Auth::user()->id)
 						<div>
 							<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
 						</div>
