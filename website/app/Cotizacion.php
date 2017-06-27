@@ -18,7 +18,6 @@ class Cotizacion extends Model
               					 , 'user_id'
                          , 'precio'
               					 , 'estado'
-              					 , 'inicio'
               					 , 'fin'
           			         , 'descripcion'
 			              ];

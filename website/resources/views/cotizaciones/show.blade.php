@@ -45,7 +45,7 @@
 			</div>
 		@elseif($cotizacion->user_id == Auth::user()->id && $cotizacion->estado == 1)
 			<div>
-				<a href="/pagar_cotizacion/{{$cotizacion->id}}" class="btn btn-primary">Entregar trabajo</a>
+				<a href="/crear_entrega/{{$cotizacion->id}}" class="btn btn-primary">Entregar trabajo</a>
 			</div>
 		@endif
 		<div>

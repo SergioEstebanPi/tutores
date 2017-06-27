@@ -19,7 +19,9 @@ class EntregaController extends Controller
     {
         //
         $entregas = \App\Entrega::all();
-        return view('entregas.index', compact('entregas', $entregas));
+        return view('entregas.index', [
+            'entregas' => $entregas
+        ]);
     }
 
     /**
@@ -43,7 +45,7 @@ class EntregaController extends Controller
     {
         //
         $nuevo = \App\Entrega::create([
-            'publicacion_id' => $request['publicacion_id'],
+            'cotizacion_id' => $request['cotizacion_id'],
             'user_id' => $request['user_id'],
             'ruta' => '',
             'calificacion' => $request['calificacion'],
@@ -51,6 +53,22 @@ class EntregaController extends Controller
         ]);
 
         return redirect('entrega')->with('mensaje', 'Entrega creada correctamente');
+    }
+
+    public function crear_entrega($id){
+        \App\Entrega::create([
+            'cotizacion_id' => $id,
+            'user_id' => $request['user_id'],
+            'ruta' => '',
+            'calificacion' => $request['calificacion'],
+            'descripcion' => $request['descripcion']
+        ]);
+
+        return redirect('entrega')->with([
+            'mensaje' => 'Entrega creada correctamente',
+            'tipo' => 'success'
+        ]);
+        return view('/');
     }
 
     /**

@@ -160,6 +160,7 @@ class PublicacionController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        
         //obtenemos el campo file definido en el formulario
         $file = $request->file('ruta');
         //obtenemos el nombre del archivo
@@ -170,6 +171,7 @@ class PublicacionController extends Controller
         $user = \App\Publicacion::find($id);
         $user->fill($request->all());
         $user->save();
+
         return redirect('publicacion')->with([
             'mensaje' => 'Publicación editada correctamente',
             'tipo' => 'success'

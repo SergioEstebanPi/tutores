@@ -34,7 +34,7 @@ class StorageController extends Controller
 	{
  
 	       //obtenemos el campo file definido en el formulario
-	       $file = $request->file('file');
+	       $file = $request->file('ruta');
 	 
 	       //obtenemos el nombre del archivo
 	       $nombre = $file->getClientOriginalName();
@@ -42,7 +42,8 @@ class StorageController extends Controller
 	       //indicamos que queremos guardar un nuevo archivo en el disco local
 	       \Storage::disk('local')->put($nombre,  \File::get($file));
 	 
-	       return "archivo guardado";
+	       //return "archivo guardado";
+           return -1;
 	}
 
     public function download($archivo){

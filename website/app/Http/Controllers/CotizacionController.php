@@ -83,7 +83,7 @@ class CotizacionController extends Controller
      */
     public function store(Request $request)
     {
-        // 
+        // se crea la cotizacion
         \App\Cotizacion::create([
             'publicacion_id' => $request['publicacion_id'],
             'user_id' => Auth::user()->id,
@@ -93,6 +93,11 @@ class CotizacionController extends Controller
             'fin' => $request['fin'],
             'descripcion' => $request['descripcion']
         ]);
+        // se modifica el estado de la publicacion
+        $publicacion = \App\Publicacion::find($request['publicacion_id']);
+        $publicacion->estado = 1;
+        $publicacion->save();
+
         return redirect('cotizacion')->with([
             'mensaje' => 'Cotización creada correctamente',
             'tipo' => 'success'

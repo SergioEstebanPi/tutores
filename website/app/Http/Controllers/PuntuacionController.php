@@ -18,8 +18,8 @@ class PuntuacionController extends Controller
    public function index()
     {
         //
-        $puntuaciones = \App\Puntuacion::all();
-        return view('puntuaciones.index', compact('puntuaciones', $puntuaciones));
+        //$puntuaciones = \App\Puntuacion::all();
+        //return view('puntuaciones.index', compact('puntuaciones', $puntuaciones));
     }
 
     /**
