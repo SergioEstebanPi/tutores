@@ -51,9 +51,18 @@ class CotizacionController extends Controller
 
     public function pagar_cotizacion($id){
         $cotizacion = \App\Cotizacion::find($id);
+        // se cambia el estado a 1 - pagada
         $cotizacion->estado = 1;
         $cotizacion->save();
-        // notificar al tutor del pago
+
+        // se cambia el estado de la publicacion para que no aparezca en la seccion de noticias
+        $publicacion = \App\Publicacion::where('id', '=', $id)
+                                        ->get();
+        $publicacion->estado = 2;
+        $publicacion->save();
+        /* notificar al tutor del pago */
+
+
     }
 
     /**
@@ -142,14 +151,21 @@ class CotizacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $user = \App\Cotizacion::find($id);
-        $user->fill($request->all());
-        $user->save();
-        return redirect('cotizacion')->with([
-            'mensaje' => 'Cotización editada correctamente',
-            'tipo'  => 'success'
-        ]);
+        // se valida que el estado de la publicacion sea 0 - aceptada
+        if($cotizacion->estado == 0){
+            $cotizacion = \App\Cotizacion::find($id);
+            $cotizacion->fill($request->all());
+            $cotizacion->save();
+            return redirect('cotizacion')->with([
+                'mensaje' => 'Cotización editada correctamente',
+                'tipo'  => 'success'
+            ]);
+        } else {
+            return redirect('cotizacion')->with([
+                'mensaje' => 'No es posible editar esta publicación',
+                'tipo' => 'danger'
+            ]);
+        }
     }
 
     /**

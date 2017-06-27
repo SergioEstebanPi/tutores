@@ -23,7 +23,9 @@
 							<th>Publicado por</th>
 						@endif
 						<th>Título</th>
-						<th>Estado</th>
+						@if(Auth::check() && $ruta == 'mis_publicaciones')
+							<th>Estado</th>
+						@endif
 						<th>Fecha de entrega</th>
 						<th>Archivo</th>
 						<th>Cotizaciones</th>
@@ -35,7 +37,9 @@
 								<td>{{$publicacion->user->name}}</td>
 							@endif
 							<td>{{$publicacion->titulo}}</td>
-							<td>{{$publicacion->estado}}</td>
+							@if(Auth::check() && Auth::user()->id == $publicacion->user_id && $ruta == 'mis_publicaciones')
+								<td>{{$publicacion->estado}}</td>
+							@endif
 							<td>{{$publicacion->entrega}}</td>
 							<td>{{$publicacion->ruta}}</td>
 							<td>{{count($publicacion->cotizacion)}}</td>
@@ -43,7 +47,7 @@
 								<a href="{{route('publicacion.show', $publicacion->id)}}" class="btn btn-default">
 									Ver
 								</a>
-								@if(Auth::check() && $ruta != 'noticias')
+								@if(Auth::check() && Auth::user()->id == $publicacion->user_id && $publicacion->estado == 0)
 								<a href="{{route('publicacion.edit', $publicacion->id)}}" class="btn btn-primary">
 									Editar
 								</a>

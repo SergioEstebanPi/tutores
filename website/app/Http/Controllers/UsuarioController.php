@@ -39,8 +39,12 @@ class UsuarioController extends Controller
 
     public function ver_perfil($id){
         $user = \App\User::find($id);
+        if(Auth::check() && Auth::user()->id != $user->id){ // cuando no soy yo viendo mi perfil
+            // validar si el usuario ya vio el perfil
+            // modificar campo de vistos del perfil por usuarios distintos 
+        } 
         return view('usuarios.show', [
-            'user' => $user
+                'user' => $user
         ]);
     }
 

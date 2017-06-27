@@ -32,7 +32,7 @@
 							<a href="{{route('cotizacion.show', $cotizacion->id)}}" class="btn btn-default">
 								Ver
 							</a>
-							@if($cotizacion->user_id == Auth::user()->id)
+							@if($cotizacion->user_id == Auth::user()->id && $cotizacion->estado == 0)
 							<a href="{{route('cotizacion.edit', $cotizacion->id)}}" class="btn btn-primary">
 								Editar
 							</a>

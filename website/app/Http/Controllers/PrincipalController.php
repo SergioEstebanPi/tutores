@@ -23,7 +23,8 @@ class PrincipalController extends Controller
     }
 
     public function mostrar_publicaciones(){
-        $publicaciones = \App\Publicacion::paginate(50);
+        $publicaciones = \App\Publicacion::where('estado', '<=', '2')
+                                         ->paginate(50);
         return view('publicaciones.index', [
             'publicaciones' => $publicaciones,
             'ruta' => 'noticias'
