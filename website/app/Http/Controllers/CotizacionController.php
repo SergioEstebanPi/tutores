@@ -89,14 +89,14 @@ class CotizacionController extends Controller
             'user_id' => Auth::user()->id,
             'estado' => 0,
             'precio' => $request['precio'],
-            'inicio' => $request['inicio'],
-            'fin' => $request['fin'],
             'descripcion' => $request['descripcion']
         ]);
         // se modifica el estado de la publicacion
         $publicacion = \App\Publicacion::find($request['publicacion_id']);
         $publicacion->estado = 1;
         $publicacion->save();
+
+        /* se debe notificar por correo al publicador y agregar la notificacion*/
 
         return redirect('cotizacion')->with([
             'mensaje' => 'Cotización creada correctamente',

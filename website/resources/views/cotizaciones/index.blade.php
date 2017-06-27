@@ -17,8 +17,6 @@
 					@endif
 					<th>precio</th>
 					<th>estado</th>
-					<th>inicio</th>
-					<th>fin</th>
 					<th>descripcion</th>
 					<th>Acción</th>
 				</thead>
@@ -29,8 +27,6 @@
 						@endif
 						<td>{{$cotizacion->precio}}</td>
 						<td>{{$cotizacion->estado}}</td>
-						<td>{{$cotizacion->inicio}}</td>
-						<td>{{$cotizacion->fin}}</td>
 						<td>{{$cotizacion->descripcion}}</td>
 						<td>
 							<a href="{{route('cotizacion.show', $cotizacion->id)}}" class="btn btn-default">
