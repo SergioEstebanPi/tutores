@@ -43,32 +43,13 @@ class EntregaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $nuevo = \App\Entrega::create([
-            'cotizacion_id' => $request['cotizacion_id'],
-            'user_id' => $request['user_id'],
-            'ruta' => '',
-            'calificacion' => $request['calificacion'],
-            'descripcion' => $request['descripcion']
-        ]);
 
-        return redirect('entrega')->with('mensaje', 'Entrega creada correctamente');
-    }
-
-    public function crear_entrega($id){
-        \App\Entrega::create([
-            'cotizacion_id' => $id,
-            'user_id' => $request['user_id'],
-            'ruta' => '',
-            'calificacion' => $request['calificacion'],
-            'descripcion' => $request['descripcion']
-        ]);
-
+        /*
         return redirect('entrega')->with([
             'mensaje' => 'Entrega creada correctamente',
             'tipo' => 'success'
         ]);
-        return view('/');
+        */
     }
 
     /**

@@ -50,18 +50,52 @@ class CotizacionController extends Controller
     }
 
     public function pagar_cotizacion($id){
+                // se crea la entrega pendiente al tutor
+        \App\Entrega::create([
+            'cotizacion_id' => $request['cotizacion_id'],
+            'user_id' => $request['user_id'],
+            'ruta' => '',
+            'calificacion' => $request['calificacion'],
+            'descripcion' => $request['descripcion']
+        ]);
+
+        // se modifica al estado 2 - pendiente
+        $cotizacion = \App\Cotizacion::find($id);
+        $cotizacion->estado = 2;
+        $cotizacion->save();
+
+        // se modifica al estado 2 - en espera
+        $publicacion = \App\Publicacion::find($cotizacion->publicacion_id);
+        $publicacion->estado = 2;
+        $publicacion->save();
+
+
+
+        /*
         $cotizacion = \App\Cotizacion::find($id);
         // se cambia el estado a 1 - pagada
         $cotizacion->estado = 1;
         $cotizacion->save();
 
         // se cambia el estado de la publicacion para que no aparezca en la seccion de noticias
-        $publicacion = \App\Publicacion::where('id', '=', $id)
-                                        ->get();
+        $publicacion = \App\Publicacion::find($cotizacion->publicacion_id);
+        // se cambia el estado de la publicacion a 2 - espera de entrega
         $publicacion->estado = 2;
         $publicacion->save();
+
+        $entrega = \App\Entrega::create([
+            'cotizacion_id' => $id,
+            'user_id' => $cotizacion->user_id,
+            'ruta' => '',
+            'calificacion' => 0,
+            'descripcion' => ''
+        ]);
+        */
+
+
         /* notificar al tutor del pago */
 
+        return redirect()->to('/');
 
     }
 

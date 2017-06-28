@@ -56,9 +56,21 @@
 				<h2>Cotizaciones {{count($publicacion->cotizacion)}}</h2>
 				@if(Auth::check())
 					@if(count($publicacion->cotizacion)>0 && $publicacion->user_id == Auth::user()->id)
-						<div>
-							<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
-						</div>
+						@if($publicacion->estado == 1)
+							<div>
+								<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
+							</div>
+						@else
+							@if($publicacion->estado == 3)
+								<div>
+									<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver entrega</a>
+								</div>
+							@else
+								<div>
+									<h3>Aún no tienes entregas</h3>
+								</div>
+							@endif
+						@endif
 					@endif
 				@endif
 			@endif
