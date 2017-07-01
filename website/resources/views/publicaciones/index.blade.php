@@ -3,18 +3,14 @@
 @section('contenido')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3>Mis Publicaciones</h3>
+		@if(Auth::check() && $ruta == 'mis_publicaciones')
+			<h3>Mis Publicaciones</h3>
+		@else
+			<h3>Noticias</h3>
+		@endif
 	</div>
 	<div class="panel-body">
 		@include('alertas.mensaje')
-		<div class="col-sm-3">
-		    <div class="input-group">
-		      <input type="text" class="form-control">
-		      <span class="input-group-btn">
-		        <button class="btn btn-default" type="button">Buscar</button>
-		      </span>
-		    </div>
-		</div>
 		<div class="">
 			@if(count($publicaciones)>0)
 				<table class="table table-striped well">
@@ -57,19 +53,27 @@
 						@endforeach
 				</table>
 			@else
-				<div>
-					<h3>Aún no tienes publicaciones creadas</h3>
-				</div>
+				@if(Auth::check() && $ruta == 'mis_publicaciones')
+					<div>
+						<h3>Aún no tienes publicaciones creadas</h3>
+					</div>
+				@else
+					<div>
+						<h3>No existen noticias nuevas puedes crear una nueva en "Mis Publicaciones"</h3>
+					</div>
+				@endif
 			@endif
 		</div>
 
 		@if(Auth::check())
-			<div>
-				<a href="{{route('publicacion.create')}}" class="btn btn-primary">Nuevo</a>
-			</div>
-			<div>
-				<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>
-			</div>
+			@if(Auth::check() && $ruta == 'mis_publicaciones')
+				<div>
+					<a href="{{route('publicacion.create')}}" class="btn btn-primary">Nuevo</a>
+				</div>
+				<div>
+					<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>
+				</div>
+			@endif
 		@endif
 
 		{{$publicaciones->render()}}

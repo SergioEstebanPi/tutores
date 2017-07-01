@@ -20,6 +20,9 @@ class Cotizacion extends Model
               					 , 'estado'
               					 , 'fin'
           			         , 'descripcion'
+                         , 'ruta_entrega'
+                         , 'fecha_entrega'
+                         , 'calificacion'
 			              ];
 
     public function publicacion(){
