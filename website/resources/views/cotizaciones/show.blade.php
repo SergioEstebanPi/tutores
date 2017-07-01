@@ -33,7 +33,7 @@
 			<label for="" class="control-label">descripcion</label>
 			<label name="descripcion" class="form-control">{{$cotizacion->descripcion}}</label>
 		</div>
-		@if($cotizacion->publicacion->user_id == Auth::user()->id)
+		@if($cotizacion->publicacion->user_id == Auth::user()->id && $cotizacion->publicacion->estado == 0)
 			<div>
 				<a href="/pagar_cotizacion/{{$cotizacion->id}}" class="btn btn-primary">Pagar al tutor</a>
 			</div>

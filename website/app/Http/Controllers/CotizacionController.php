@@ -50,50 +50,32 @@ class CotizacionController extends Controller
     }
 
     public function pagar_cotizacion($id){
-                // se crea la entrega pendiente al tutor
-        \App\Entrega::create([
-            'cotizacion_id' => $request['cotizacion_id'],
-            'user_id' => $request['user_id'],
-            'ruta' => '',
-            'calificacion' => $request['calificacion'],
-            'descripcion' => $request['descripcion']
-        ]);
-
-        // se modifica al estado 2 - pendiente
+        // se crea la entrega pendiente al tutor
         $cotizacion = \App\Cotizacion::find($id);
-        $cotizacion->estado = 2;
-        $cotizacion->save();
+        if($cotizacion->estado == 0){
+            // se modifica al estado 1 - aceptada/pagada
+            $cotizacion = \App\Cotizacion::find($id);
+            $cotizacion->estado = 1;
+            $cotizacion->save();
 
-        // se modifica al estado 2 - en espera
-        $publicacion = \App\Publicacion::find($cotizacion->publicacion_id);
-        $publicacion->estado = 2;
-        $publicacion->save();
-
-
-
-        /*
-        $cotizacion = \App\Cotizacion::find($id);
-        // se cambia el estado a 1 - pagada
-        $cotizacion->estado = 1;
-        $cotizacion->save();
-
-        // se cambia el estado de la publicacion para que no aparezca en la seccion de noticias
-        $publicacion = \App\Publicacion::find($cotizacion->publicacion_id);
-        // se cambia el estado de la publicacion a 2 - espera de entrega
-        $publicacion->estado = 2;
-        $publicacion->save();
-
-        $entrega = \App\Entrega::create([
-            'cotizacion_id' => $id,
-            'user_id' => $cotizacion->user_id,
-            'ruta' => '',
-            'calificacion' => 0,
-            'descripcion' => ''
-        ]);
-        */
-
+            // se modifica al estado 2 - en espera del trabajo
+            $publicacion = \App\Publicacion::find($cotizacion->publicacion_id);
+            $publicacion->estado = 2;
+            $publicacion->save();
+         
+            return redirect('publicacion')->with([
+                'mensaje' => 'Pago realizado correctamente',
+                'tipo'  => 'success'
+            ]);
+        } else {
+            return redirect('publicacion')->with([
+                'mensaje' => 'No es posible realizar el pago a esta publicación',
+                'tipo' => 'danger'
+            ]);
+        }
 
         /* notificar al tutor del pago */
+        /* redirigir a la seccion "Mis pagos" */
 
         return redirect()->to('/');
 
@@ -186,8 +168,8 @@ class CotizacionController extends Controller
     public function update(Request $request, $id)
     {
         // se valida que el estado de la publicacion sea 0 - aceptada
+        $cotizacion = \App\Cotizacion::find($id);
         if($cotizacion->estado == 0){
-            $cotizacion = \App\Cotizacion::find($id);
             $cotizacion->fill($request->all());
             $cotizacion->save();
             return redirect('cotizacion')->with([

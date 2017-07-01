@@ -67,7 +67,10 @@
 								</div>
 							@else
 								<div>
-									<h3>Aún no tienes entregas</h3>
+									<h3>Ya pagaste esta publicación, aún no tienes entregas</h3>
+								</div>
+								<div>
+									<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
 								</div>
 							@endif
 						@endif

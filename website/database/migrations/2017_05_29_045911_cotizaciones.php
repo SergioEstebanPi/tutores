@@ -28,8 +28,8 @@ class Cotizaciones extends Migration
             $table->integer('estado');
             $table->text('descripcion')->nullable();
             $table->text('ruta_entrega')->nullable();
-            $table->date('fecha_entrega');
-            $table->integer('calificacion');
+            $table->date('fecha_entrega')->nullable();
+            $table->integer('calificacion')->default(0);
             $table->timestamps();
         });
     }

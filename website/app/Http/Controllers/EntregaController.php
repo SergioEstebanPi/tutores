@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class EntregaController extends Controller
 {
@@ -18,8 +19,8 @@ class EntregaController extends Controller
     public function index()
     {
         //
-        $entregas = \App\Cotizaciones::where('user_id', '=', Auth::user()->id)
-                    ->andWhere('estado', '=', 2)
+        $entregas = \App\Cotizacion::where('user_id', '=', Auth::user()->id)
+                    ->where('estado', '=', 2)
                     ->paginate(10);
         return view('entregas.index', [
             'entregas' => $entregas
