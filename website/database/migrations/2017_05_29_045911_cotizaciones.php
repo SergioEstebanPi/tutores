@@ -26,8 +26,8 @@ class Cotizaciones extends Migration
                 ->on('publicaciones');
             $table->integer('precio');
             $table->integer('estado');
-            $table->text('descripcion');
-            $table->text('ruta_entrega');
+            $table->text('descripcion')->nullable();
+            $table->text('ruta_entrega')->nullable();
             $table->date('fecha_entrega');
             $table->integer('calificacion');
             $table->timestamps();

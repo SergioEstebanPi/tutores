@@ -55,11 +55,11 @@
 			@else
 				@if(Auth::check() && $ruta == 'mis_publicaciones')
 					<div>
-						<h3>Aún no tienes publicaciones creadas</h3>
+						<h4>Aún no tienes publicaciones creadas</h4>
 					</div>
 				@else
 					<div>
-						<h3>No existen noticias nuevas puedes crear una nueva en "Mis Publicaciones"</h3>
+						<h4>No existen noticias nuevas puedes crear una nueva en "Mis Publicaciones"</h4>
 					</div>
 				@endif
 			@endif
