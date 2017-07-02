@@ -5,42 +5,36 @@
 @section('contenido')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3>Registro de entregas</h3>
+		<h3>Historial de Transacciones</h3>
 	</div>
 	<div class="panel-body">
 		<table class="table table-striped well">
 			<thead>
-				<th>id_publicacion</th>
-				<th>id_user</th>
-				<th>ruta</th>
+				<th>user_id</th>
+				<th>publicacion_id</th>
+				<th>cotizacion_id</th>
 				<th>calificacion</th>
-				<th>descripcion</th>
+				<th>recibido</th>
+				<th>pagado</th>
 				<th>Acción</th>
 			</thead>
-			@foreach($entregas as $entrega)
+			@foreach($transacciones as $transaccion)
 			<tbody>
-				<td>{{$entrega->id_publicacion}}</td>
-				<td>{{$entrega->id_user}}</td>
-				<td>{{$entrega->ruta}}</td>
-				<td>{{$entrega->calificacion}}</td>
-				<td>{{$entrega->descripcion}}</td>
+				<td>{{$transaccion->user_id}}</td>
+				<td>{{$transaccion->publicacion_id}}</td>
+				<td>{{$transaccion->id}}</td>
+				<td>{{$transaccion->calificacion}}</td>
+				@if($transaccion->user_id == Auth::user()->id)
+					<td>{{$transaccion->precio}}</td>
+				@endif
+				<td>{{$transaccion->precio}}</td>
 				<td>
-					<a href="{{route('entrega.show', $entrega->id)}}">
+					<a href="{{route('transaccion.show', $transaccion->id)}}" class="btn btn-primary">
 						Ver
 					</a>
-					<a href="{{route('entrega.edit', $entrega->id)}}">
-						Editar
-					</a>
-				</td>
 			</tbody>
 			@endforeach
 		</table>
-		<div>
-			<a href="{{route('entrega.create')}}" class="btn btn-primary">Nuevo</a>
-		</div>
-		<div>
-			<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>
-		</div>
 	</div>
 </div>	
 @stop

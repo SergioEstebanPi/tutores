@@ -42,7 +42,7 @@
 				<li><a href="{{route('publicacion.index')}}" class="list-group-item">Editar publicaciones</a></li>
 				<li><a href="{{route('tipo.index')}}" class="list-group-item">Editar tipos</a></li>
 				<li><a href="{{route('cotizacion.index')}}" class="list-group-item">Editar cotizaciones</a></li>
-				<li><a href="{{route('entrega.index')}}" class="list-group-item">Editar entregas</a></li>
+				{{--<!--- <li><a href="{{route('entrega.index')}}" class="list-group-item">Editar entregas</a></li> -->--}}
 				<li><a href="{{route('puntuacion.index')}}" class="list-group-item">Editar puntuaciones</a></li>
 				<li><a href="{{route('interes.index')}}" class="list-group-item">Editar intereses</a></li>
 				<li><a href="{{route('categoria.index')}}" class="list-group-item">Editar categorias</a></li>

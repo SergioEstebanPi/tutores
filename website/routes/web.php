@@ -42,7 +42,7 @@ Route::resource('usuario', 'UsuarioController');
 Route::resource('publicacion', 'PublicacionController');
 Route::resource('tipo', 'TipoController');
 Route::resource('cotizacion', 'CotizacionController');
-Route::resource('entrega', 'EntregaController');
+Route::resource('transaccion', 'EntregaController');
 Route::resource('area', 'AreaController');
 Route::resource('interes', 'InteresController');
 Route::resource('instituto', 'InstitutoController');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class EntregaController extends Controller
 {
@@ -19,11 +20,19 @@ class EntregaController extends Controller
     public function index()
     {
         //
-        $entregas = \App\Cotizacion::where('user_id', '=', Auth::user()->id)
-                    ->where('estado', '=', 2)
-                    ->paginate(10);
+        $publicaciones = DB::table('cotizaciones')
+            ->join('publicaciones', 'cotizaciones.publicacion_id', '=', 'publicaciones.id')
+            ->join('users', 'publicaciones.user_id', '=', 'users.id')
+            ->where('publicaciones.estado', '=', 3) // trabajo recibido
+            ->where('publicaciones.user_id', '=', Auth::user()->id)
+            ->get();
+        $cotizaciones = \App\Cotizacion::where('user_id', '=', Auth::user()->id)
+            ->whereIn('estado', [2, 3]) // trabajo enviado - calificado
+            ->get();
+        $transacciones = $publicaciones->merge($cotizaciones);
+        //dd($transacciones);
         return view('entregas.index', [
-            'entregas' => $entregas
+            'transacciones' => $transacciones
         ]);
     }
 
@@ -35,7 +44,7 @@ class EntregaController extends Controller
     public function create()
     {
         //
-        return view('entregas.create');
+        //return view('entregas.create');
     }
 
     /**
@@ -77,8 +86,9 @@ class EntregaController extends Controller
     public function edit($id)
     {
         //
-        $entrega = \App\Entrega::find($id);
+        /*$entrega = \App\Entrega::find($id);
         return view('entregas.edit', compact('entrega', $entrega));
+        */
     }
 
     /**
@@ -91,11 +101,13 @@ class EntregaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        /*
         $entrega = \App\Entrega::find($id);
         $entrega->fill($request->all());
         $entrega->save();
         //Session::flash('mensaje', 'Entrega editado correctamente');
         return redirect('entrega')->with('mensaje', 'Entrega editada correctamente');
+        */
     }
 
     /**
@@ -107,7 +119,9 @@ class EntregaController extends Controller
     public function destroy($id)
     {
         //
+        /*
         \App\Entrega::destroy($id);
         return redirect('entrega')->with('mensaje', 'Entrega eliminada correctamente');
+        */
     }
 }

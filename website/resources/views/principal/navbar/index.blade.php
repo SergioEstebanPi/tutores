@@ -8,7 +8,7 @@
         @if(Auth::check())
           <li><a href="/publicacion" class="btn-default">Mis Publicaciones</a></li>
           <li><a href="/cotizacion" class="btn-default">Mis Cotizaciones</a></li>
-          <li><a href="/entrega" class="btn-default">Mis Entregas</a></li>
+          <li><a href="/transaccion" class="btn-default">Mis Transacciones</a></li>
         @endif
         @if(!Auth::check())
           <li><a href="/registro" class="btn-default">Registro</a></li>
