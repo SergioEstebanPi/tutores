@@ -40,6 +40,12 @@
 		@endif
 		@if($cotizacion->publicacion->user_id == Auth::user()->id && $cotizacion->publicacion->estado == 1)
 			<div>
+				<a href="{{ route('payment') }}" class="btn btn-primary">Pagar al tutor con <i class="fa fa-cc-paypal fa-2x"></i></a>
+			</div>
+			<div>
+				<h1>------------</h1>
+			</div>
+			<div>
 				<a href="/pagar_cotizacion/{{$cotizacion->id}}" class="btn btn-primary">Pagar al tutor</a>
 			</div>
 			<div id="paypal-button-container"></div>

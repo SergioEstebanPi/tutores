@@ -18,6 +18,7 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 use App\Order;
 use App\OrderItem;
+use Illuminate\Support\Facades\Input;
 
 class PaypalController extends BaseController
 {
@@ -38,9 +39,10 @@ class PaypalController extends BaseController
 		$payer->setPaymentMethod('paypal');
 		$items = array();
 		$subtotal = 0;
-		$cart = \Session::get('cart');
+		//$cart = \Session::get('cart');
 		$currency = 'COP';
 
+		/*
 		foreach($cart as $producto){
 			$item = new Item();
 			$item->setName($producto->name)
@@ -51,6 +53,16 @@ class PaypalController extends BaseController
 			$items[] = $item;
 			$subtotal += $producto->quantity * $producto->price;
 		}
+		*/
+
+		$item = new Item();
+			$item->setName('trabajo1')
+			->setCurrency($currency)
+			->setDescription('pago trabajo1')
+			->setQuantity(1)
+			->setPrice(0.05);
+			$items[] = $item;
+			$subtotal += 1 * 0.05;
 
 		// lista de objetos del carrito
 		$item_list = new ItemList();
@@ -87,7 +99,7 @@ class PaypalController extends BaseController
 			$payment->create($this->_api_context);
 		} catch (\PayPal\Exception\PPConnectionException $ex) {
 			if (\Config::get('app.debug')) {
-				echo "Exception: " . $ex->getMessage() . PHP_EOL;
+				echo "Exception: " . $ex->getmensaje() . PHP_EOL;
 				$err_data = json_decode($ex->getData(), true);
 				exit;
 			} else {
@@ -125,8 +137,15 @@ class PaypalController extends BaseController
 
 		//if (empty(\Input::get('PayerID')) || empty(\Input::get('token'))) {
 		if (empty($payerId) || empty($token)) {
+			/*
 			return \Redirect::route('/') // 'home'
-				->with('message', 'Hubo un problema al intentar pagar con Paypal');
+				->with('mensaje', 'Hubo un problema al intentar pagar con Paypal');
+				*/
+			return redirect()->to('publicacion')
+				->with([
+					'mensaje' => 'Hubo un problema al intentar pagar con Paypal',
+					'tipo' => 'danger'
+				]);
 		}
 
 		$payment = Payment::get($payment_id, $this->_api_context);
@@ -151,18 +170,32 @@ class PaypalController extends BaseController
 			// Enviar correo a user
 			// Enviar correo a admin
 			// Redireccionar
-			
+
 			// ruta para registrar la compra en la base de datos
 			//$this->saveOrder(\Session::get('cart'));
 
+			/*
 			\Session::forget('cart');
-			return \Redirect::route('home')
-				->with('message', 'Compra realizada de forma correcta');
+			return \Redirect::route('/')
+				->with('mensaje', 'Compra realizada de forma correcta');
+				*/
+			return redirect()->to('publicacion')
+				->with([
+					'mensaje' => 'Compra realizada de forma correcta',
+					'tipo' => 'danger'
+				]);
 		}
 
 		// la compra no se pudo realizar
+		/*
 		return \Redirect::route('/') // 'home'
-			->with('message', 'La compra fue cancelada');
+			->with('mensaje', 'La compra fue cancelada');
+			*/
+		return redirect()->to('publicacion')
+			->with([
+				'mensaje' => 'La compra fue cancelada',
+				'tipo' => 'danger'
+			]);
 	}
 
 	private function saveOrder($cart)
