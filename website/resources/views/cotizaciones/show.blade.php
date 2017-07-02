@@ -9,7 +9,7 @@
 		@if($cotizacion->user_id != Auth::user()->id)
 			<div>
 				<label for="" class="control-label">tutor</label>
-				<label name="precio" class="form-control">{{$cotizacion->user->name}}</label>
+				<label name="name" class="form-control">{{$cotizacion->user->name}}</label>
 			</div>
 			<div>
 				<a href="/ver_perfil/{{$cotizacion->user->id}}" class="btn btn-primary">Ver perfil</a>
@@ -17,11 +17,11 @@
 		@endif
 		<div>
 			<label for="" class="control-label">titulo trabajo</label>
-			<label name="precio" class="form-control">{{$cotizacion->publicacion->titulo}}</label>
+			<label name="titulo" class="form-control">{{$cotizacion->publicacion->titulo}}</label>
 		</div>
 		<div>
 			<label for="" class="control-label">precio</label>
-			<label name="precio" class="form-control">{{$cotizacion->precio}}</label>
+			<label id="precio" name="precio" class="form-control">{{$cotizacion->precio}}</label>
 		</div>
 		@if(Auth::check() && $cotizacion->user_id == Auth::user()->id)
 			<div>
@@ -42,6 +42,51 @@
 			<div>
 				<a href="/pagar_cotizacion/{{$cotizacion->id}}" class="btn btn-primary">Pagar al tutor</a>
 			</div>
+			<div id="paypal-button-container"></div>
+			{{-- Script configuracion boton paypal --}}
+			<script>
+			    paypal.Button.render({
+
+			        env: 'sandbox', // sandbox | production
+
+			        // PayPal Client IDs - replace with your own
+			        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+			        client: {
+			            sandbox:    'AFcWxV21C7fd0v3bYYYRCpSSRl31AttOadwyUmWLnn8.qT7NEBbcYs-8',
+			            production: '<insert production client id>'
+			        },
+
+			        // Show the buyer a 'Pay Now' button in the checkout flow
+			        commit: true,
+
+			        // payment() is called when the button is clicked
+			        payment: function(data, actions) {
+
+			            // Make a call to the REST api to create the payment
+			            return actions.payment.create({
+			                payment: {
+			                    transactions: [
+			                        {
+			                            amount: { total: '0.01', currency: 'USD' }
+			                            //amount: { total: document.getElementById("precio"), currency: 'USD' }
+			                        }
+			                    ]
+			                }
+			            });
+			        },
+
+			        // onAuthorize() is called when the buyer approves the payment
+			        onAuthorize: function(data, actions) {
+
+			            // Make a call to the REST api to execute the payment
+			            return actions.payment.execute().then(function() {
+			                window.alert('Payment Complete!');
+			            });
+			        }
+
+			    }, '#paypal-button-container');
+
+			</script>
 		@elseif($cotizacion->user_id == Auth::user()->id && $cotizacion->estado == 1)
 			<form action="/crear_entrega" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -64,4 +109,5 @@
 		</div>
 	</div>
 </div>
+
 @stop

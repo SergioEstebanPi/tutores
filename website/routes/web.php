@@ -37,6 +37,20 @@ Route::get('/ver_perfil/{id}', 'UsuarioController@ver_perfil');
 Route::get('/pagar_cotizacion/{id}', 'CotizacionController@pagar_cotizacion');
 Route::post('/crear_entrega', 'CotizacionController@crear_entrega');
 
+/* crear pagos paypal */
+// Enviamos nuestro pedido a Paypal
+Route::get('payment', array(
+    'as' => 'payment',
+    'uses' => 'PaypalController@postPayment'
+));
+// Paypal redirecciona a esta ruta
+Route::get('payment/status', array(
+    'as' => 'payment.status',
+    'uses' => 'PaypalController@getPaymentStatus'
+));
+
+
+
 /* CRUDS del administrador */
 Route::resource('usuario', 'UsuarioController');
 Route::resource('publicacion', 'PublicacionController');

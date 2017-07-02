@@ -3,6 +3,8 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="{{asset('plugins/bootstrap/css/bootstrap.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/navbar.css')}}">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
 	<title>Inicio</title>
 </head>
 <body>
