@@ -33,14 +33,31 @@
 			<label for="" class="control-label">descripcion</label>
 			<label name="descripcion" class="form-control">{{$cotizacion->descripcion}}</label>
 		</div>
-		@if($cotizacion->publicacion->user_id == Auth::user()->id && $cotizacion->publicacion->estado == 0)
+		@if($cotizacion->estado == 2)
+			<div>
+				<a href="/storage/{{$cotizacion->ruta_entrega}}" class="btn btn-primary">Ver entrega</a>
+			</div>
+		@endif
+		@if($cotizacion->publicacion->user_id == Auth::user()->id && $cotizacion->publicacion->estado == 1)
 			<div>
 				<a href="/pagar_cotizacion/{{$cotizacion->id}}" class="btn btn-primary">Pagar al tutor</a>
 			</div>
 		@elseif($cotizacion->user_id == Auth::user()->id && $cotizacion->estado == 1)
-			<div>
-				<a href="/crear_entrega/{{$cotizacion->id}}" class="btn btn-primary">Entregar trabajo</a>
-			</div>
+			<form action="/crear_entrega" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<input type="hidden" name="id" value="{{$cotizacion->id}}" />
+				<div>
+				    <label class="control-label">Sube el trabajo <small class="help-block">(Máx 10MB)</small></label>
+				</div>
+				<div>
+				    <label class="control-label">Archivo subido</label>
+				    <input type="text" name="" value="{{$cotizacion->ruta_entrega or old('ruta_entrega')}}" class="form-control">
+					<input type="file" name="ruta_entrega" value="{{$cotizacion->ruta_entrega or old('ruta_entrega')}}" class="form-control">
+				</div>
+				<div>
+					<button class="btn btn-primary">Entregar trabajo</button>
+				</div>
+			</form>
 		@endif
 		<div>
 			<a href="{{ url()->previous() }}" class="btn btn-default">Atrás</a>

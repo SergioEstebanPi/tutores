@@ -116,11 +116,23 @@ class PublicacionController extends Controller
             'doc' => 'wordicon.jpg',
         ];
         
-        return view('publicaciones.show', [
-            'publicacion' => $publicacion,
-            'file' => array_get($extensions,'sdf.pdf','unknown.png')
-
-        ]);
+        if ($publicacion->estado == 3) {
+            // muestra el archivo comprado
+            $cotizacion = \App\Cotizacion::where('publicacion_id', '=', $publicacion->id)
+                        ->where('estado', '=', 2) 
+                        ->first();    
+            return view('publicaciones.show', [
+                'publicacion' => $publicacion,
+                'file' => array_get($extensions,'sdf.pdf','unknown.png'),
+                'cotizacion' => $cotizacion
+            ]);
+        } else{
+            return view('publicaciones.show', [
+                'publicacion' => $publicacion,
+                'file' => array_get($extensions,'sdf.pdf','unknown.png')
+            ]);
+        }
+        
     }
 
     /**

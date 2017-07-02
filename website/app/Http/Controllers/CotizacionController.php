@@ -54,7 +54,6 @@ class CotizacionController extends Controller
         $cotizacion = \App\Cotizacion::find($id);
         if($cotizacion->estado == 0){
             // se modifica al estado 1 - aceptada/pagada
-            $cotizacion = \App\Cotizacion::find($id);
             $cotizacion->estado = 1;
             $cotizacion->save();
 
@@ -75,9 +74,50 @@ class CotizacionController extends Controller
         }
 
         /* notificar al tutor del pago */
-        /* redirigir a la seccion "Mis pagos" */
+        /* redirigir a la seccion "Mis Transacciones" */
 
         return redirect()->to('/');
+
+    }
+
+    public function crear_entrega(Request $request){
+        // 
+        $cotizacion = \App\Cotizacion::find($request['id']);
+        if($cotizacion->estado == 1){
+
+            //obtenemos el campo file definido en el formulario
+            $file = $request->file('ruta_entrega');
+            //obtenemos el nombre del archivo
+            $nombre = $file->getClientOriginalName();
+            //indicamos que queremos guardar un nuevo archivo en el disco local
+            \Storage::disk('local')->put($nombre,  \File::get($file));
+            // se modifica al estado 2 - trabajo entregado
+            $cotizacion->estado = 2;
+            $cotizacion->ruta_entrega = $nombre;
+            $cotizacion->fecha_entrega = new \DateTime();
+            $cotizacion->save();
+
+            // se modifica al estado 3 - trabajo entregado
+            $publicacion = \App\Publicacion::find($cotizacion->publicacion_id);
+            $publicacion->estado = 3;
+            $publicacion->save();
+         
+            return redirect('cotizacion')->with([
+                'mensaje' => 'Entrega realizada correctamente',
+                'tipo'  => 'success'
+            ]);
+        } else {
+            return redirect('cotizacion')->with([
+                'mensaje' => 'No es posible entregar este trabajo no ha sido pagado',
+                'tipo' => 'danger'
+            ]);
+        }
+
+        /* notificar al estudiante del envio */
+        /* puntuar al tutor y notificar */
+        /* redirigir a la seccion "Mis Transacciones" */
+
+        //return redirect()->to('/');
 
     }
 

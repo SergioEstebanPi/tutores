@@ -63,7 +63,10 @@
 						@else
 							@if($publicacion->estado == 3)
 								<div>
-									<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver entrega</a>
+									<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
+								</div>
+								<div>
+									<a href="/storage/{{$cotizacion->ruta_entrega}}" class="btn btn-primary">Ver entrega</a>
 								</div>
 							@else
 								<div>
