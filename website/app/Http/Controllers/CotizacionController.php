@@ -101,6 +101,9 @@ class CotizacionController extends Controller
             $publicacion = \App\Publicacion::find($cotizacion->publicacion_id);
             $publicacion->estado = 3;
             $publicacion->save();
+
+
+            //hacer pago al tutor 
          
             return redirect('cotizacion')->with([
                 'mensaje' => 'Entrega realizada correctamente',

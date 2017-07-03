@@ -74,8 +74,8 @@
 			                payment: {
 			                    transactions: [
 			                        {
-			                            amount: { total: '0.01', currency: 'USD' }
-			                            //amount: { total: document.getElementById("precio"), currency: 'USD' }
+			                            amount: { total: '100.00', currency: 'USD' }
+			                            //amount: { total: document.getElementById("precio").value, currency: 'USD' }
 			                        }
 			                    ]
 			                }
@@ -108,6 +108,9 @@
 				</div>
 				<div>
 					<button class="btn btn-primary">Entregar trabajo</button>
+				  	<div>
+			        	<a href="{{ route('payout') }}" class="btn btn-primary">Cobrar trabajo<i class="fa fa-cc-paypal fa-2x"></i></a>
+			      	</div>
 				</div>
 			</form>
 		@endif

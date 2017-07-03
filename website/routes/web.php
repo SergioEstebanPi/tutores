@@ -48,7 +48,11 @@ Route::get('payment/status', array(
     'as' => 'payment.status',
     'uses' => 'PaypalController@getPaymentStatus'
 ));
-
+// Paypal pagar al tutor
+Route::get('payout', array(
+    'as' => 'payout',
+    'uses' => 'PaypalController@pagarAlTutor'
+));
 
 
 /* CRUDS del administrador */
