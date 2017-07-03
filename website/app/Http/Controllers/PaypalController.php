@@ -29,6 +29,7 @@ class PaypalController extends BaseController
 		// setup PayPal api context
 		$paypal_conf = \Config::get('paypal');
 		$this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
+		//$this->_api_context = new ApiContext($paypal_conf['client_id'], $paypal_conf['secret']);
 		$this->_api_context->setConfig($paypal_conf['settings']);
 	}
 
@@ -40,7 +41,7 @@ class PaypalController extends BaseController
 		$items = array();
 		$subtotal = 0;
 		//$cart = \Session::get('cart');
-		$currency = 'COP';
+		$currency = 'USD';
 
 		/*
 		foreach($cart as $producto){
@@ -62,19 +63,23 @@ class PaypalController extends BaseController
 			->setQuantity(1)
 			->setPrice(0.05);
 			$items[] = $item;
-			$subtotal += 1 * 0.05;
+			//$subtotal += 1 * 0.05;
+			$subtotal = 0.05;
 
 		// lista de objetos del carrito
 		$item_list = new ItemList();
 		$item_list->setItems($items);
 		$details = new Details();
 		$details->setSubtotal($subtotal)
-		->setShipping(100);
-		$total = $subtotal + 100;
+		->setShipping(0); // cobro adicional
+		$total = $subtotal + 0; // se añade el cobro adicional
+
 		$amount = new Amount();
 		$amount->setCurrency($currency)
 			->setTotal($total)
 			->setDetails($details);
+
+		//$amount->setTotal(0.05);
 
 		// se envia la cantidad a pagar y los items del carrito
 		$transaction = new Transaction();
@@ -87,7 +92,7 @@ class PaypalController extends BaseController
 		$redirect_urls->setReturnUrl(\URL::route('payment.status'))
 			->setCancelUrl(\URL::route('payment.status'));
 
-		// se realiza el pago y se configura el tipo de pago
+		// se realiza el pago y se configura el tipo de pago en este caso venta directa
 		$payment = new Payment();
 		$payment->setIntent('Sale')
 			->setPayer($payer)
@@ -181,8 +186,8 @@ class PaypalController extends BaseController
 				*/
 			return redirect()->to('publicacion')
 				->with([
-					'mensaje' => 'Compra realizada de forma correcta',
-					'tipo' => 'danger'
+					'mensaje' => 'Pago realizado de forma correcta',
+					'tipo' => 'success'
 				]);
 		}
 
@@ -193,7 +198,7 @@ class PaypalController extends BaseController
 			*/
 		return redirect()->to('publicacion')
 			->with([
-				'mensaje' => 'La compra fue cancelada',
+				'mensaje' => 'El pago no pudo realizarse correctamente',
 				'tipo' => 'danger'
 			]);
 	}

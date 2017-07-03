@@ -58,7 +58,8 @@
 			        // PayPal Client IDs - replace with your own
 			        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
 			        client: {
-			            sandbox:    'AFcWxV21C7fd0v3bYYYRCpSSRl31AttOadwyUmWLnn8.qT7NEBbcYs-8',
+			        	sandbox:    'AUe0eLturPW6lyIR5f30yj6vBSMc5W8yUDjgTUVZvHEz7L0LxKQZkp8N4YhYKbg3Q_9GgoKM9sww_7HH',
+			            //sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
 			            production: '<insert production client id>'
 			        },
 
