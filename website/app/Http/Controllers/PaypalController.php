@@ -268,7 +268,7 @@ class PaypalController extends BaseController
 		    ->setReceiver('sepi_147-buyer@hotmail.com')
 		    ->setSenderItemId("1")
 		    ->setAmount(new \PayPal\Api\Currency('{
-		                        "value":"0.01",
+		                        "value":"10.00",
 		                        "currency":"USD"
 		                    }'));
 		$payouts->setSenderBatchHeader($senderBatchHeader)

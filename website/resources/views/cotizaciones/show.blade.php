@@ -119,5 +119,23 @@
 		</div>
 	</div>
 </div>
+ 
+
+ <form method="post" action="https://gateway.payulatam.com/ppp-web-gateway/">
+  <input name="merchantId"    type="hidden"  value="651921"   >
+  <input name="accountId"     type="hidden"  value="654415" >
+  <input name="description"   type="hidden"  value="Test PAYU"  >
+  <input name="referenceCode" type="hidden"  value="2" >
+  <input name="amount"        type="hidden"  value="50000"   >
+  <input name="tax"           type="hidden"  value="0"  >
+  <input name="taxReturnBase" type="hidden"  value="0" >
+  <input name="currency"      type="hidden"  value="COP" >
+  <input name="signature"     type="hidden"  value="45759c5bde9c8ee790e8dbfdc7ce242d"  >
+  <input name="test"          type="hidden"  value="1" >
+  <input name="buyerEmail"    type="hidden"  value="test@test.com" >
+  <input name="responseUrl"    type="hidden"  value="http://www.test.com/response" >
+  <input name="confirmationUrl"    type="hidden"  value="http://www.test.com/confirmation" >
+  <input name="Submit"        type="submit"  value="Enviar" >
+</form>
 
 @stop
