@@ -30,6 +30,7 @@
 			<label for="" class="control-label">titulo archivo</label>
 			<label name="ruta" class="form-control">{{$publicacion->ruta}}</label>
 		</div>
+		{{--
 		<div>
 			<label for="" class="control-label">ruta</label>
 			@if(!Auth::check())
@@ -38,13 +39,40 @@
 				<img src="/storage/{{$file}}" name="titulo" class="form-control"></img>
 			@endif
 		</div>
+		--}}
 		@if(Auth::check())
 			<div>
-				<a href="/storage/{{$publicacion->ruta}}" class="btn btn-default">Descargar</a>
+				<a href="/storage/{{$publicacion->ruta}}" class="btn btn-default">
+					@if($extension == 'pdf')
+						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+					@elseif($extension == 'docx' or $extension == 'doc')
+						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+					@elseif($extension == 'rar')
+						<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
+					@elseif($extension == 'png' or $extension == 'jpg' or $extension == 'bmp')
+						<img src="/storage/{{$publicacion->ruta}}" height="100px" width="100px"></img>
+					@else
+						<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
+					@endif
+					<p>{{$publicacion->ruta}}</p>
+				</a>
 			</div>
 		@else
 			<div>
-				<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-default">Descargar</a>
+				<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-default">
+					@if($extension == 'pdf')
+						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+					@elseif($extension == 'docx' or $extension == 'doc')
+						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+					@elseif($extension == 'rar')
+						<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
+					@elseif($extension == 'png' or $extension == 'jpg' or $extension == 'bmp')
+						<img src="/storage/{{$publicacion->ruta}}" height="100px" width="100px"></img>
+					@else
+						<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
+					@endif
+					<p>{{$publicacion->ruta}}</p>
+				</a>
 			</div>
 		@endif
 		@if(Auth::check())
@@ -90,4 +118,5 @@
 		</div>
 	</div>
 </div>
+
 @stop

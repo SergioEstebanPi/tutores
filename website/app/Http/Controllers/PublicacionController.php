@@ -9,6 +9,7 @@ use App\Http\Requests\LoginRequest;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PublicacionRequest;
+use File;
 /**
   *  @CREATED_BY spina
   *  @DATE_CREATED 28/05/2017
@@ -109,27 +110,32 @@ class PublicacionController extends Controller
     {
         //
         $publicacion = \App\Publicacion::find($id);
-        $extensions = [
+        /*$extensions = [
             'jpg' => 'jpeg.png',
             'png' => 'png.png',
             'pdf' => 'pdfdocument.png',
             'doc' => 'wordicon.jpg',
         ];
+        */
+
         
+        $extension = File::extension($publicacion->ruta);
         if ($publicacion->estado == 3) {
             // muestra el archivo comprado
             $cotizacion = \App\Cotizacion::where('publicacion_id', '=', $publicacion->id)
                         ->where('estado', '=', 2) 
                         ->first();    
             return view('publicaciones.show', [
+                'extension' => $extension,
                 'publicacion' => $publicacion,
-                'file' => array_get($extensions,'sdf.pdf','unknown.png'),
+                //'file' => array_get($extensions,'sdf.pdf','unknown.png'),
                 'cotizacion' => $cotizacion
             ]);
         } else{
             return view('publicaciones.show', [
+                'extension' => $extension,
                 'publicacion' => $publicacion,
-                'file' => array_get($extensions,'sdf.pdf','unknown.png')
+                //'file' => array_get($extensions,'sdf.pdf','unknown.png')
             ]);
         }
         
