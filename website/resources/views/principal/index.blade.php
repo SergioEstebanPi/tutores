@@ -20,16 +20,19 @@
       <h3>Trabaja como freelance</h3>
       <p>Gana dinero por lo que conoces</p>
       <p>Puedes disponer de tu tiempo</p>
+      <img src="{{asset('/principal/freelance.jpg')}}" width="200px" height="150px">
     </div>
     <div class="col-sm-4">
       <h3>Has trabajos desde casa</h3>
       <p>Sin horarios</p>
       <p>Trabaja on-line</p>
+      <img src="{{asset('/principal/casa.jpg')}}" width="200px" height="150px">
     </div>
     <div class="col-sm-4">
       <h3>Contrata el trabajo de un estudiante o profesional</h3> 
       <p>Red de trabajos académicos</p>
       <p>Desarrollo de proyectos</p>
+      <img src="{{asset('/principal/contrata.png')}}" width="200px" height="150px">
     </div>
   </div>
 </div>

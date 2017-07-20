@@ -22,17 +22,24 @@ class EntregaController extends Controller
         //
 
         
-        $transacciones = DB::table('cotizaciones')
+        $pagos = DB::table('cotizaciones')
             ->whereIn('id', function($query)
             {
                 $query->select('publicacion_id')
                       ->from('publicaciones')
-                      ->where('user_id', '=', Auth::user()->id);
+                      ->where('user_id', '=', Auth::user()->id)  // mis publicaciones
+                      ->whereIn('estado', [2, 3]); // pagado, recibido
             })
+            ->whereIn('estado', [1, 2, 3])
             ->get();
 
+        $recibidos = \App\Cotizacion::where('user_id', '=', Auth::user()->id)
+                                    ->whereIn('estado', [2, 3]) // entregado, calificada
+                                    ->get(); 
+
         return view('entregas.index', [
-            'transacciones' => $transacciones
+            'pagos' => $pagos,
+            'recibidos' => $recibidos
         ]);
 
         /*

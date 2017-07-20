@@ -120,7 +120,7 @@
 	</div>
 </div>
  
-
+{{--
  <form method="post" action="https://gateway.payulatam.com/ppp-web-gateway/">
   <input name="merchantId"    type="hidden"  value="651921"   >
   <input name="accountId"     type="hidden"  value="654415" >
@@ -137,5 +137,6 @@
   <input name="confirmationUrl"    type="hidden"  value="http://www.test.com/confirmation" >
   <input name="Submit"        type="submit"  value="Enviar" >
 </form>
+--}}
 
 @stop
