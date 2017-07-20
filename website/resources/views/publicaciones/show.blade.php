@@ -46,7 +46,7 @@
 					@if($extension == 'pdf')
 						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
 					@elseif($extension == 'docx' or $extension == 'doc')
-						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+						<img src="{{asset('iconos/docx.png')}}" height="100px" width="100px"></img>
 					@elseif($extension == 'rar')
 						<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
 					@elseif($extension == 'png' or $extension == 'jpg' or $extension == 'bmp')
@@ -63,7 +63,7 @@
 					@if($extension == 'pdf')
 						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
 					@elseif($extension == 'docx' or $extension == 'doc')
-						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+						<img src="{{asset('iconos/docx.png')}}" height="100px" width="100px"></img>
 					@elseif($extension == 'rar')
 						<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
 					@elseif($extension == 'png' or $extension == 'jpg' or $extension == 'bmp')
