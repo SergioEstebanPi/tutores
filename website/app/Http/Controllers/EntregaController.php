@@ -20,6 +20,22 @@ class EntregaController extends Controller
     public function index()
     {
         //
+
+        
+        $transacciones = DB::table('cotizaciones')
+            ->whereIn('id', function($query)
+            {
+                $query->select('publicacion_id')
+                      ->from('publicaciones')
+                      ->where('user_id', '=', Auth::user()->id);
+            })
+            ->get();
+
+        return view('entregas.index', [
+            'transacciones' => $transacciones
+        ]);
+
+        /*
         $publicaciones = DB::table('cotizaciones')
             ->join('publicaciones', 'cotizaciones.publicacion_id', '=', 'publicaciones.id')
             ->join('users', 'publicaciones.user_id', '=', 'users.id')
@@ -34,6 +50,7 @@ class EntregaController extends Controller
         return view('entregas.index', [
             'transacciones' => $transacciones
         ]);
+        */
     }
 
     /**
