@@ -6,12 +6,12 @@
   <script src="{{asset('plugins/bootstrap/js/bootstrap.js')}}"></script>
 	<title>Inicio</title>
 </head>
-<body>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
 
 @include('principal.navbar.index')
 
 <div class="jumbotron text-center">
-  <h1>Tutores</h1>
+  <img src="{{asset('/principal/logo.png')}}" width="300px" height="300px" />
   <p>Red de tele-trabajo que te paga por tus conocimientos</p> 
 </div>
 <div class="container">
@@ -56,4 +56,11 @@
 @endif
 
 </body>
+<footer>
+  <div class="jumbotron text-center">
+    <p>
+      Registrate y empieza ahora...
+    </p>
+  </div>
+</footer>
 </html>
