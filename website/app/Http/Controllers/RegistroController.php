@@ -55,6 +55,9 @@ class RegistroController extends Controller
                 'formacion_id' => $request['formacion']
         ]);
 
+        // la carpeta de almacenamiento se crea al momento de agregar archivos
+        
+
         // iniciar la sesión del usuario
         LogController::store($request);
 

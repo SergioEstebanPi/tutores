@@ -11,9 +11,11 @@
 |
 */
 
+/*
 Route::get('/', function () {
      return view('/');
 });
+*/
 
 /* rutas principales */
 //Route::get('/', function () {
@@ -86,9 +88,24 @@ Route::match(['get', 'post'], 'registro', function(){
 
 
 /* cargar archivos */
-Route::get('formulario', 'StorageController@index');
-Route::post('storage/create', 'StorageController@save');
-Route::get('storage/{archivo}', 'StorageController@download');
+//Route::get('formulario', 'StorageController@index');
+//Route::post('storage/create', 'StorageController@save');
+Route::get('noticias/{id}', 'StorageController@download');
+
+Route::get('entregas/{id}', 'CotizacionController@download');
+/*
+Route::get('publicaciondown/temp/{archivo}', function($archivo){
+    $path = storage_path().'/app/storage/temp/' . $archivo;
+    if (file_exists($path)) { 
+        return Response::download($path);
+    }
+
+});
+*/
+
+//Route::get('storage/{id}', 'CotizacionController@download');
+
+
 /*
 Route::get('storage/app/{archivo}', function ($archivo) {
      $public_path = storage_path();

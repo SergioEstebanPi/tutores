@@ -11,7 +11,7 @@
 @include('principal.navbar.index')
 
 <div class="jumbotron text-center">
-  <img src="{{asset('/principal/logo.png')}}" width="300px" height="300px" />
+  <img src="{{asset('/principal/logo.png')}}" width="200px" height="200px" />
   <p>Red de tele-trabajo que te paga por tus conocimientos</p> 
 </div>
 <div class="container">

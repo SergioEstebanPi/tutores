@@ -36,13 +36,13 @@
 			@if(!Auth::check())
 				<label name="ruta" class="form-control">{{$publicacion->titulo}}</label>
 			@else
-				<img src="/storage/{{$file}}" name="titulo" class="form-control"></img>
+				<img src="/noticias/{{$file}}" name="titulo" class="form-control"></img>
 			@endif
 		</div>
 		--}}
-		@if(Auth::check())
+		{{-- @if(Auth::check()) --}}
 			<div>
-				<a href="/storage/{{$publicacion->ruta}}" class="btn btn-default">
+				<a href="/noticias/{{$publicacion->id}}" class="btn btn-default">
 					@if($extension == 'pdf')
 						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
 					@elseif($extension == 'docx' or $extension == 'doc')
@@ -50,14 +50,14 @@
 					@elseif($extension == 'rar')
 						<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
 					@elseif($extension == 'png' or $extension == 'jpg' or $extension == 'bmp')
-						<img src="/storage/{{$publicacion->ruta}}" height="100px" width="100px"></img>
+						<img src="/noticias/{{$publicacion->id}}" height="100px" width="100px"></img>
 					@else
 						<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
 					@endif
 					<p>{{$publicacion->ruta}}</p>
 				</a>
 			</div>
-		@else
+		{{-- @else
 			<div>
 				<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-default">
 					@if($extension == 'pdf')
@@ -67,14 +67,14 @@
 					@elseif($extension == 'rar')
 						<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
 					@elseif($extension == 'png' or $extension == 'jpg' or $extension == 'bmp')
-						<img src="/storage/{{$publicacion->ruta}}" height="100px" width="100px"></img>
+						<img src="/noticias/{{$publicacion->ruta}}" height="100px" width="100px"></img>
 					@else
 						<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
 					@endif
 					<p>{{$publicacion->ruta}}</p>
 				</a>
 			</div>
-		@endif
+		@endif --}}
 		@if(Auth::check())
 			@if(Auth::user()->id != $publicacion->user_id)
 				<div>
@@ -94,7 +94,7 @@
 									<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
 								</div>
 								<div>
-									<a href="/storage/{{$cotizacion->ruta_entrega}}" class="btn btn-primary">Ver entrega</a>
+									<a href="/entregas/{{$cotizacion->id}}" class="btn btn-primary">Ver entrega</a>
 								</div>
 							@else
 								<div>

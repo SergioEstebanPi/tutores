@@ -76,14 +76,15 @@ class PublicacionController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
         //obtenemos el campo file definido en el formulario
        $file = $request->file('ruta');
        //obtenemos el nombre del archivo
        $nombre = $file->getClientOriginalName();
        //indicamos que queremos guardar un nuevo archivo en el disco local
-       \Storage::disk('local')->put($nombre,  \File::get($file));
  
-        \App\Publicacion::create([
+        // se crea para obtener el id de la publicacion
+        $publicacion = \App\Publicacion::create([
             'user_id' => Auth::user()->id,
             'categoria_id' => $request['categoria_id'],
             'tipo_id' => $request['tipo_id'],
@@ -94,6 +95,9 @@ class PublicacionController extends Controller
             'ruta' => $nombre,
             'descripcion' => $request['descripcion']
         ]);
+
+       \Storage::disk('local')->put(Auth::user()->email . '/publicaciones/' . $publicacion->id . '/' . $nombre,  \File::get($file));
+
         return redirect('publicacion')->with([
             'mensaje' => 'Publicación creada correctamente',
             'tipo' => 'success'
@@ -184,7 +188,7 @@ class PublicacionController extends Controller
         //obtenemos el nombre del archivo
         $nombre = $file->getClientOriginalName();
         //indicamos que queremos guardar un nuevo archivo en el disco local
-        \Storage::disk('local')->put($nombre,  \File::get($file));
+        \Storage::disk('local')->put(Auth::user()->email . '/' . $id . '/' . $nombre,  \File::get($file));
 
         $user = \App\Publicacion::find($id);
         $user->fill($request->all());
@@ -211,4 +215,5 @@ class PublicacionController extends Controller
             'tipo' => 'success'
         ]);
     }
+
 }

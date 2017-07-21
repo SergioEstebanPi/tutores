@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class EntregaController extends Controller
 {
+
+    /* el nombre de este controlador debe cambiar a TransaccionController */
     public function __construct(){
         //$this->middleware('auth');
         //$this->middleware('admin');
@@ -23,14 +25,15 @@ class EntregaController extends Controller
 
         
         $pagos = DB::table('cotizaciones')
-            ->whereIn('id', function($query)
+            ->whereIn('publicacion_id', function($query)
             {
-                $query->select('publicacion_id')
+                $query->select('id')
                       ->from('publicaciones')
                       ->where('user_id', '=', Auth::user()->id)  // mis publicaciones
-                      ->whereIn('estado', [2, 3]); // pagado, recibido
+                      ->whereIn('estado', [2, 3])
+                      ->get(); // pagado, recibido
             })
-            ->whereIn('estado', [1, 2, 3])
+            //->whereIn('estado', [1, 2, 3])
             ->get();
 
         $recibidos = \App\Cotizacion::where('user_id', '=', Auth::user()->id)

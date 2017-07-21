@@ -33,9 +33,41 @@
 			<label for="" class="control-label">descripcion</label>
 			<label name="descripcion" class="form-control">{{$cotizacion->descripcion}}</label>
 		</div>
+
+		<label for="" class="control-label">Archivo publicado</label>
+		<div>
+			<a href="/noticias/{{$cotizacion->publicacion->id}}" class="btn btn-default">
+				@if($extensionpublicacion == 'pdf')
+					<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+				@elseif($extensionpublicacion == 'docx' or $extensionpublicacion == 'doc')
+					<img src="{{asset('iconos/docx.png')}}" height="100px" width="100px"></img>
+				@elseif($extensionpublicacion == 'rar')
+					<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
+				@elseif($extensionpublicacion == 'png' or $extensionpublicacion == 'jpg' or $extensionpublicacion == 'bmp')
+					<img src="/noticias/{{$cotizacion->publicacion->id}}" height="100px" width="100px"></img>
+				@else
+					<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
+				@endif
+				<p>{{$cotizacion->publicacion->ruta}}</p>
+			</a>
+		</div>
 		@if($cotizacion->estado == 2)
+			<label for="" class="control-label">Archivo entregado</label>
 			<div>
-				<a href="/storage/{{$cotizacion->ruta_entrega}}" class="btn btn-primary">Ver entrega</a>
+				<a href="/entregas/{{$cotizacion->id}}" class="btn btn-default">
+					@if($extensioncotizacion == 'pdf')
+						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+					@elseif($extensioncotizacion == 'docx' or $extensioncotizacion == 'doc')
+						<img src="{{asset('iconos/docx.png')}}" height="100px" width="100px"></img>
+					@elseif($extensioncotizacion == 'rar')
+						<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
+					@elseif($extensioncotizacion == 'png' or $extensioncotizacion == 'jpg' or $extensioncotizacion == 'bmp')
+						<img src="/entregas/{{$cotizacion->id}}" height="100px" width="100px"></img>
+					@else
+						<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
+					@endif
+					<p>{{$cotizacion->ruta_entrega}}</p>
+				</a>
 			</div>
 		@endif
 		@if($cotizacion->publicacion->user_id == Auth::user()->id && $cotizacion->publicacion->estado == 1)
@@ -102,15 +134,13 @@
 				    <label class="control-label">Sube el trabajo <small class="help-block">(Máx 10MB)</small></label>
 				</div>
 				<div>
-				    <label class="control-label">Archivo subido</label>
-				    <input type="text" name="" value="{{$cotizacion->ruta_entrega or old('ruta_entrega')}}" class="form-control">
+				    <label class="control-label">Subir archivo</label>
+				    <label type="text" name="" class="control-label">{{$cotizacion->ruta_entrega or old('ruta_entrega')}}</label>
+				</div>
 					<input type="file" name="ruta_entrega" value="{{$cotizacion->ruta_entrega or old('ruta_entrega')}}" class="form-control">
 				</div>
 				<div>
 					<button class="btn btn-primary">Entregar trabajo</button>
-				  	<div>
-			        	<a href="{{ route('payout') }}" class="btn btn-primary">Cobrar trabajo<i class="fa fa-cc-paypal fa-2x"></i></a>
-			      	</div>
 				</div>
 			</form>
 		@endif

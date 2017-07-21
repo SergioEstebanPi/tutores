@@ -24,8 +24,7 @@ class PrincipalController extends Controller
 
     public function mostrar_publicaciones(){
         // solo las que no han sido pagadas
-        $publicaciones = \App\Publicacion::where('estado', '=', '0')
-                                        ->orWhere('estado', '=', '1')
+        $publicaciones = \App\Publicacion::whereIn('estado', [0, 1])
                                         ->paginate(50);
         return view('publicaciones.index', [
             'publicaciones' => $publicaciones,

@@ -16,7 +16,7 @@ class StorageController extends Controller
     public function index()
     {
         //
-        return view('storages.index');
+        //return view('storages.index');
     }
 
     /**
@@ -27,8 +27,13 @@ class StorageController extends Controller
     public function create()
     {
         //
-        return view('tipos.create');
+        //return view('tipos.create');
     }
+
+    /*
+    lógica no implementada acá sino en los controladores 
+    PublicacionController y CotizacionController pendiente por revisar (eliminar)
+    
 
 	public function save(Request $request)
 	{
@@ -45,16 +50,29 @@ class StorageController extends Controller
 	       //return "archivo guardado";
            return -1;
 	}
+    */
 
-    public function download($archivo){
-        //C:\Users\Usuario\Documents\TUTORES\tutores\website\storage\app\storage
-        $url = storage_path() .'/app/storage/'. $archivo;
+    public function download($id){
+        /*
+        C:\Users\Usuario\Documents\TUTORES\tutores\website\storage\app\storage
+        se retornan los archivos de la publicaciones se muestran a todo público
+        */
+        $publicacion = \App\Publicacion::find($id);
+        //$user = \App\User::find($publicacion->user_id);
+
+        $url = storage_path() . '/app/storage/' . $publicacion->user->email . '/publicaciones/' . $publicacion->id . '/' . $publicacion->ruta;
         //verificamos si el archivo existe y lo retornamos
+
+        if (file_exists($url)) { 
+            return response()->download($url);
+        }
+        /*
         if (\Storage::exists($archivo))
         {
             $ext = pathinfo($url, PATHINFO_EXTENSION);
             return response()->download($url);
         }
+        */
         //si no se encuentra lanzamos un error 404.
         abort(404);
     }

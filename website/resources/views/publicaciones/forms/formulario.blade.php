@@ -66,7 +66,9 @@
 </div>
 <div>
     <label class="control-label">Archivo subido</label>
-    <input type="text" name="" value="{{$publicacion->ruta or old('ruta')}}" class="form-control">
+    <label type="text" name="" class="control-label">{{$publicacion->ruta or old('ruta')}}</label>
+</div>
+<div>
 	<input type="file" name="ruta" value="{{$publicacion->ruta or old('ruta')}}" class="form-control">
 	@if($errors->first('ruta'))
 		<small class="alert-danger">{{$errors->first('ruta')}}</small>

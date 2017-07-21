@@ -59,7 +59,7 @@
 					</div>
 				@else
 					<div>
-						<h4>No existen noticias nuevas puedes crear una nueva en "Mis Publicaciones"</h4>
+						<h4>No existen noticias nuevas puedes crear una nueva en <a href="/publicacion">Mis Publicaciones</a></h4>
 					</div>
 				@endif
 			@endif

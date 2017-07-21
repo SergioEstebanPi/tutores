@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-
+use File;
 /**
   *  @CREATED_BY spina
   *  @DATE_CREATED 28/05/2017
@@ -90,7 +90,7 @@ class CotizacionController extends Controller
             //obtenemos el nombre del archivo
             $nombre = $file->getClientOriginalName();
             //indicamos que queremos guardar un nuevo archivo en el disco local
-            \Storage::disk('local')->put($nombre,  \File::get($file));
+            \Storage::disk('local')->put(Auth::user()->email . '/cotizaciones/' . $cotizacion->id . '/' . $nombre,  \File::get($file));
             // se modifica al estado 2 - trabajo entregado
             $cotizacion->estado = 2;
             $cotizacion->ruta_entrega = $nombre;
@@ -182,7 +182,13 @@ class CotizacionController extends Controller
     {
         //
         $cotizacion = \App\Cotizacion::find($id);
-        return view('cotizaciones.show', compact('cotizacion', $cotizacion));
+        $extensioncotizacion = File::extension($cotizacion->ruta_entrega);
+        $extensionpublicacion = File::extension($cotizacion->publicacion->ruta);
+        return view('cotizaciones.show', [
+          'cotizacion' => $cotizacion,
+          'extensioncotizacion' => $extensioncotizacion,
+          'extensionpublicacion' => $extensionpublicacion
+        ]);
     }
 
     /**
@@ -241,5 +247,42 @@ class CotizacionController extends Controller
             'mensaje' => 'Cotización eliminada correctamente',
             'tipo' => 'danger'
         ]);
+    }
+
+    /* se descargan los archivos de entregas con la solución del trabajo solo 
+      es visible para las dos partes del intercambio
+    */
+    public function download($id){
+        //C:\Users\Usuario\Documents\TUTORES\tutores\website\storage\app\storage
+        //return "";
+        $cotizacion = \App\Cotizacion::find($id);
+        $url = storage_path() . '/app/storage/' . $cotizacion->user->email . '/cotizaciones/' . $id . '/' . $cotizacion->ruta_entrega;
+        //verificamos si el archivo existe y lo retornamos
+        //dd($url);
+        //return $url;
+
+        //$cotizacion = \App\Cotizacion::find($id);
+        $publicacion = \App\Publicacion::find($cotizacion->publicacion_id);
+
+        // se verifica si la entrega la hizo el usuario con sesion abierta
+        // o si el trabajo entregado lo compra el usuario con sesion abierta
+        if ($cotizacion->user_id == Auth::user()->id 
+            || $publicacion->user_id == Auth::user()->id) {
+
+          if (file_exists($url)) { 
+            return response()->download($url);
+          }            
+
+        }
+        
+        /*
+        if (\Storage::exists($archivo))
+        {
+            $ext = pathinfo($url, PATHINFO_EXTENSION);
+            return response()->download($url);
+        }
+        */
+        //si no se encuentra lanzamos un error 404.
+        abort(404);
     }
 }

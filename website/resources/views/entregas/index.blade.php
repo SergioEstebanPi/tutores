@@ -75,6 +75,10 @@
 						</tbody>
 						@endforeach
 					</table>
+					<div>
+						{{-- route('payout') --}}
+			        	<a href="#" class="btn btn-primary">Retirar dinero<i class="fa fa-cc-paypal fa-2x"></i></a>
+			      	</div>
 				@else
 					<h4>Aún no has recibido pagos por cotizaciones puedes 
 						<a href="/noticias">cotizar un trabajo</a> existente
