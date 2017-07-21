@@ -91,7 +91,6 @@ Route::match(['get', 'post'], 'registro', function(){
 //Route::get('formulario', 'StorageController@index');
 //Route::post('storage/create', 'StorageController@save');
 Route::get('noticias/{id}', 'StorageController@download');
-
 Route::get('entregas/{id}', 'CotizacionController@download');
 /*
 Route::get('publicaciondown/temp/{archivo}', function($archivo){

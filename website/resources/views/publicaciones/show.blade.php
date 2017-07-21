@@ -12,6 +12,8 @@
 					<label for="" class="control-label">publicador por</label>
 					<label name="titulo" class="form-control">{{$publicacion->user->name}}</label>
 				</div>
+			@else
+				<h2>Cotizaciones {{count($publicacion->cotizacion)}}</h2>
 			@endif
 		@endif
 		<div>
@@ -81,43 +83,40 @@
 					<a href="/cotizar_publicacion/{{$publicacion->id}}" class="btn btn-primary">Cotizar</a>
 				</div>
 			@else
-				<h2>Cotizaciones {{count($publicacion->cotizacion)}}</h2>
-				@if(Auth::check())
-					@if(count($publicacion->cotizacion)>0 && $publicacion->user_id == Auth::user()->id)
-						@if($publicacion->estado == 1)
+				@if(count($publicacion->cotizacion)>0 && $publicacion->user_id == Auth::user()->id)
+					@if($publicacion->estado == 1)
+						<div>
+							<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
+						</div>
+					@else
+						@if($publicacion->estado == 3)
+							<h4>Archivo entregado</h4>
+							<div>
+								<a href="/entregas/{{$cotizacion->id}}" class="btn btn-default">
+									@if($extensioncotizacion == 'pdf')
+										<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+									@elseif($extensioncotizacion == 'docx' or $extensioncotizacion == 'doc')
+										<img src="{{asset('iconos/docx.png')}}" height="100px" width="100px"></img>
+									@elseif($extensioncotizacion == 'rar')
+										<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
+									@elseif($extensioncotizacion == 'png' or $extensioncotizacion == 'jpg' or $extensioncotizacion == 'bmp')
+										<img src="/entregas/{{$cotizacion->id}}" height="100px" width="100px"></img>
+									@else
+										<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
+									@endif
+									<p>{{$cotizacion->ruta_entrega}}</p>
+								</a>
+							</div>
 							<div>
 								<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
 							</div>
 						@else
-							@if($publicacion->estado == 3)
-								<h4>Archivo entregado</h4>
-								<div>
-									<a href="/entregas/{{$cotizacion->id}}" class="btn btn-default">
-										@if($extensioncotizacion == 'pdf')
-											<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
-										@elseif($extensioncotizacion == 'docx' or $extensioncotizacion == 'doc')
-											<img src="{{asset('iconos/docx.png')}}" height="100px" width="100px"></img>
-										@elseif($extensioncotizacion == 'rar')
-											<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
-										@elseif($extensioncotizacion == 'png' or $extensioncotizacion == 'jpg' or $extensioncotizacion == 'bmp')
-											<img src="/entregas/{{$cotizacion->id}}" height="100px" width="100px"></img>
-										@else
-											<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
-										@endif
-										<p>{{$cotizacion->ruta_entrega}}</p>
-									</a>
-								</div>
-								<div>
-									<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
-								</div>
-							@else
-								<div>
-									<h3>Ya pagaste esta publicación, aún no tienes entregas</h3>
-								</div>
-								<div>
-									<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
-								</div>
-							@endif
+							<div>
+								<h3>Ya pagaste esta publicación, aún no tienes entregas</h3>
+							</div>
+							<div>
+								<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
+							</div>
 						@endif
 					@endif
 				@endif

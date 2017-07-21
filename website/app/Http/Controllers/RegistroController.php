@@ -45,6 +45,12 @@ class RegistroController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        $user = \App\User::where('email', '=', $request->email)
+                    ->first();
+        if(count($user) > 0){
+
+        }
         // crear el usuario
         $nuevo = \App\User::create([
                 'foto' => '',
