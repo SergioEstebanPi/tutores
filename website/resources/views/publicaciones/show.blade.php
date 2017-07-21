@@ -40,33 +40,33 @@
 			@endif
 		</div>
 		--}}
-		{{-- @if(Auth::check()) --}}
-			<div>
-				<a href="/noticias/{{$publicacion->id}}" class="btn btn-default">
-					@if($extension == 'pdf')
-						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
-					@elseif($extension == 'docx' or $extension == 'doc')
-						<img src="{{asset('iconos/docx.png')}}" height="100px" width="100px"></img>
-					@elseif($extension == 'rar')
-						<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
-					@elseif($extension == 'png' or $extension == 'jpg' or $extension == 'bmp')
-						<img src="/noticias/{{$publicacion->id}}" height="100px" width="100px"></img>
-					@else
-						<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
-					@endif
-					<p>{{$publicacion->ruta}}</p>
-				</a>
-			</div>
+		<h4>Archivo publicado</h4>
+		<div>
+			<a href="/noticias/{{$publicacion->id}}" class="btn btn-default">
+				@if($extensionpublicacion == 'pdf')
+					<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+				@elseif($extensionpublicacion == 'docx' or $extensionpublicacion == 'doc')
+					<img src="{{asset('iconos/docx.png')}}" height="100px" width="100px"></img>
+				@elseif($extensionpublicacion == 'rar')
+					<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
+				@elseif($extensionpublicacion == 'png' or $extensionpublicacion == 'jpg' or $extensionpublicacion == 'bmp')
+					<img src="/noticias/{{$publicacion->id}}" height="100px" width="100px"></img>
+				@else
+					<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
+				@endif
+				<p>{{$publicacion->ruta}}</p>
+			</a>
+		</div>
 		{{-- @else
 			<div>
 				<a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-default">
-					@if($extension == 'pdf')
+					@if($extensionpublicacion == 'pdf')
 						<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
-					@elseif($extension == 'docx' or $extension == 'doc')
+					@elseif($extensionpublicacion == 'docx' or $extensionpublicacion == 'doc')
 						<img src="{{asset('iconos/docx.png')}}" height="100px" width="100px"></img>
-					@elseif($extension == 'rar')
+					@elseif($extensionpublicacion == 'rar')
 						<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
-					@elseif($extension == 'png' or $extension == 'jpg' or $extension == 'bmp')
+					@elseif($extensionpublicacion == 'png' or $extensionpublicacion == 'jpg' or $extensionpublicacion == 'bmp')
 						<img src="/noticias/{{$publicacion->ruta}}" height="100px" width="100px"></img>
 					@else
 						<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
@@ -90,11 +90,25 @@
 							</div>
 						@else
 							@if($publicacion->estado == 3)
+								<h4>Archivo entregado</h4>
 								<div>
-									<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
+									<a href="/entregas/{{$cotizacion->id}}" class="btn btn-default">
+										@if($extensioncotizacion == 'pdf')
+											<img src="{{asset('iconos/pdf.png')}}" height="100px" width="100px"></img>
+										@elseif($extensioncotizacion == 'docx' or $extensioncotizacion == 'doc')
+											<img src="{{asset('iconos/docx.png')}}" height="100px" width="100px"></img>
+										@elseif($extensioncotizacion == 'rar')
+											<img src="{{asset('iconos/rar.png')}}" height="100px" width="100px"></img>
+										@elseif($extensioncotizacion == 'png' or $extensioncotizacion == 'jpg' or $extensioncotizacion == 'bmp')
+											<img src="/entregas/{{$cotizacion->id}}" height="100px" width="100px"></img>
+										@else
+											<img src="{{asset('iconos/unknown.png')}}" height="100px" width="100px"></img>
+										@endif
+										<p>{{$cotizacion->ruta_entrega}}</p>
+									</a>
 								</div>
 								<div>
-									<a href="/entregas/{{$cotizacion->id}}" class="btn btn-primary">Ver entrega</a>
+									<a href="/cotizaciones_por_publicacion/{{$publicacion->id}}" class="btn btn-primary">Ver cotizaciones</a>
 								</div>
 							@else
 								<div>

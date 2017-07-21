@@ -123,21 +123,23 @@ class PublicacionController extends Controller
         */
 
         
-        $extension = File::extension($publicacion->ruta);
+        $extensionpublicacion = File::extension($publicacion->ruta);
         if ($publicacion->estado == 3) {
             // muestra el archivo comprado
             $cotizacion = \App\Cotizacion::where('publicacion_id', '=', $publicacion->id)
                         ->where('estado', '=', 2) 
                         ->first();    
+            $extensioncotizacion = File::extension($cotizacion->ruta_entrega);
             return view('publicaciones.show', [
-                'extension' => $extension,
+                'extensionpublicacion' => $extensionpublicacion,
+                'extensioncotizacion' => $extensioncotizacion,
                 'publicacion' => $publicacion,
-                //'file' => array_get($extensions,'sdf.pdf','unknown.png'),
+                //'file' => array_get($extensionpublicacions,'sdf.pdf','unknown.png'),
                 'cotizacion' => $cotizacion
             ]);
         } else{
             return view('publicaciones.show', [
-                'extension' => $extension,
+                'extensionpublicacion' => $extensionpublicacion,
                 'publicacion' => $publicacion,
                 //'file' => array_get($extensions,'sdf.pdf','unknown.png')
             ]);
