@@ -30,6 +30,9 @@ Route::resource('/', 'PrincipalController');
 
 /* opciones del usuario loggeado */
 Route::get('/noticias', 'PrincipalController@mostrar_publicaciones');
+Route::get('/conversor/{origen}/{destino}/{cantidad}', 'CotizacionController@conversor_monedas');
+
+
 //Route::get('/mis_publicaciones', 'PrincipalUsuarioController@mis_publicaciones');
 //Route::get('/mis_cotizaciones', 'PrincipalUsuarioController@mis_cotizaciones');
 Route::get('/mi_perfil', 'UsuarioController@mi_perfil');

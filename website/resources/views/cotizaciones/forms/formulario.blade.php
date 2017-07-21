@@ -7,8 +7,14 @@
 	<label for="" class="control-label">titulo de la publicación</label>
 	<label for="" class="form-control">{{$publicacion->titulo}}</label>
 </div>
+{{--
 <div>
-	<label for="" >precio cotizacion</label class="control-label">
+	<label for="" >Conversor de moneda (COP)</label class="control-label">
+	<input type="text" name="" value="{{$cotizacion->precio or old('precio')}}" class="form-control">
+</div>
+--}}
+<div>
+	<label for="" >precio cotizacion en (USD)</label class="control-label">
 	<input type="text" name="precio" value="{{$cotizacion->precio or old('precio')}}" class="form-control">
 </div>
 <div>
