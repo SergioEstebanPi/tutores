@@ -58,9 +58,15 @@
 						<h4>Aún no tienes publicaciones creadas</h4>
 					</div>
 				@else
-					<div>
-						<h4>No existen noticias nuevas puedes crear una nueva en <a href="/publicacion">Mis Publicaciones</a></h4>
-					</div>
+					@if(Auth::check())
+						<div>
+							<h4>No existen noticias nuevas puedes crear una nueva en <a href="/publicacion">Mis Publicaciones</a></h4>
+						</div>
+					@else
+						<div>
+							<h4>No existen noticias nuevas puedes crear una nueva en <a href="/registro">Mis Publicaciones</a></h4>
+						</div>
+					@endif
 				@endif
 			@endif
 		</div>

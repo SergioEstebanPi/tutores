@@ -4,6 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('plugins/bootstrap/css/bootstrap.css')}}">
   <script src="{{asset('plugins/jquery/jquery-3.2.1.min.js')}}"></script>
   <script src="{{asset('plugins/bootstrap/js/bootstrap.js')}}"></script>
+  <link rel="stylesheet" type="text/css" href="{{asset('css/navbar.css')}}">
 	<title>Inicio</title>
 </head>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
@@ -12,7 +13,7 @@
 
 <div class="jumbotron text-center">
   <img src="{{asset('/principal/logo.png')}}" width="200px" height="200px" />
-  <p>Red de tele-trabajo que te paga por tus conocimientos</p> 
+  <p class="slogan">Red de tele-trabajo que te paga por tus conocimientos</p> 
 </div>
 <div class="container">
   <div class="row">
@@ -61,7 +62,7 @@
 </body>
 <footer>
   <div class="jumbotron text-center">
-    <p>
+    <p class="slogan">
       Registrate y empieza ahora...
     </p>
   </div>

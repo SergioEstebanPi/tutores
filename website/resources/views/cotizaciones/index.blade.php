@@ -5,11 +5,22 @@
 @section('contenido')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3>Mis Cotizaciones {{url()->previous()}}</h3>
+		@if($ruta == 'por_publicacion')
+			@if(isset($publicacion))
+				<h3>Cotizaciones de {{$publicacion->titulo}}</h3>
+			@endif
+		@else
+			<h3>Mis Cotizaciones</h3>
+		@endif
 	</div>
 	<div class="panel-body">
 		@include('alertas.mensaje')
 		@if(count($cotizaciones)>0)
+			@if(isset($publicacion))
+				<div>
+					<h4>Tienes {{count($cotizaciones)}} cotizaciones para la publicación {{$publicacion->titulo}}</h4>
+				</div>
+			@endif
 			<table class="table table-striped well">
 				<thead>
 					@if($ruta != 'mis_cotizaciones')

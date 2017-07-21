@@ -51,6 +51,17 @@
 				<p>{{$cotizacion->publicacion->ruta}}</p>
 			</a>
 		</div>
+		@if($cotizacion->estado == 0)
+			@if($cotizacion->user_id == Auth::user()->id)
+				<div>
+					<label for="" class="control-label">Cuando esta cotización sea pagada podrás realizar una entrega</label>
+				</div>
+			@else
+				<div>
+					<label for="" class="control-label">Cuando realices el pago el Tutor podrá realizar la entrega</label>
+				</div>
+			@endif
+		@endif
 		@if($cotizacion->estado == 2)
 			<label for="" class="control-label">Archivo entregado</label>
 			<div>
@@ -72,7 +83,7 @@
 		@endif
 		@if($cotizacion->publicacion->user_id == Auth::user()->id && $cotizacion->publicacion->estado == 1)
 			<div>
-				<a href="{{ route('payment') }}" class="btn btn-primary">Pagar al tutor con <i class="fa fa-cc-paypal fa-2x"></i></a>
+				<a href="{{ route('payment') }}" class="btn btn-primary">Pagar al Tutor con Paypal<i class="fa fa-cc-paypal fa-2x"></i></a>
 			</div>
 			<div>
 				<h1>------------</h1>
@@ -131,10 +142,14 @@
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input type="hidden" name="id" value="{{$cotizacion->id}}" />
 				<div>
-				    <label class="control-label">Sube el trabajo <small class="help-block">(Máx 10MB)</small></label>
+					<label class="control-label">Debes subir el trabajo antes de</label>
 				</div>
 				<div>
-				    <label class="control-label">Subir archivo</label>
+					<h4 class="control-label">{{$cotizacion->publicacion->entrega}}</h4>
+				</div>
+				<div>
+				    {{--<label class="control-label">Subir archivo</label>--}}
+				    <label class="control-label">Sube el trabajo <small class="help-block">(Máx 10MB)</small></label>
 				    <label type="text" name="" class="control-label">{{$cotizacion->ruta_entrega or old('ruta_entrega')}}</label>
 				</div>
 					<input type="file" name="ruta_entrega" value="{{$cotizacion->ruta_entrega or old('ruta_entrega')}}" class="form-control">

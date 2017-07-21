@@ -2,6 +2,18 @@
 	height: 100px;
 }
 
+/* para la vista navbar/index */
+
 .bordeinferior{
 	border-bottom: 0.5px solid lightgray;
+}
+
+/* para la vista principal/index */
+.jumbotron{
+	margin-top: 50px;
+	background-color: #2b2a29;
+}
+
+.slogan{
+	color: white;
 }

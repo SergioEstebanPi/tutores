@@ -43,9 +43,11 @@ class CotizacionController extends Controller
         //
         $cotizaciones = \App\Cotizacion::where('publicacion_id', '=', $publicacion_id)
                 ->paginate(10);
+        $publicacion = \App\Publicacion::find($publicacion_id);
         return view('cotizaciones.index', [
             'cotizaciones' => $cotizaciones,
-            'ruta' => 'por_publicacion'
+            'ruta' => 'por_publicacion',
+            'publicacion' => $publicacion
         ]);
     }
 
@@ -168,7 +170,8 @@ class CotizacionController extends Controller
 
         return redirect('cotizacion')->with([
             'mensaje' => 'Cotización creada correctamente',
-            'tipo' => 'success'
+            'tipo' => 'success',
+            'publicacion' => $publicacion
         ]);
     }
 
@@ -223,12 +226,14 @@ class CotizacionController extends Controller
             $cotizacion->save();
             return redirect('cotizacion')->with([
                 'mensaje' => 'Cotización editada correctamente',
-                'tipo'  => 'success'
+                'tipo'  => 'success',
+                'publicacion' => $cotizacion->publicacion
             ]);
         } else {
             return redirect('cotizacion')->with([
                 'mensaje' => 'No es posible editar esta publicación',
-                'tipo' => 'danger'
+                'tipo' => 'danger',
+                'publicacion' => $cotizacion->publicacion
             ]);
         }
     }
