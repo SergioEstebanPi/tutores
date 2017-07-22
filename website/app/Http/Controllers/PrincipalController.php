@@ -34,13 +34,23 @@ class PrincipalController extends Controller
 
     public function buscar_publicaciones(){
         $valor = \Input::get('valor');
-        $publicaciones = \App\Publicacion::whereIn('estado', [0, 1])
+        $ruta = \Input::get('ruta');
+
+        $publicaciones = '';
+        if($ruta == 'noticias'){
+            $publicaciones = \App\Publicacion::whereIn('estado', [0, 1])
                                         ->where('titulo', 'like', '%' . $valor . '%')
+                                        ->orWhere('descripcion', 'like', '%' . $valor . '%')
                                         ->paginate(50);
+        } else {
+            $publicaciones = \App\Publicacion::where(
+                'user_id', '=', Auth::user()->id)
+                ->paginate(10);
+        }
 
         return view('principal.publicaciones.tabla')->with([
             'publicaciones' => $publicaciones,
-            'ruta' => 'noticias'
+            'ruta' => $ruta
         ]);
         /*
         return view('publicaciones.index', [
