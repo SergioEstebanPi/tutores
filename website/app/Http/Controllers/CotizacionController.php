@@ -78,7 +78,7 @@ class CotizacionController extends Controller
         /* notificar al tutor del pago */
         /* redirigir a la seccion "Mis Transacciones" */
 
-        return redirect()->to('/');
+        return redirect()->to('/transaccion');
 
     }
 

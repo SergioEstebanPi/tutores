@@ -15,7 +15,7 @@
 --}}
 <div>
 	<label for="" >precio cotizacion en (USD)</label class="control-label">
-	<input type="text" name="precio" value="{{$cotizacion->precio or old('precio')}}" class="form-control">
+	<input type="number" min="10" step="0.01" max="9999999.99" name="precio" value="{{$cotizacion->precio or old('precio')}}" class="form-control">
 </div>
 <div>
     <p><label>descripcion del trabajo a realizar</label class="control-label"></p>

@@ -20,8 +20,8 @@
 			<label name="titulo" class="form-control">{{$cotizacion->publicacion->titulo}}</label>
 		</div>
 		<div>
-			<label for="" class="control-label">precio</label>
-			<label id="precio" name="precio" class="form-control">{{$cotizacion->precio}}</label>
+			<label for="" class="control-label">precio (USD)</label>
+			<label id="precio" name="precio" class="form-control">{{number_format($cotizacion->precio, 2)}}</label>
 		</div>
 		@if(Auth::check() && $cotizacion->user_id == Auth::user()->id)
 			<div>
@@ -83,27 +83,47 @@
 		@endif
 		@if($cotizacion->publicacion->user_id == Auth::user()->id && $cotizacion->publicacion->estado == 1)
 			<div>
-				<a href="{{ route('payment') }}" class="btn btn-primary">Pagar al Tutor con Paypal<i class="fa fa-cc-paypal fa-2x"></i></a>
+				<h4>Pagar al Tutor con Paypal</h4>
+				<a href="/payment/{{$cotizacion->id}}" class="btn btn-primary">
+					<img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png" alt="Credit Card Badges">
+				</a>
 			</div>
+			{{--
 			<div>
 				<h1>------------</h1>
 			</div>
+			--}}
+			{{--
 			<div>
 				<a href="/pagar_cotizacion/{{$cotizacion->id}}" class="btn btn-primary">Pagar al tutor</a>
 			</div>
+			--}}
+			{{-- se elimina por seguridad de los pagos registrados en la BD
 			<div id="paypal-button-container"></div>
-			{{-- Script configuracion boton paypal --}}
+			--}}
+			{{-- Script configuracion boton paypal
 			<script>
 			    paypal.Button.render({
+
+			    	style: {
+				        size:   'medium', // tiny, small, medium
+				        //color:  'yellow', // orange, blue, silver
+				        shape:  'pill'    // pill, rect
+				    },
+
 
 			        env: 'sandbox', // sandbox | production
 
 			        // PayPal Client IDs - replace with your own
 			        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
 			        client: {
+			        	//sepi_147-vendedor@hotmail.com
 			        	sandbox:    'AUe0eLturPW6lyIR5f30yj6vBSMc5W8yUDjgTUVZvHEz7L0LxKQZkp8N4YhYKbg3Q_9GgoKM9sww_7HH',
+			        	//sepi_147-facilitator-1@hotmail.com
+			        	//sandbox:    'AUe0eLturPW6lyIR5f30yj6vBSMc5W8yUDjgTUVZvHEz7L0LxKQZkp8N4YhYKbg3Q_9GgoKM9sww_7HH',
 			            //sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
-			            production: '<insert production client id>'
+			            // agregar llave para produccion
+			            //production: '<insert production client id>'
 			        },
 
 			        // Show the buyer a 'Pay Now' button in the checkout flow
@@ -111,13 +131,12 @@
 
 			        // payment() is called when the button is clicked
 			        payment: function(data, actions) {
-
 			            // Make a call to the REST api to create the payment
 			            return actions.payment.create({
 			                payment: {
 			                    transactions: [
 			                        {
-			                            amount: { total: '100.00', currency: 'USD' }
+			                            amount: { total: '{{$cotizacion->precio}}', currency: 'USD' }
 			                            //amount: { total: document.getElementById("precio").value, currency: 'USD' }
 			                        }
 			                    ]
@@ -130,13 +149,21 @@
 
 			            // Make a call to the REST api to execute the payment
 			            return actions.payment.execute().then(function() {
+			            	//md5({{Auth::user()->id . Auth::user()->email}});
+			            	$.post('/notifications/1');
 			                window.alert('Payment Complete!');
 			            });
+			        },
+
+			        // Pass a function to be called when the customer cancels the payment
+			        onCancel: function(data) {
+			            console.log('The payment was cancelled!');
 			        }
 
 			    }, '#paypal-button-container');
 
 			</script>
+			--}}
 		@elseif($cotizacion->user_id == Auth::user()->id && $cotizacion->estado == 1)
 			<form action="/crear_entrega" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">

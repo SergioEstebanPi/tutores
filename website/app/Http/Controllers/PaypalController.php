@@ -19,10 +19,13 @@ use PayPal\Api\Transaction;
 use App\Order;
 use App\OrderItem;
 use Illuminate\Support\Facades\Input;
+use Auth;
 
+/* SOLO SE USA LA FUNCION PAGARALTUTOR para la version 1 de la app */
 class PaypalController extends BaseController
 {
 	private $_api_context;
+
 
 	public function __construct()
 	{
@@ -33,9 +36,18 @@ class PaypalController extends BaseController
 		$this->_api_context->setConfig($paypal_conf['settings']);
 	}
 
-	/* se configura lo que se le envia a paypal */
-	public function postPayment()
+	// se configura lo que se le envia a paypal 
+	public function postPayment($cotizacion_id)
 	{
+
+		$cotizacion = \App\Cotizacion::find($cotizacion_id);
+		if ($cotizacion->publicacion->user_id != Auth::user()->id) {
+			return redirect()->to('/publicacion')->with([
+				'mensaje' => 'No tiene permisos para realizar esta accion',
+				'tipo' => 'danger'
+			]);
+		}
+
 		$payer = new Payer();
 		$payer->setPaymentMethod('paypal');
 		$items = array();
@@ -56,27 +68,32 @@ class PaypalController extends BaseController
 		}
 		*/
 
+		// se ajustan las cifras a dos decimales
+		$valorpagar = number_format($cotizacion->precio, 2);
+
+		// el total de los items debe coincidir junto con el envio para la cantidad total a pagar
 		$item = new Item();
-			$item->setName('trabajo1')
+			$item->setName($cotizacion->publicacion->titulo)
 			->setCurrency($currency)
-			->setDescription('pago trabajo1')
+			->setDescription($cotizacion->descripcion)
 			->setQuantity(1)
-			->setPrice(0.05);
+			->setPrice($valorpagar);
 			$items[] = $item;
 			//$subtotal += 1 * 0.05;
-			$subtotal = 0.05;
+			$subtotal = $valorpagar;
 
 		// lista de objetos del carrito
 		$item_list = new ItemList();
 		$item_list->setItems($items);
 		$details = new Details();
 		$details->setSubtotal($subtotal)
-		->setShipping(100); // cobro adicional
-		$total = $subtotal + 100; // se añade el cobro adicional
+		->setShipping(0); // cobro adicional
+		//$total = $subtotal + 0; // se añade el cobro adicional
 
+		//$total = valorpagar;
 		$amount = new Amount();
 		$amount->setCurrency($currency)
-			->setTotal($total)
+			->setTotal($valorpagar)
 			->setDetails($details);
 
 		//$amount->setTotal(0.05);
@@ -85,7 +102,7 @@ class PaypalController extends BaseController
 		$transaction = new Transaction();
 		$transaction->setAmount($amount)
 			->setItemList($item_list)
-			->setDescription('Pedido de prueba en mi Laravel App Store');
+			->setDescription('titulo: ' . $cotizacion->publicacion->titulo . ' descripcion: ' . $cotizacion->descripcion);
 
 		// ruta a donde se envia al usuario si acepta el pago o si se cancela
 		$redirect_urls = new RedirectUrls();
@@ -184,7 +201,7 @@ class PaypalController extends BaseController
 			return \Redirect::route('/')
 				->with('mensaje', 'Compra realizada de forma correcta');
 				*/
-			return redirect()->to('publicacion')
+			return redirect()->to('transaccion')
 				->with([
 					'mensaje' => 'Pago realizado de forma correcta',
 					'tipo' => 'success'
@@ -196,7 +213,7 @@ class PaypalController extends BaseController
 		return \Redirect::route('/') // 'home'
 			->with('mensaje', 'La compra fue cancelada');
 			*/
-		return redirect()->to('publicacion')
+		return redirect()->to('transaccion')
 			->with([
 				'mensaje' => 'El pago no pudo realizarse correctamente',
 				'tipo' => 'danger'
@@ -223,6 +240,7 @@ class PaypalController extends BaseController
 	    }
 	}
 	*/
+
 
 	public function pagarAlTutor(){
 		// # Create Single Synchronous Payout Sample

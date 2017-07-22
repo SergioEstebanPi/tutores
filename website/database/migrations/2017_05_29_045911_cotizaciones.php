@@ -24,7 +24,7 @@ class Cotizaciones extends Migration
             $table->foreign('publicacion_id')
                 ->references('id')
                 ->on('publicaciones');
-            $table->integer('precio');
+            $table->decimal('precio', 10, 2);
             $table->integer('estado');
             $table->text('descripcion')->nullable();
             $table->text('ruta_entrega')->nullable();

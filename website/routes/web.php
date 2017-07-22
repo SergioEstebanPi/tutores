@@ -39,20 +39,27 @@ Route::get('/mi_perfil', 'UsuarioController@mi_perfil');
 Route::get('/cotizar_publicacion/{id}', 'CotizacionController@cotizar_publicacion');
 Route::get('/cotizaciones_por_publicacion/{id}', 'CotizacionController@cotizaciones_por_publicacion');
 Route::get('/ver_perfil/{id}', 'UsuarioController@ver_perfil');
-Route::get('/pagar_cotizacion/{id}', 'CotizacionController@pagar_cotizacion');
+Route::post('/pagar_cotizacion/{id}', 'CotizacionController@pagar_cotizacion');
 Route::post('/crear_entrega', 'CotizacionController@crear_entrega');
+
+Route::post('/', 'CotizacionController@crear_entrega');
 
 /* crear pagos paypal */
 // Enviamos nuestro pedido a Paypal
-Route::get('payment', array(
+
+Route::get('payment/{cotizacion_id}', array(
     'as' => 'payment',
     'uses' => 'PaypalController@postPayment'
 ));
+
 // Paypal redirecciona a esta ruta
+
 Route::get('payment/status', array(
     'as' => 'payment.status',
     'uses' => 'PaypalController@getPaymentStatus'
 ));
+
+
 // Paypal pagar al tutor
 Route::get('payout', array(
     'as' => 'payout',
