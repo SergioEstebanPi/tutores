@@ -23,7 +23,7 @@ class EntregaController extends Controller
     {
         //
 
-        
+        // pagos que he realizado a tutores por cotizaciones
         $pagos = DB::table('cotizaciones')
             ->whereIn('publicacion_id', function($query)
             {
@@ -36,6 +36,7 @@ class EntregaController extends Controller
             //->whereIn('estado', [1, 2, 3])
             ->get();
 
+        // dinero que he obtenido por las cotizaciones que he realizado
         $recibidos = \App\Cotizacion::where('user_id', '=', Auth::user()->id)
                                     ->whereIn('estado', [2, 3]) // entregado, calificada
                                     ->get(); 

@@ -32,6 +32,24 @@ class PrincipalController extends Controller
         ]);
     }
 
+    public function buscar_publicaciones(){
+        $valor = \Input::get('valor');
+        $publicaciones = \App\Publicacion::whereIn('estado', [0, 1])
+                                        ->where('titulo', 'like', '%' . $valor . '%')
+                                        ->paginate(50);
+
+        return view('principal.publicaciones.tabla')->with([
+            'publicaciones' => $publicaciones,
+            'ruta' => 'noticias'
+        ]);
+        /*
+        return view('publicaciones.index', [
+            'publicaciones' => $publicaciones,
+            'ruta' => 'noticias'
+        ]);
+        */
+    }
+
     /**
      * Show the form for creating a new resource.
      *

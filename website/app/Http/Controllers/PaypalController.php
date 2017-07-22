@@ -242,7 +242,37 @@ class PaypalController extends BaseController
 	*/
 
 
-	public function pagarAlTutor(){
+	public function pagarAlTutor($id){
+
+		$tutor = \App\User::find($id);
+
+		// se valida que el usuario esté loggeado si no es asi se termina el proceso
+		if (!Auth::check()) {
+			abort(404);
+		}
+
+		// se valida que el tutor tenga dinero suficiente, se retira con más de 50 USD ~ 150000 COP
+		// calcular el valor ganado
+		// dinero que he obtenido por las cotizaciones que he realizado
+        $recibidos = \App\Cotizacion::where('user_id', '=', Auth::user()->id)
+                                    ->whereIn('estado', [2, 3]) // entregado, calificada
+                                    ->get(); 
+
+        $totalrec = 0;
+        foreach ($recibidos as $recibido) {
+        	$totalrec = $totalrec + $recibido->precio;
+        }
+        //dd($totalrec);
+		if ($totalrec < 50) {
+			// no puede retirar dinero
+			return redirect()->to()->with([
+				'mensaje' => 'Aún no puedes transferir dinero a tu cuenta Paypal, debes tener mínimo 50 USD por trabajos realizados',
+				'tipo' => 'danger'
+			]);
+		} 
+
+
+
 		// # Create Single Synchronous Payout Sample
 		//
 		// This sample code demonstrate how you can create a synchronous payout sample, as documented here at:
@@ -277,12 +307,14 @@ class PaypalController extends BaseController
 		// You can prevent duplicate batches from being processed. If you specify a `sender_batch_id` that was used in the last 30 days, the batch will not be processed. For items, you can specify a `sender_item_id`. If the value for the `sender_item_id` is a duplicate of a payout item that was processed in the last 30 days, the item will not be processed.
 		// #### Batch Header Instance
 		$senderBatchHeader->setSenderBatchId(uniqid())
-		    ->setEmailSubject("You have a Payout!");
+			->setEmailSubject("Has retirado de tu cuenta Tutores con éxito!");
+		    //->setEmailSubject("You have a Payout!");
 		// #### Sender Item
 		// Please note that if you are using single payout with sync mode, you can only pass one Item in the request
 		$senderItem = new \PayPal\Api\PayoutItem();
 		$senderItem->setRecipientType('Email')
-		    ->setNote('Thanks for your patronage!')
+		    ->setNote('Gracias por tu entrega!') 
+		    //->setNote('Thanks for your patronage!')
 		    ->setReceiver('sepi_147-buyer@hotmail.com')
 		    ->setSenderItemId("1")
 		    ->setAmount(new \PayPal\Api\Currency('{
@@ -307,11 +339,17 @@ class PaypalController extends BaseController
 		return $output;
 		*/
 		if ($output->batch_header->batch_status == 'DENIED') {
-			return "No se pudo realizar el pago";
+			return redirect()->to('transaccion')->with([
+				"mensaje" => "No se pudo realizar el pago",
+				"tipo" => "danger"
+			]);
 		} else if($output->batch_header->batch_status == 'SUCCESS'){
-			return "Pago exitoso";
+			return redirect()->to('transaccion')->with([
+				"mensaje" => "Tu pago se ha realizdo con éxito",
+				"tipo" => "success"
+			]);
 		}
-		return "Pago exitoso " . $output->getBatchHeader()->getPayoutBatchId() . "\n request " . $request . "\n output " . $output;
+		//return "Pago exitoso " . $output->getBatchHeader()->getPayoutBatchId() . "\n request " . $request . "\n output " . $output;
 	}
 	
 	/*
