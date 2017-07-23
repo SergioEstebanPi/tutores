@@ -10,7 +10,6 @@
 </head>
 <body>
 	@include('principal.navbar.index')
-	<div class="espacio"></div>
 
 	<div id="mySidenav" class="sidenav">
 	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -173,7 +172,6 @@
 	<div id="sidebar">
 		<span style="font-size:30px;cursor:pointer" onclick="openNav()">
 			&#9776;
-	  		<img src="{{asset('/principal/logo.png')}}" width="70px" height="70px" />
 	  	</span>
 	</div>
 	  @yield('contenido')
