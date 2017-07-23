@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class PrincipalController extends Controller
 {
@@ -43,9 +44,14 @@ class PrincipalController extends Controller
                                         ->orWhere('descripcion', 'like', '%' . $valor . '%')
                                         ->paginate(50);
         } else {
-            $publicaciones = \App\Publicacion::where(
-                'user_id', '=', Auth::user()->id)
-                ->paginate(10);
+            if(Auth::check()){
+                $publicaciones = \App\Publicacion::where(
+                    'user_id', '=', Auth::user()->id)
+                    ->paginate(10);    
+            } else {
+                abort(404);
+            }
+            
         }
 
         return view('principal.publicaciones.tabla')->with([

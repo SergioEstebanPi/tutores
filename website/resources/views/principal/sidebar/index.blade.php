@@ -8,6 +8,17 @@
                 <li>
                   <a href="#">
                   <i class="fa fa-dashboard fa-lg"></i> Dashboard
+                  {{-- barra de búsqueda --}}
+                    <div class="panel panel-default">
+                      <form action="" method="">
+                        @if(isset($ruta))
+                          <input type="hidden" id="ruta" value="{{$ruta}}">
+                        @endif
+                        <img src="{{asset('/principal/logo.png')}}" width="70px" height="70px" />
+                        <input type="text" id="valor" name="valor" placeholder="Realiza una búsqueda" />  
+                        {{--<input type="submit" value="Buscar">--}}
+                      </form>
+                    </div>
                   </a>
                 </li>
 

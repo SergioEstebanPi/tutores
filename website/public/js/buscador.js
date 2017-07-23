@@ -21,7 +21,7 @@ $(document).ready(function() {
          //$("#display").html("");
         $.ajax({
               type: "get",
-              url: "buscar",
+              url: "localhost:8000/buscar",
               data: {
                   'valor': name,
                   'ruta' : ruta,

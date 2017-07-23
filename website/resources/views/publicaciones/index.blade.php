@@ -1,15 +1,5 @@
 @extends('layouts.index')
 
-{{-- barra de búsqueda --}}
-<div class="panel panel-default jumbotron">
-	<form action="" method="">
-		<input type="hidden" id="ruta" value="{{$ruta}}">
-		<img src="{{asset('/principal/logo.png')}}" width="70px" height="70px" />
-		<input type="text" id="valor" name="valor" placeholder="Realiza una búsqueda" />	
-		<input type="submit" value="Buscar">
-	</form>
-</div>
-
 @section('contenido')
 <div class="panel panel-default">
 	<div class="panel-heading">

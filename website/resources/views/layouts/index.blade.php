@@ -13,10 +13,10 @@
 	<div class="espacio"></div>
 
 	<div class="row">
-		<div class="col-md-0">
-			{{-- @include('principal.sidebar.index') --}}
+		<div class="col-md-3">
+			 @include('principal.sidebar.index')
 		</div>
-		<div class="col-md-12">
+		<div class="col-md-9">
 			
 				@yield('contenido')
 			
